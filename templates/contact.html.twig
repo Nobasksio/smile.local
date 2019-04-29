@@ -1,0 +1,205 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block bread_crumbs %}
+    <div class="row border_grey_b" >
+        <div class="wa" >
+            <div class="bread_crumbs_row" >
+                <a href="{{ path('index') }}" ><span >Главная</span ></a >
+                <span class="rp20" >></span >
+                <span class="active_crumbs" >Контакты</span >
+            </div >
+        </div >
+    </div >
+
+{% endblock %}
+{% block page_menu %}
+
+{% endblock %}
+{% block content %}
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=0bf9b68a-3b1e-4b26-9a05-a25639a8258b&lang=ru_RU"
+            type="text/javascript" >
+    </script >
+    <script type="text/javascript" >
+
+        // Функция ymaps.ready() будет вызвана, когда
+        // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+
+        ymaps.ready(function () {
+            // Создание карты.
+            var myMap = new ymaps.Map("map", {
+                center: [56.4594199162167, 84.96545076370239],
+                zoom: 16
+            });
+
+            var multiRoute = new ymaps.multiRouter.MultiRoute({
+                referencePoints: [
+                    'Учебная улица, 38',
+                    'ТЦ Смайл city, г. Томск, ул, Учебная, 48д'
+                ],
+
+            }, {
+                // Автоматически устанавливать границы карты так,
+                // чтобы маршрут был виден целиком.
+                boundsAutoApply: true
+            });
+
+            // Добавление маршрута на карту.
+            //myMap.geoObjects.add(multiRoute);
+        });
+    </script >
+    <div class="row map" id="map" >
+        <div class="wa" >
+
+        </div >
+    </div >
+    <div class="row" >
+        <div class="wa" >
+            <div class="contacts_blk" >
+                <div class="header_contact_left fl" >
+                    <div class="center font20 black" >Контакты</div >
+                    <div class="phone red_c" >+7(3822) 903-428</div >
+                    <div class="plain_text black center" >Правила пребывания в ТЦ СМАЙЛ city</div >
+                    <div class="separator" ></div >
+                    <div class="center font20 black" >ПРЕСС-СЛУЖБА</div >
+                    <div class="text12 center" >Иванов Иван</div >
+                    <div class="text12 center" >mail@domain.ru</div >
+                </div >
+                <div class="header_contact_right fl" >
+                    <div class="work_time_contact_area red_b" >
+                        <div class="work_time_ikon center" >
+                            <img src="{{ asset('img/clock.svg') }}" class="clock_ikon" >
+                        </div >
+                        <div class="name_contact_filds center white_c" >РЕЖИМ РАБОТЫ</div >
+                    </div >
+                    <div class="work_days_area " >
+                        <div class="work_time_block flex f_gorizontal" >
+                            <div class="work_time_item" >
+                                <div class="week_day center" >
+                                    ПН
+                                </div >
+                                <div class="week_day_work_hours center" >
+                                    <div class="start_work center" >10:00</div >
+                                    <div class="finish_work center" >22:00</div >
+                                </div >
+                            </div >
+                            <div class="vertical_separator" ></div >
+                            <div class="work_time_item" >
+                                <div class="week_day center" >
+                                    ВТ
+                                </div >
+                                <div class="week_day_work_hours center" >
+                                    <div class="start_work center" >10:00</div >
+                                    <div class="finish_work center" >22:00</div >
+                                </div >
+                            </div >
+                            <div class="vertical_separator" ></div >
+                            <div class="work_time_item" >
+                                <div class="week_day center" >
+                                    СР
+                                </div >
+                                <div class="week_day_work_hours center" >
+                                    <div class="start_work center" >10:00</div >
+                                    <div class="finish_work center" >22:00</div >
+                                </div >
+                            </div >
+                            <div class="vertical_separator" ></div >
+                            <div class="work_time_item" >
+                                <div class="week_day center" >
+                                    ЧТ
+                                </div >
+                                <div class="week_day_work_hours center" >
+                                    <div class="start_work center" >10:00</div >
+                                    <div class="finish_work center" >22:00</div >
+                                </div >
+                            </div >
+                            <div class="vertical_separator" ></div >
+                            <div class="work_time_item" >
+                                <div class="week_day center" >
+                                    ПТ
+                                </div >
+                                <div class="week_day_work_hours center" >
+                                    <div class="start_work center" >10:00</div >
+                                    <div class="finish_work center" >22:00</div >
+                                </div >
+                            </div >
+                            <div class="vertical_separator" ></div >
+                            <div class="work_time_item" >
+                                <div class="week_day center" >
+                                    СБ
+                                </div >
+                                <div class="week_day_work_hours center" >
+                                    <div class="start_work center" >10:00</div >
+                                    <div class="finish_work center" >22:00</div >
+                                </div >
+                            </div >
+                            <div class="vertical_separator" ></div >
+                            <div class="work_time_item" >
+                                <div class="week_day center" >
+                                    ВС
+                                </div >
+                                <div class="week_day_work_hours center" >
+                                    <div class="start_work center" >10:00</div >
+                                    <div class="finish_work center" >22:00</div >
+                                </div >
+                            </div >
+                        </div >
+                    </div >
+                </div >
+                <div class="help" ></div >
+                <div class="feedback_area">
+                    <div class="font20 black" >ОСТАВЬТЕ ЗАЯВКУ</div >
+                    <div class="separator2" ></div >
+                    <div class="fl" >
+
+                        <input class="contact_input" placeholder="Ф.И.О." >
+
+                        <input class="contact_input" placeholder="Email" >
+                        <input class="contact_input" placeholder="Телефон" >
+                        <select class="contact_select">
+                            <option >
+                                Обратная связь
+                            </option >
+                            <option >
+                                Реклама в ТЦ
+                            </option >
+                            <option >
+                                Предложения сотрудничества
+                            </option >
+                            <option >
+                                Забытые вещи
+                            </option >
+                            <option >
+                                Аренда торговых площадей
+                            </option >
+                            <option >
+                                Пресса и съемка в ТЦ
+                            </option >
+                            <option >
+                                Работа в ТЦ
+                            </option >
+                        </select >
+
+                    </div >
+                    <div class="text_area_contact" >
+                        <div >
+                            <textarea class="contact_textarea">Текст</textarea >
+                        </div >
+                    </div >
+                    <div class="help"></div>
+                    <div class="upload_ared center">
+                        прекрепить файл
+                    </div >
+                    <div class="button_center" >
+                        ОТПРАВИТЬ ЗАЯВКУ
+                    </div >
+                </div >
+            </div >
+        </div >
+    </div >
+
+{% endblock %}
+{% block subscribe %}
+
+{% endblock %}

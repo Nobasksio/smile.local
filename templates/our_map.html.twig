@@ -1,0 +1,115 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Отделы ТЦ{% endblock %}
+
+{% block bread_crumbs %}
+    <div class="row" >
+        <div class="wa" >
+            <div >
+                <span >Главная</span >
+                <span >></span >
+                <span >Как добраться</span >
+            </div >
+        </div >
+    </div >
+{% endblock %}
+
+{% block page_menu %}
+{% endblock %}
+
+{% block content %}
+    <div class="row map" >
+        <div class="wa" >
+            <div class="path_blk" >
+                <div >
+                    <div class="make_path" >
+                        <div class="icon_path" ></div >
+                        <div class="path_name" ></div >
+                    </div >
+                    <div class="city_transport" >
+                        <div class="icon_path" ></div >
+                        <div class="path_name" ></div >
+                    </div >
+                    <div class="parking_info" >
+                        <div class="icon_path" ></div >
+                        <div class="path_name" ></div >
+                    </div >
+                </div >
+                <div class="path" >
+                    <div class="row_path" >
+                        <input type="text" class="input_path" placeholder="Откуда" >
+                    </div >
+                    <div class="row_path" >
+                        <input type="text" class="input_path" placeholder="ТЦ Смайл city, г. Томск, ул, Учебная, 48д"
+                               disabled >
+                    </div >
+                    <div class="button_path" >
+                        Показать
+                    </div >
+                </div >
+
+                <div class="city_transport " >
+                    <div class="transport_type bus">
+                        Автобус №
+                        <span>
+                            <span class="transport_number_item">
+                                23 |
+                            </span>
+                            <span class="transport_number_item">
+                                33 |
+                            </span>
+                             <span class="transport_number_item">
+                                43
+                            </span>
+                        </span>
+                    </div>
+                    <div class="transport_type electrobus">
+                        Автобус №
+                        <span>
+                            <span class="transport_number_item">
+                                23 |
+                            </span>
+                            <span class="transport_number_item">
+                                33 |
+                            </span>
+                             <span class="transport_number_item">
+                                43
+                            </span>
+                        </span>
+                    </div>
+                    <div class="transport_type tramvai">
+                        Автобус №
+                        <span>
+                            <span class="transport_number_item">
+                                23 |
+                            </span>
+                            <span class="transport_number_item">
+                                33 |
+                            </span>
+                             <span class="transport_number_item">
+                                43
+                            </span>
+                        </span>
+                    </div>
+                </div >
+                <div class="parking_info" >
+                    <h2>
+                       БУДНИЕ ДНИ:
+                    </h2>
+                    <div class="plain_text center">
+
+                    </div>
+                    <h2>
+                        ПРАЗДНИЧНЫЕ ДНИ:
+                    </h2>
+                    <div class="plain_text center">
+
+                    </div>
+
+                </div>
+            </div >
+        </div >
+    </div >
+
+{% endblock %}
+

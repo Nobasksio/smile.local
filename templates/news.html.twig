@@ -1,0 +1,247 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Акция{% endblock %}
+
+{% block bread_crumbs %}
+    <div class="row border_grey_b">
+        <div class="wa">
+            <div class="bread_crumbs_row">
+                <a href="{{ path('index') }}"><span >Главная</span></a>
+                <span class="rp20">></span>
+                <a href="{{ path('news') }}"><span>Новости и акции</span></a>
+                <span class="rp20">></span>
+                <span class="active_crumbs">Что для тебяозначает стильно?</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="row white_bm white_c" >
+        <div class="wa" >
+            <div class="actions_index" >
+                <h1 class=' red_c' >
+                    НОВОСТИ
+                </h1 >
+                <div class="index_actions_slider" >
+                    <div class="next_action_slider" ></div >
+                    <div class="index_actions_item fl" >
+                        <div class="action_img" >
+                            <a href="{{ path('news_item',{'name':'test'}) }}"> <img src="{{ asset('img/act1-80.jpg') }}" alt="" class="action_item" ></a>
+                        </div >
+                        <div class="hatch" >
+                            <a href="{{ path('news_item',{'name':'test'}) }}"> <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="action_text_blk" >
+                            <div class="action_content" >
+                                <div class="type_action" >
+                                    Новости
+                                </div >
+                                <h4 >
+                                    <a href="{{ path('news_item',{'name':'test'}) }}">Как одеваться весной</a>
+                                </h4 >
+                                <div class="index_action_descriptin" >
+                                    <a href="{{ path('news_item',{'name':'test'}) }}">
+                                    Для тех кто не хочет выглядеть как радуга
+                                    </a>
+                                </div >
+                            </div >
+                            <div class="action_date" >
+                                14 апреля 2019
+                            </div >
+                        </div >
+                    </div >
+                    <div class="index_actions_item fl" >
+                        <div class="action_img" >
+                            <img src="{{ asset('img/ac4-80.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="hatch" >
+                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="action_text_blk" >
+                            <div class="action_content" >
+                                <div class="type_action" >
+                                    Новости
+                                </div >
+                                <h4 >
+                                    Как одеваться весной
+                                </h4 >
+                                <div class="index_action_descriptin" >
+                                    Для тех кто не хочет выглядеть как радуга
+                                </div >
+                            </div >
+                            <div class="action_date" >
+                                14 апреля 2019
+                            </div >
+                        </div >
+                    </div >
+                    <div class="index_actions_item fl" >
+                        <div class="action_img" >
+                            <img src="{{ asset('img/ac3-80.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="hatch" >
+                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="action_text_blk" >
+                            <div class="action_content" >
+                                <div class="type_action" >
+                                    Новости
+                                </div >
+                                <h4 >
+                                    Как одеваться весной
+                                </h4 >
+                                <div class="index_action_descriptin" >
+                                    Для тех кто не хочет выглядеть как радуга
+                                </div >
+                            </div >
+                            <div class="action_date" >
+                                14 апреля 2019
+                            </div >
+                        </div >
+                    </div >
+                    <div class="index_actions_item fl" >
+                        <div class="action_img" >
+                            <img src="{{ asset('img/ac2-80.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="hatch" >
+                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="action_text_blk" >
+                            <div class="action_content" >
+                                <div class="type_action" >
+                                    Новости
+                                </div >
+                                <h4 >
+                                    Как одеваться весной
+                                </h4 >
+                                <div class="index_action_descriptin" >
+                                    Для тех кто не хочет выглядеть как радуга
+                                </div >
+                            </div >
+                            <div class="action_date" >
+                                14 апреля 2019
+                            </div >
+                        </div >
+                    </div >
+                    <div class="next_action_slider" ></div >
+                </div >
+                <div class="black_white_button center" >
+                    ЕЩЁ
+                </div >
+                <div class="help" ></div >
+            </div >
+        </div >
+    </div >
+    <div class="row white_bm white_c" >
+        <div class="wa" >
+            <div class="actions_index" >
+                <h1 class=' red_c' >
+                    АКЦИИ
+                </h1 >
+                <div class="index_actions_slider" >
+                    <div class="next_action_slider" ></div >
+                    <div class="index_actions_item fl" >
+                        <div class="action_img" >
+                            <img src="{{ asset('img/act1-80.jpg') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="hatch" >
+                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="action_text_blk" >
+                            <div class="action_content" >
+                                <div class="type_action" >
+                                    Новости
+                                </div >
+                                <h4 >
+                                    Как одеваться весной
+                                </h4 >
+                                <div class="index_action_descriptin" >
+                                    Для тех кто не хочет выглядеть как радуга
+                                </div >
+                            </div >
+                            <div class="action_date" >
+                                14 апреля 2019
+                            </div >
+                        </div >
+                    </div >
+                    <div class="index_actions_item fl" >
+                        <div class="action_img" >
+                            <img src="{{ asset('img/ac4-80.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="hatch" >
+                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="action_text_blk" >
+                            <div class="action_content" >
+                                <div class="type_action" >
+                                    Новости
+                                </div >
+                                <h4 >
+                                    Как одеваться весной
+                                </h4 >
+                                <div class="index_action_descriptin" >
+                                    Для тех кто не хочет выглядеть как радуга
+                                </div >
+                            </div >
+                            <div class="action_date" >
+                                14 апреля 2019
+                            </div >
+                        </div >
+                    </div >
+                    <div class="index_actions_item fl" >
+                        <div class="action_img" >
+                            <img src="{{ asset('img/ac3-80.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="hatch" >
+                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="action_text_blk" >
+                            <div class="action_content" >
+                                <div class="type_action" >
+                                    Новости
+                                </div >
+                                <h4 >
+                                    Как одеваться весной
+                                </h4 >
+                                <div class="index_action_descriptin" >
+                                    Для тех кто не хочет выглядеть как радуга
+                                </div >
+                            </div >
+                            <div class="action_date" >
+                                14 апреля 2019
+                            </div >
+                        </div >
+                    </div >
+                    <div class="index_actions_item fl" >
+                        <div class="action_img" >
+                            <img src="{{ asset('img/ac2-80.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="hatch" >
+                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
+                        </div >
+                        <div class="action_text_blk" >
+                            <div class="action_content" >
+                                <div class="type_action" >
+                                    Новости
+                                </div >
+                                <h4 >
+                                    Как одеваться весной
+                                </h4 >
+                                <div class="index_action_descriptin" >
+                                    Для тех кто не хочет выглядеть как радуга
+                                </div >
+                            </div >
+                            <div class="action_date" >
+                                14 апреля 2019
+                            </div >
+                        </div >
+                    </div >
+                    <div class="next_action_slider" ></div >
+                </div >
+                <div class="black_white_button center" >
+                    ЕЩЁ
+                </div >
+                <div class="help" ></div >
+            </div >
+        </div >
+    </div >
+{% endblock %}

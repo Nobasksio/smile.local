@@ -1,0 +1,166 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Отделы ТЦ{% endblock %}
+
+{% block bread_crumbs %}
+    <div class="row border_grey_b" >
+        <div class="wa" >
+            <div class="bread_crumbs_row" >
+                <a href="{{ path('index') }}" ><span >Главная</span ></a >
+                <span class="rp20" >></span >
+                <span class="active_crumbs" >Как добраться</span >
+            </div >
+        </div >
+    </div >
+
+
+{% endblock %}
+
+{% block page_menu %}
+{% endblock %}
+
+{% block content %}
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=0bf9b68a-3b1e-4b26-9a05-a25639a8258b&lang=ru_RU"
+            type="text/javascript" >
+    </script >
+
+    <script type="text/javascript" >
+
+        // Функция ymaps.ready() будет вызвана, когда
+        // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+
+        ymaps.ready(function () {
+            // Создание карты.
+            var myMap = new ymaps.Map("map2", {
+                center: [56.4594199162167, 84.96545076370239],
+                zoom: 16
+            });
+
+            var multiRoute = new ymaps.multiRouter.MultiRoute({
+                referencePoints: [
+                    'Учебная улица, 38',
+                    'ТЦ Смайл city, г. Томск, ул, Учебная, 48д'
+                ],
+
+            }, {
+                // Автоматически устанавливать границы карты так,
+                // чтобы маршрут был виден целиком.
+
+            });
+
+            // Добавление маршрута на карту.
+            // myMap.geoObjects.add(multiRoute);
+        });
+    </script >
+    <div class="row map" id="map2" >
+        <div class="wa" >
+        </div >
+    </div >
+    <div class="row" >
+        <div class="wa" >
+            <div class="path_blk" >
+                <div class="border_grey_b">
+                    <div class="make_path center fl" >
+                        <div class="icon_path center" >
+                            <img src="{{ asset('img/path.png') }}" >
+                        </div >
+                        <div class="path_name" >проложить<br > маршрут</div >
+                    </div >
+                    <div class="city_transport center fl" >
+                        <div class="icon_trans center" >
+                            <img src="{{ asset('img/trans.png') }}" >
+                        </div >
+                        <div class="path_name" >городской<br > транспорт</div >
+                    </div >
+                    <div class="parking_info_active center fl" >
+                        <div class="icon_park center" >
+                            <img src="{{ asset('img/park.png') }}" >
+                        </div >
+                        <div class="path_name" >информация<br > о парковке</div >
+                    </div >
+                </div >
+                <div class="help border_grey_t"></div>
+                    <div class="path" >
+                        <div class="row_path" >
+                            <input type="text" class="input_path" placeholder="Откуда" >
+                        </div >
+                        <div class="row_path" >
+                            <input type="text" class="input_path"
+                                   placeholder="ТЦ Смайл city, г. Томск, ул, Учебная, 48д"
+                            >
+                        </div >
+                        <div class="button_path center" >
+                            ПОКАЗАТЬ
+                        </div >
+                    </div >
+                    <div class="city_transport_blk " >
+                        <div class="transport_type bus center" >
+                            Автобус №
+                            <span >
+                            <span class="transport_number_item" >
+                                23 |
+                            </span >
+                            <span class="transport_number_item" >
+                                33 |
+                            </span >
+                             <span class="transport_number_item" >
+                                43
+                            </span >
+                        </span >
+                        </div >
+                        <div class="transport_type electrobus center" >
+                            Автобус №
+                            <span >
+                            <span class="transport_number_item" >
+                                23 |
+                            </span >
+                            <span class="transport_number_item" >
+                                33 |
+                            </span >
+                             <span class="transport_number_item" >
+                                43
+                            </span >
+                        </span >
+                        </div >
+                        <div class="transport_type tramvai center" >
+                            Автобус №
+                            <span >
+                            <span class="transport_number_item" >
+                                23 |
+                            </span >
+                            <span class="transport_number_item" >
+                                33 |
+                            </span >
+                             <span class="transport_number_item" >
+                                43
+                            </span >
+                        </span >
+                        </div >
+                    </div >
+                    <div class="parking_info_blk center" >
+                        <div class="text14 black " >
+                            БУДНИЕ ДНИ:
+                        </div >
+                        <div class=" center" >
+                            Первые 2 часа – бесплатно<br>
+                            Последующие часы – 00 рублей/в час<br>
+                            20 минут на выезд после оплаты – бесплатно
+                        </div >
+                        <div class="text14 black" >
+                            ПРАЗДНИЧНЫЕ ДНИ:
+                        </div >
+                        <div class=" center" >
+                            1 час – 00 рублей<br>
+                            20 минут на посадку/высадку – бесплатно<br>
+                            20 минут на выезд после оплаты – бесплатно
+                        </div >
+
+                    </div >
+
+            </div >
+        </div >
+    </div >
+
+{% endblock %}
+{% block subscribe %}
+{% endblock %}
