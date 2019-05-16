@@ -1,0 +1,139 @@
+{% extends 'admin/index.html.twig' %}
+  {% block content %}
+
+      <div class="content-wrapper" >
+          <!-- Content Header (Page header) -->
+          <section class="content-header" >
+              <h1 >
+                  Создать новость
+
+              </h1 >
+              <ol class="breadcrumb" >
+                  <li ><a href="#" ><i class="fa fa-dashboard" ></i > Home</a ></li >
+                  <li class="active" >Новая новость</li >
+              </ol >
+          </section >
+
+          <!-- Main content -->
+          <section class="content" >
+              <!-- /.row -->
+              <!-- Main row -->
+
+              <div class="row" >
+                  <div class="col-md-6" >
+                      <div class="box box-warning" >
+
+                          <div class="box-body" >
+                              {{ form_start(form) }}
+                                  <!-- text input -->
+                                  <div class="form-group">
+                                      <label>Дата:</label>
+
+                                      <div class="input-group date">
+                                          <div class="input-group-addon">
+                                              <i class="fa fa-calendar"></i>
+                                          </div>
+                                          {{ form_widget(form.date, {'attr': {'class': 'form-control pull-right'}, 'id':'datepicker'}) }}
+
+                                      </div>
+                                      <!-- /.input group -->
+                                  </div>
+                                  <div class="form-group" >
+                                      <label >Заголовок</label >
+                                      {{ form_widget(form.name, {'attr': {'class': 'form-control pull-right', 'placeholder':'Заголовок'}}) }}
+
+                                  </div >
+
+                                  <div class="form-group">
+                                      <label>Описание</label>
+
+                                        {{ form_widget(form.description, {'attr': {'rows': '10','cols':'80'},'id':'editor1' }) }}
+
+
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="preview">Превью</label>
+                                      {{ form_widget(form.preview_upload, {'attr': {'id':'preview','class':'hide'}}) }}
+                                        {% if news is defined %}
+                                        <div id="preview_upload">
+                                            <img src="/uploads/file/{{ news.preview }}" class="preview_upload">
+
+                                        </div>
+                                        <div type="submit" class="btn btn-info " onclick="update('preview')">Заменить</div >
+                                        {% endif %}
+                                      <p class="help-block">Минимум 260х260 px. Должна быть квадратной. иначе будет ужасно смотреться</p>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="image">Картинка на деталью страницу</label>
+                                     {{ form_widget(form.image_upload, {'attr': {'id':'image'}}) }}
+                                        {% if news is defined %}
+                                        <div id="image_upload">
+                                            <img src="/uploads/file/{{ news.image }}" class="preview_upload">
+                                        </div>
+                                        <div type="submit" class="btn btn-info " onclick="update('image')">Заменить</div >
+                                        {% endif %}
+                                      <p class="help-block">Минимум 600х600 px.</p>
+                                  </div>
+                                  <div class="form-group" >
+
+                                      <label >Ссылка instagram</label >
+                                      {{ form_widget(form.instagram, {'attr': {'class': 'form-control'}}) }}
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Ссылка vk</label >
+                                      {{ form_widget(form.vk, {'attr': {'class': 'form-control'}}) }}
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Ссылка facebook</label >
+                                      {{ form_widget(form.facebook, {'attr': {'class': 'form-control'}}) }}
+                                  </div >
+
+                                  <div class="form-group" >
+
+                                      <div class="checkbox" >
+                                          <label >
+                                              {{ form_widget(form.active) }} Активность
+                                          </label >
+                                      </div >
+
+                                  </div >
+                                  <div class="box-footer" >
+
+                                      <button type="submit" class="btn btn-info " >Создать</button >
+                                      {% if news is defined %}
+                                          <a href="{{ path('news_delete',{'id':news.id}) }}"><span type="submit" class="btn btn-danger pull-right " >Удалить</span ></a>
+                                      {% endif %}
+                                  </div >
+                               {{ form_end(form) }}
+                          </div >
+                      </div >
+                  </div >
+              </div >
+
+
+          </section >
+
+          <!-- /.content -->
+  {% endblock %}
+
+          {% block jsinline %}
+          <script>
+              $(function () {
+                  CKEDITOR.replace('editor1')
+                  //Date picker
+                  $('#datepicker').datepicker({
+                      autoclose: true,
+
+                  })
+                  $('#datepicker2').datepicker({
+                      autoclose: true
+                  });
+                  $('.select2').select2()
+              })
+            function update(type) {
+                $('#'+type+'_upload').html('');
+                $('#news_redact_'+type+'_upload').removeClass('hide');
+                $('#news_redact_'+type+'_upload').click();
+            }
+          </script>
+          {% endblock %}

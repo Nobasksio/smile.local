@@ -6,7 +6,18 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" >
     {% endblock %}
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script >
+    <meta name="viewport" content="width=1200px">
+    {#<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script >#}
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" ></script >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script >
+    {#<script#}
+    {#src="https://code.jquery.com/jquery-3.4.0.js"#}
+    {#integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="#}
+    {#crossorigin="anonymous"></script>#}
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script >
+    <link rel="stylesheet" href="{{ asset('js/bxslider-4-4.2.12/dist/jquery.bxslider.css') }}" >
+
+    <script src="{{ asset('js/bxslider-4-4.2.12/dist/jquery.bxslider.js') }}" ></script >
 </head >
 <body >
 
@@ -28,76 +39,24 @@
                                 </div >
                                 <div class="work_days_area " >
                                     <div class="work_time_block flex f_gorizontal" >
-                                        <div class="work_time_item" >
-                                            <div class="week_day center" >
-                                                ПН
+                                        {% for index,day in work_time %}
+                                            <div class="work_time_item" >
+                                                <div class="week_day center" >
+                                                    {{ index }}
+                                                </div >
+                                                <div class="week_day_work_hours center" >
+                                                    <div class="start_work center" >{{ day.start }}</div >
+                                                    <div class="finish_work center" >{{ day.finish }}</div >
+                                                    {% if (('now'|date('w'))==loop.index) %}
+                                                        <div class="today" >сегодня</div >
+                                                    {% endif %}
+                                                </div >
                                             </div >
-                                            <div class="week_day_work_hours center" >
-                                                <div class="start_work center" >10:00</div >
-                                                <div class="finish_work center" >22:00</div >
-                                                <div class="today">сегодня</div>
-                                            </div >
-                                        </div >
-                                        <div class="vertical_separator" ></div >
-                                        <div class="work_time_item" >
-                                            <div class="week_day center" >
-                                                ВТ
-                                            </div >
-                                            <div class="week_day_work_hours center" >
-                                                <div class="start_work center" >10:00</div >
-                                                <div class="finish_work center" >22:00</div >
-                                            </div >
-                                        </div >
-                                        <div class="vertical_separator" ></div >
-                                        <div class="work_time_item" >
-                                            <div class="week_day center" >
-                                                СР
-                                            </div >
-                                            <div class="week_day_work_hours center" >
-                                                <div class="start_work center" >10:00</div >
-                                                <div class="finish_work center" >22:00</div >
-                                            </div >
-                                        </div >
-                                        <div class="vertical_separator" ></div >
-                                        <div class="work_time_item" >
-                                            <div class="week_day center" >
-                                                ЧТ
-                                            </div >
-                                            <div class="week_day_work_hours center" >
-                                                <div class="start_work center" >10:00</div >
-                                                <div class="finish_work center" >22:00</div >
-                                            </div >
-                                        </div >
-                                        <div class="vertical_separator" ></div >
-                                        <div class="work_time_item" >
-                                            <div class="week_day center" >
-                                                ПТ
-                                            </div >
-                                            <div class="week_day_work_hours center" >
-                                                <div class="start_work center" >10:00</div >
-                                                <div class="finish_work center" >22:00</div >
-                                            </div >
-                                        </div >
-                                        <div class="vertical_separator" ></div >
-                                        <div class="work_time_item" >
-                                            <div class="week_day center" >
-                                                СБ
-                                            </div >
-                                            <div class="week_day_work_hours center" >
-                                                <div class="start_work center" >10:00</div >
-                                                <div class="finish_work center" >22:00</div >
-                                            </div >
-                                        </div >
-                                        <div class="vertical_separator" ></div >
-                                        <div class="work_time_item" >
-                                            <div class="week_day center" >
-                                                ВС
-                                            </div >
-                                            <div class="week_day_work_hours center" >
-                                                <div class="start_work center" >10:00</div >
-                                                <div class="finish_work center" >22:00</div >
-                                            </div >
-                                        </div >
+                                            {% if loop.last %}
+                                            {% else %}
+                                                <div class="vertical_separator" ></div >
+                                            {% endif %}
+                                        {% endfor %}
                                     </div >
 
                                 </div >
@@ -151,10 +110,10 @@
                         <a href="{{ path('contacts') }}" >КОНТАКТЫ</a >
                     </div >
                     <div class="menu_item fl rp20" >
-                        <a href="{{ path('for_renter') }}" >АРЕНДАТОРУ</a >
+                        <a href="{{ path('plainpage_show',{'linkName':'for_renter'}) }}" >АРЕНДАТОРУ</a >
                     </div >
                     <div class="menu_item fl rp20" >
-                        <a href="{{ path('ad') }}" >РАЗМЕЩЕНИЕ РЕКЛАМЫ В ТЦ</a >
+                        <a href="{{ path('plainpage_show',{'linkName':'ad'}) }}" >РАЗМЕЩЕНИЕ РЕКЛАМЫ В ТЦ</a >
                     </div >
                 </div >
             </div >
@@ -172,36 +131,71 @@
     <div class="row" >
         <div class="wa" >
             <div class="slider" >
-                <img src="{{ asset('img/slider.png') }}" >
+                {% for slider in sliders %}
+                    <div >
+                        {% if (slider.link is null) or (slider.link =='' ) %}
+                    {% else %}
+                        <a href="{{ slider.link }}" >
+                            {% endif %}
+                            <img src="/uploads/file/{{ slider.image }}" >
+                            {% if (slider.link is null) or (slider.link =='' ) %}
+                            {% else %}
+                        </a >
+                        {% endif %}
+                    </div >
+                {% endfor %}
+
             </div >
         </div >
     </div >
+
+
+
+    {#<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" rel="stylesheet"/>#}
+    {#<h1>Vue.js Card Carousel</h1>#}
+    {#<script id="v-carousel" type="x/template">#}
+    {#<div class="card-carousel-wrapper">#}
+    {#<div class="card-carousel--nav__left" @click="moveCarousel(-1)" :disabled="atHeadOfList"></div>#}
+    {#<div class="card-carousel">#}
+    {#<div class="card-carousel--overflow-container">#}
+    {#<div class="card-carousel-cards" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">#}
+    {#<div class="card-carousel--card" v-for="item in items"><img src="https://placehold.it/200x200"/>#}
+    {#<div class="card-carousel--card--footer">#}
+    {#<p>{{ item.name }}</p>#}
+    {#<p>{{ item.tag }}</p>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
+    {#<div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList"></div>#}
+    {#</div>#}
+    {#</script>#}
+
+
+    {#<div class="brend_item fl" >#}
+    {#<img src="{{ asset('img/zara.png') }}" >#}
+    {#</div >#}
+    {#<div class="brend_item fl" >#}
+    {#<img src="{{ asset('img/bershka.png') }}" >#}
+    {#</div >#}
+    {#<div class="brend_item fl" >#}
+    {#<img src="{{ asset('img/hm.png') }}" >#}
+    {#</div >#}
+
     <div class="row dark_gre_b white_bm" >
         <div class="wa" >
-            <div class="row_brand_slider" >
-                <div class="index_brend_slider" >
-                    <div class="turn_slider_blk fl dark_gre_b" >
-                        <img src="{{ asset('img/left.svg') }}" class="brand_slider_next" >
-                    </div >
-                    <div class="brands_area_slider fl " >
-                        <div class="brend_item fl" >
-                            <img src="{{ asset('img/pull.png') }}" >
-                        </div >
-                        <div class="brend_item fl" >
-                            <img src="{{ asset('img/zara.png') }}" >
-                        </div >
-                        <div class="brend_item fl" >
-                            <img src="{{ asset('img/bershka.png') }}" >
-                        </div >
-                        <div class="brend_item fl" >
-                            <img src="{{ asset('img/hm.png') }}" >
-                        </div >
-                        <div class="button_white fl" >СМОТРЕТЬ ВСЁ</div >
-                    </div >
-                    <div class="turn_slider_blk fr dark_gre_b" >
-                        <img src="{{ asset('img/right.svg') }}" class="brand_slider_next" >
-                    </div >
-                </div >
+
+        </div >
+    </div >
+
+
+    <div class="row dark_gre_b white_bm" >
+        <div class="wa ofh" >
+            <div id="app" >
+                <carousel>
+
+                </carousel >
             </div >
         </div >
     </div >
@@ -212,24 +206,12 @@
                     О ПРОЕКТЕ
                 </h2 >
                 <div class="advantages_blk flex f_vertical f_gorizontal" >
+                    {% for plus in pluses %}
                     <div class="advantage_item fl" >
-                        Первый<br >
-                        профессиональный<br >
-                        торговый центр в Томске
+                        {{ plus.plus }}
                     </div >
-                    <div class="advantage_item fl" >
-                        Уникальные<br >
-                        бренды для города
-                    </div >
-                    <div class="advantage_item fl" >
-                        Пространство<br >
-                        для шоппинга, общения<br >
-                        и отдых
-                    </div >
-                    <div class="advantage_item fl" >
-                        500<br >
-                        парковочных мест
-                    </div >
+                    {% endfor %}
+
                 </div >
                 <div class="description" >
                     <h3 class="center font20" >ТЦ Смайл </h3 >
@@ -247,110 +229,181 @@
                 <h2 class='center white_c' >
                     НОВОСТИ И АКЦИИ
                 </h2 >
-                <div class="index_actions_slider" >
+                <div class="view_row" >
                     <div class="next_action_slider" ></div >
-                    <div class="index_actions_item fl" >
-                        <div class="action_img" >
-                            <img src="{{ asset('img/act1-80.jpg') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="hatch" >
-                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="action_text_blk" >
-                            <div class="action_content" >
-                                <div class="type_action" >
-                                    Новости
-                                </div >
-                                <h4 >
-                                    Как одеваться весной
-                                </h4 >
-                                <div class="index_action_descriptin" >
-                                    Для тех кто не хочет выглядеть как радуга
-                                </div >
+                    {% set breakLoop = false %}
+                    {% for new in news if breakLoop == false %}
+                        {% if loop.index>1 %}
+                            {% set breakLoop = true %}
+                        {% endif %}
+                        <div class="index_actions_item fl" >
+                            <div class="action_img" >
+                                <a href="{{ path('news_item',{'id':new.id }) }}" > <img
+                                            src="/uploads/file/{{ new.preview }}" alt="" class="action_item" ></a >
                             </div >
-                            <div class="action_date" >
-                                14 апреля 2019
+                            <div class="hatch" >
+                                <a href="{{ path('news_item',{'id':new.id}) }}" > <img
+                                            src="{{ asset('img/hatch.png') }}" alt="" class="action_item" ></a >
                             </div >
-                        </div >
-                    </div >
-                    <div class="index_actions_item fl" >
-                        <div class="action_img" >
-                            <img src="{{ asset('img/ac4-80.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="hatch" >
-                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="action_text_blk" >
-                            <div class="action_content" >
-                                <div class="type_action" >
-                                    Новости
+                            <div class="action_text_blk" >
+                                <div class="action_content" >
+                                    <div class="type_action" >
+                                        Новости
+                                    </div >
+                                    <h4 >
+                                        <a href="{{ path('news_item',{'id':new.id}) }}" >{{ new.name }}</a >
+                                    </h4 >
+                                    <div class="index_action_descriptin" >
+                                        <a href="{{ path('news_item',{'id':new.id}) }}" >
+                                            {{ new.description|striptags }}
+                                        </a >
+                                    </div >
                                 </div >
-                                <h4 >
-                                    Как одеваться весной
-                                </h4 >
-                                <div class="index_action_descriptin" >
-                                    Для тех кто не хочет выглядеть как радуга
+                                <div class="action_date" >
+                                    {{ new.date|date("d.m.Y") }}
                                 </div >
                             </div >
-                            <div class="action_date" >
-                                14 апреля 2019
+                        </div >
+                    {% endfor %}
+                    {% set breakLoop = false %}
+                    {% for action in actions if breakLoop == false %}
+                        {% if loop.index>1 %}
+                            {% set breakLoop = true %}
+                        {% endif %}
+                        <div class="index_actions_item fl" >
+                            <div class="action_img" >
+                                <a href="{{ path('action_item',{'id':action.id }) }}" > <img
+                                            src="/uploads/file/{{ action.photoSmall }}" alt=""
+                                            class="action_item" ></a >
                             </div >
-                        </div >
-                    </div >
-                    <div class="index_actions_item fl" >
-                        <div class="action_img" >
-                            <img src="{{ asset('img/ac3-80.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="hatch" >
-                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="action_text_blk" >
-                            <div class="action_content" >
-                                <div class="type_action" >
-                                    Новости
-                                </div >
-                                <h4 >
-                                    Как одеваться весной
-                                </h4 >
-                                <div class="index_action_descriptin" >
-                                    Для тех кто не хочет выглядеть как радуга
-                                </div >
+                            <div class="hatch" >
+                                <a href="{{ path('action_item',{'id':action.id}) }}" > <img
+                                            src="{{ asset('img/hatch.png') }}" alt="" class="action_item" ></a >
                             </div >
-                            <div class="action_date" >
-                                14 апреля 2019
-                            </div >
-                        </div >
-                    </div >
-                    <div class="index_actions_item fl" >
-                        <div class="action_img" >
-                            <img src="{{ asset('img/ac2-80.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="hatch" >
-                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="action_text_blk" >
-                            <div class="action_content" >
-                                <div class="type_action" >
-                                    Новости
+                            <div class="action_text_blk" >
+                                <div class="action_content" >
+                                    <div class="type_action" >
+                                        Акции
+                                    </div >
+                                    <h4 >
+                                        <a href="{{ path('action_item',{'id':action.id}) }}" >{{ action.name }}</a >
+                                    </h4 >
+                                    <div class="index_action_descriptin" >
+                                        <a href="{{ path('action_item',{'id':action.id}) }}" >
+                                            {{ action.description|striptags }}
+                                        </a >
+                                    </div >
                                 </div >
-                                <h4 >
-                                    Как одеваться весной
-                                </h4 >
-                                <div class="index_action_descriptin" >
-                                    Для тех кто не хочет выглядеть как радуга
+                                <div class="action_date" >
+                                    {{ action.dateStart|date("d.m.Y") }} - {{ action.dateFinish|date("d.m.Y") }}
                                 </div >
                             </div >
-                            <div class="action_date" >
-                                14 апреля 2019
-                            </div >
                         </div >
-                    </div >
+                    {% endfor %}
+                    {#<div class="index_actions_item fl" >#}
+                    {#<div class="action_img" >#}
+                    {#<img src="{{ asset('img/act1-80.jpg') }}" alt="" class="action_item" >#}
+                    {#</div >#}
+                    {#<div class="hatch" >#}
+                    {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
+                    {#</div >#}
+                    {#<div class="action_text_blk" >#}
+                    {#<div class="action_content" >#}
+                    {#<div class="type_action" >#}
+                    {#Новости#}
+                    {#</div >#}
+                    {#<h4 >#}
+                    {#Как одеваться весной#}
+                    {#</h4 >#}
+                    {#<div class="index_action_descriptin" >#}
+                    {#Для тех кто не хочет выглядеть как радуга#}
+                    {#</div >#}
+                    {#</div >#}
+                    {#<div class="action_date" >#}
+                    {#14 апреля 2019#}
+                    {#</div >#}
+                    {#</div >#}
+                    {#</div >#}
+                    {#<div class="index_actions_item fl" >#}
+                    {#<div class="action_img" >#}
+                    {#<img src="{{ asset('img/ac4-80.png') }}" alt="" class="action_item" >#}
+                    {#</div >#}
+                    {#<div class="hatch" >#}
+                    {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
+                    {#</div >#}
+                    {#<div class="action_text_blk" >#}
+                    {#<div class="action_content" >#}
+                    {#<div class="type_action" >#}
+                    {#Новости#}
+                    {#</div >#}
+                    {#<h4 >#}
+                    {#Как одеваться весной#}
+                    {#</h4 >#}
+                    {#<div class="index_action_descriptin" >#}
+                    {#Для тех кто не хочет выглядеть как радуга#}
+                    {#</div >#}
+                    {#</div >#}
+                    {#<div class="action_date" >#}
+                    {#14 апреля 2019#}
+                    {#</div >#}
+                    {#</div >#}
+                    {#</div >#}
+                    {#<div class="index_actions_item fl" >#}
+                    {#<div class="action_img" >#}
+                    {#<img src="{{ asset('img/ac3-80.png') }}" alt="" class="action_item" >#}
+                    {#</div >#}
+                    {#<div class="hatch" >#}
+                    {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
+                    {#</div >#}
+                    {#<div class="action_text_blk" >#}
+                    {#<div class="action_content" >#}
+                    {#<div class="type_action" >#}
+                    {#Новости#}
+                    {#</div >#}
+                    {#<h4 >#}
+                    {#Как одеваться весной#}
+                    {#</h4 >#}
+                    {#<div class="index_action_descriptin" >#}
+                    {#Для тех кто не хочет выглядеть как радуга#}
+                    {#</div >#}
+                    {#</div >#}
+                    {#<div class="action_date" >#}
+                    {#14 апреля 2019#}
+                    {#</div >#}
+                    {#</div >#}
+                    {#</div >#}
+                    {#<div class="index_actions_item fl" >#}
+                    {#<div class="action_img" >#}
+                    {#<img src="{{ asset('img/ac2-80.png') }}" alt="" class="action_item" >#}
+                    {#</div >#}
+                    {#<div class="hatch" >#}
+                    {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
+                    {#</div >#}
+                    {#<div class="action_text_blk" >#}
+                    {#<div class="action_content" >#}
+                    {#<div class="type_action" >#}
+                    {#Новости#}
+                    {#</div >#}
+                    {#<h4 >#}
+                    {#Как одеваться весной#}
+                    {#</h4 >#}
+                    {#<div class="index_action_descriptin" >#}
+                    {#Для тех кто не хочет выглядеть как радуга#}
+                    {#</div >#}
+                    {#</div >#}
+                    {#<div class="action_date" >#}
+                    {#14 апреля 2019#}
+                    {#</div >#}
+                    {#</div >#}
+                    {#</div >#}
                     <div class="next_action_slider" ></div >
                 </div >
-                <div class="black_button center" >
-                    СМОТРЕТЬ ВСЕ<br >
-                    НОВОСТИ И АКЦИИ
-                </div >
+                <a href="{{ path('news') }}" >
+                    <div class="black_button center" >
+                        СМОТРЕТЬ ВСЕ<br >
+                        НОВОСТИ И АКЦИИ
+                    </div >
+                </a >
                 <div class="help" ></div >
             </div >
         </div >
@@ -366,24 +419,30 @@
             </div >
             <div class="right_part_subscribe fl" >
                 <div class="subscribe_blk" >
-                    <div class="font20 black" >
+                    <div class="font20 black" id="thanks" >
                         ПОДПИШИСЬ НА НАШУ РАССЫЛКУ
                     </div >
-                    <div class="subscribe_text" >
+                    <div class="subscribe_text" id="thanks2" >
                         и регулярно получай купоны<br >
                         на розыгрыши бытовой и цифровой техники<br >
                         и другихполезных призов!<br >
                     </div >
-                    <div >
-                        <input type="text" class="subscribe_input" placeholder="EMAIL" >
-                    </div >
-                    <div >
-                        <input type="checkbox" >
-                        <span > Я прочитал и принимаю <a href=""
-                                                         class="grey_link" >политику конфиденциальности</a ></span >
-                    </div >
-                    <div class="cm20" >
-                        <div class="button fl" >Подписаться</div >
+                    <div id="subscribe_input" >
+                        {{ form_start(form) }}
+                        <div >
+                            {{ form_widget(form.email, {'attr': {'class': 'subscribe_input','placeholder':'EMAIL'}}) }}
+
+                        </div >
+                        <div >
+                            {{ form_widget(form.activate) }}
+
+                            <span > Я прочитал и принимаю <a href=""
+                                                             class="grey_link" >политику конфиденциальности</a ></span >
+                        </div >
+                            {{ form_end(form) }}
+                        <div class="cm20" >
+                            <div class="button_not_active fl" onclick="subscrube()" id="subscribe_button">Подписаться</div >
+                        </div >
                     </div >
                 </div >
             </div >
@@ -391,16 +450,16 @@
     </div >
 {% endblock %}
 {% block smm %}
-    <div class="row" >
+    <div class="row " >
         <div class="social_media_blk" >
             <div class="smm_item" >
-                <div class="smm_in" ></div >
+                <div class="smm_in" ><a href="" class="block"></a></div >
             </div >
             <div class="smm_item" >
-                <div class="smm_vk" ></div >
+                <div class="smm_vk" ><a href="" class="block"></a></div >
             </div >
             <div class="smm_item" >
-                <div class="smm_fb" ></div >
+                <div class="smm_fb" ><a href="" class="block"></a></div >
             </div >
         </div >
     </div >
@@ -415,7 +474,7 @@
                         Г. ТОМСК УЛ УЧЕБНАЯ, 48Д
                     </div >
                     <div class="regulations" >
-                        <a href="" class="grey_link" >Правила пребывания в СМАЙЛ city</a >
+                        <a href="{{ path('plainpage_show',{'linkName':'pravila-tc'}) }}" class="grey_link" >Правила пребывания в СМАЙЛ city</a >
                     </div >
                 </div >
                 <div class="footer_menu_blk fl" >
@@ -435,10 +494,10 @@
                             <a href="{{ path('contacts') }}" >Контакты</a >
                         </div >
                         <div class="footer_menu_item" >
-                            <a href="{{ path('for_renter') }}" >Арендатору</a >
+                            <a href="" >Арендатору</a >
                         </div >
                         <div class="footer_menu_item" >
-                            <a href="{ path('ad') }}" >Размещение рекламы в ТЦ</a >
+                            <a href="{{ path('plainpage_show',{'linkName':'ad'}) }}" >Размещение рекламы в ТЦ</a >
                         </div >
                     </div >
                 </div >
@@ -457,6 +516,8 @@
 
     <script type="text/javascript" >
         $(document).ready(function () {
+            $('.slider').bxSlider({}
+            );
             $('a[href^="#"], *[data-href^="#"]').on('click', function (e) {
                 e.preventDefault();
                 var t = 1000;
@@ -464,6 +525,145 @@
                 $('html,body').stop().animate({scrollTop: $(d).offset().top - 200}, t);
             });
         });
+        $('#subscriber_activate').click(function(){
+            if ($(this).is(':checked')){
+                $('#subscribe_button').removeClass('button_not_active');
+                $('#subscribe_button').addClass('button');
+                $('#subscribe_button').attr('onclick','subscrube()');
+            } else {
+                $('#subscribe_button').removeClass('button')
+                $('#subscribe_button').addClass('button_not_active');
+                $('#subscribe_button').removeAttr('onclick');
+            }
+        });
+
+
+        Vue.component("carousel", {
+            delimiters: ['$[', ']'],
+            template: `
+            <div class="big_row">
+            <div class="left_place_nav">
+            <div class="grey_row">
+            <div class="card-carousel--nav__left" @click="moveCarousel(-1)" :disabled="atHeadOfList" ></div >
+            </div>
+            </div>
+            <div class="center_slider ofh">
+            <div class="grey_row between">
+            <div class="card-carousel-cards_wrapper" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}" >
+            <div class=" flex f_gorizontal">
+            <div class="brend_item fl card-carousel-cards "  v-for="item in items" >
+            <div class="img_logog" >
+            <div class='image_wrapper'>
+            <img :src='item.logo_grey' class='logo_grey'>
+            </div>
+            <div class="brant_item_hover" >
+            <div class="img_logog2" >
+            <a :href='item.link'> <img :src="item.logo" class="color_logo" ></a>
+            </div >
+            <div class='separator_vert_red' ></div >
+            <div class="category_logo" >
+            Женская одежда, мужская лежда, обувь и аксесуары
+        </div >
+
+        <div class="button_floor_red" v-bind:floor="item.floor"><a :href='item.link_map' class='block_href2'>$[item.floor] этаж</a></div >
+        </div >
+
+        </div >
+        </div >
+        </div>
+        </div >
+        <div class="more_brand_slider">
+            <a href='{{ path('department') }}'><div class="button_white2">СМОТРЕТЬ ВСЁ</div ></a>
+        </div>
+        </div>
+        </div>
+        <div class="left_place_nav">
+            <div class="grey_row">
+            <div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList" ></div >
+            </div>
+            </div>
+            </div>
+            `,
+            data() {
+                return {
+                    currentOffset: 0,
+                    windowSize: 4,
+                    paginationFactor: 220,
+                    items: [
+                        {% for renter in renters %}
+
+                        {
+                            logo: "/uploads/file/{{ renter.logo }}",
+                            logo_grey: "/uploads/file/{{ renter.logoGrey }}",
+                            categories: "{% for category in renter.categories %}{{ category.name }} {% endfor %}",
+                            floor: "{{ renter.floor }}",
+                            link: "/renter/{{ renter.id }}",
+                            link_map:"/our_map/{{ renter.floor }}/{{ renter.id }}"
+                        },
+                        {% endfor %}
+                    ]
+                }
+            },
+            computed: {
+                atEndOfList() {
+                    return this.currentOffset <= (this.paginationFactor * -1) * (this.items.length - this.windowSize);
+                },
+                atHeadOfList() {
+                    return this.currentOffset === 0;
+                },
+            },
+            methods: {
+                moveCarousel(direction) {
+                    // Find a more elegant way to express the :style. consider using props to make it truly generic
+                    if (direction === 1 && !this.atEndOfList) {
+                        this.currentOffset -= this.paginationFactor;
+                    } else if (direction === -1 && !this.atHeadOfList) {
+                        this.currentOffset += this.paginationFactor;
+                    }
+                },
+                oncursor() {
+
+                }
+
+            }
+        });
+
+        function subscrube() {
+            var email = $("#subscriber_email").val();
+
+            $.ajax({
+                url: '/ajax/subscriber/new',
+                data:'email='+email,
+                dataType: "text",
+                success: function(data){
+
+                    if ( data==1){
+                        $('#thanks').html('Спасибо за подписку!');
+                        $('#thanks2').html('Ваш адрес успешно сохраннен!<br> Вы на правильном пути!<br>');
+                        $('#subscribe_input').html('');
+                    }
+                    else{
+                        $('#thanks').html('Что то пошло не так!');
+                        $('#thanks2').html('Попробуйте позже.<br> Или напишите нашему администратору a420673@yandex.ru<br>');
+                        $('#subscribe_input').html('');
+
+                    }
+
+                }
+
+
+            })
+
+
+        }
+
+        new Vue({
+            delimiters: ['$[', ']'],
+            el: "#app",
+
+        });
+
+
     </script >
 {% endblock %}
 </body >

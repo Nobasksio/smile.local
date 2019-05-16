@@ -8,9 +8,8 @@
             <div class="bread_crumbs_row">
                 <a href="{{ path('index') }}"><span >Главная</span></a>
                 <span class="rp20">></span>
-                <a href="{{ path('news') }}"><span>Новости и акции</span></a>
-                <span class="rp20">></span>
-                <span class="active_crumbs">Что для тебяозначает стильно?</span>
+                <span class="active_crumbs">Новости и акции</span>
+
             </div>
         </div>
     </div>
@@ -19,112 +18,158 @@
     <div class="row white_bm white_c" >
         <div class="wa" >
             <div class="actions_index" >
-                <h1 class=' red_c' >
+                <h1 class='zag_news red_c' >
                     НОВОСТИ
                 </h1 >
                 <div class="index_actions_slider" >
-                    <div class="next_action_slider" ></div >
-                    <div class="index_actions_item fl" >
-                        <div class="action_img" >
-                            <a href="{{ path('news_item',{'name':'test'}) }}"> <img src="{{ asset('img/act1-80.jpg') }}" alt="" class="action_item" ></a>
-                        </div >
-                        <div class="hatch" >
-                            <a href="{{ path('news_item',{'name':'test'}) }}"> <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="action_text_blk" >
-                            <div class="action_content" >
-                                <div class="type_action" >
-                                    Новости
+                    {#<div class="next_action_slider" ></div >#}
+                    {% for new in news %}
+                        {% if loop.index0 == 0 %}
+                            <div class="view_row">
+                        {% endif %}
+                            {% if loop.index0 >3 and loop.index0%4 ==0 %}
+                            <div class="hide_row" id="hide_{{ loop.index0//4 }}_1">
+                            {% endif %}
+                            <div class="index_actions_item fl" >
+                                <div class="action_img" >
+                                    <a href="{{ path('news_item',{'id':new.id }) }}"> <img src="/uploads/file/{{ new.preview }}" alt="" class="action_item" ></a>
                                 </div >
-                                <h4 >
-                                    <a href="{{ path('news_item',{'name':'test'}) }}">Как одеваться весной</a>
-                                </h4 >
-                                <div class="index_action_descriptin" >
-                                    <a href="{{ path('news_item',{'name':'test'}) }}">
-                                    Для тех кто не хочет выглядеть как радуга
-                                    </a>
+                                <div class="hatch" >
+                                    <a href="{{ path('news_item',{'id':new.id}) }}"> <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
                                 </div >
-                            </div >
-                            <div class="action_date" >
-                                14 апреля 2019
-                            </div >
-                        </div >
-                    </div >
-                    <div class="index_actions_item fl" >
-                        <div class="action_img" >
-                            <img src="{{ asset('img/ac4-80.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="hatch" >
-                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="action_text_blk" >
-                            <div class="action_content" >
-                                <div class="type_action" >
-                                    Новости
-                                </div >
-                                <h4 >
-                                    Как одеваться весной
-                                </h4 >
-                                <div class="index_action_descriptin" >
-                                    Для тех кто не хочет выглядеть как радуга
+                                <div class="action_text_blk" >
+                                    <div class="action_content" >
+                                        <div class="type_action" >
+                                            Новости
+                                        </div >
+                                        <h4 >
+                                            <a href="{{ path('news_item',{'id':new.id}) }}">{{ new.name }}</a>
+                                        </h4 >
+                                        <div class="index_action_descriptin" >
+                                            <a href="{{ path('news_item',{'id':new.id}) }}">
+                                                {{ new.description|striptags }}
+                                            </a>
+                                        </div >
+                                    </div >
+                                    <div class="action_date" >
+                                        14 апреля 2019
+                                    </div >
                                 </div >
                             </div >
-                            <div class="action_date" >
-                                14 апреля 2019
-                            </div >
-                        </div >
-                    </div >
-                    <div class="index_actions_item fl" >
-                        <div class="action_img" >
-                            <img src="{{ asset('img/ac3-80.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="hatch" >
-                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="action_text_blk" >
-                            <div class="action_content" >
-                                <div class="type_action" >
-                                    Новости
-                                </div >
-                                <h4 >
-                                    Как одеваться весной
-                                </h4 >
-                                <div class="index_action_descriptin" >
-                                    Для тех кто не хочет выглядеть как радуга
-                                </div >
-                            </div >
-                            <div class="action_date" >
-                                14 апреля 2019
-                            </div >
-                        </div >
-                    </div >
-                    <div class="index_actions_item fl" >
-                        <div class="action_img" >
-                            <img src="{{ asset('img/ac2-80.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="hatch" >
-                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="action_text_blk" >
-                            <div class="action_content" >
-                                <div class="type_action" >
-                                    Новости
-                                </div >
-                                <h4 >
-                                    Как одеваться весной
-                                </h4 >
-                                <div class="index_action_descriptin" >
-                                    Для тех кто не хочет выглядеть как радуга
-                                </div >
-                            </div >
-                            <div class="action_date" >
-                                14 апреля 2019
-                            </div >
-                        </div >
-                    </div >
-                    <div class="next_action_slider" ></div >
+                            {% if loop.index0 == 3 %}
+                        </div>
+                                {% elseif loop.last %}
+
+                            </div>
+                            {% endif %}
+                                {% if loop.index0 >3 and  loop.index0%4 ==3 %}
+                                </div>
+                                    {% elseif loop.last %}
+
+                                        </div>
+                                {% endif %}
+                    {% endfor %}
+                    {#<div class="index_actions_item fl" >#}
+                        {#<div class="action_img" >#}
+                            {#<a href="{{ path('news_item',{'name':'test'}) }}"> <img src="{{ asset('img/act1-80.jpg') }}" alt="" class="action_item" ></a>#}
+                        {#</div >#}
+                        {#<div class="hatch" >#}
+                            {#<a href="{{ path('news_item',{'name':'test'}) }}"> <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="action_text_blk" >#}
+                            {#<div class="action_content" >#}
+                                {#<div class="type_action" >#}
+                                    {#Новости#}
+                                {#</div >#}
+                                {#<h4 >#}
+                                    {#<a href="{{ path('news_item',{'name':'test'}) }}">Как одеваться весной</a>#}
+                                {#</h4 >#}
+                                {#<div class="index_action_descriptin" >#}
+                                    {#<a href="{{ path('news_item',{'name':'test'}) }}">#}
+                                    {#Для тех кто не хочет выглядеть как радуга#}
+                                    {#</a>#}
+                                {#</div >#}
+                            {#</div >#}
+                            {#<div class="action_date" >#}
+                                {#14 апреля 2019#}
+                            {#</div >#}
+                        {#</div >#}
+                    {#</div >#}
+                    {#<div class="index_actions_item fl" >#}
+                        {#<div class="action_img" >#}
+                            {#<img src="{{ asset('img/ac4-80.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="hatch" >#}
+                            {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="action_text_blk" >#}
+                            {#<div class="action_content" >#}
+                                {#<div class="type_action" >#}
+                                    {#Новости#}
+                                {#</div >#}
+                                {#<h4 >#}
+                                    {#Как одеваться весной#}
+                                {#</h4 >#}
+                                {#<div class="index_action_descriptin" >#}
+                                    {#Для тех кто не хочет выглядеть как радуга#}
+                                {#</div >#}
+                            {#</div >#}
+                            {#<div class="action_date" >#}
+                                {#14 апреля 2019#}
+                            {#</div >#}
+                        {#</div >#}
+                    {#</div >#}
+                    {#<div class="index_actions_item fl" >#}
+                        {#<div class="action_img" >#}
+                            {#<img src="{{ asset('img/ac3-80.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="hatch" >#}
+                            {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="action_text_blk" >#}
+                            {#<div class="action_content" >#}
+                                {#<div class="type_action" >#}
+                                    {#Новости#}
+                                {#</div >#}
+                                {#<h4 >#}
+                                    {#Как одеваться весной#}
+                                {#</h4 >#}
+                                {#<div class="index_action_descriptin" >#}
+                                    {#Для тех кто не хочет выглядеть как радуга#}
+                                {#</div >#}
+                            {#</div >#}
+                            {#<div class="action_date" >#}
+                                {#14 апреля 2019#}
+                            {#</div >#}
+                        {#</div >#}
+                    {#</div >#}
+                    {#<div class="index_actions_item fl" >#}
+                        {#<div class="action_img" >#}
+                            {#<img src="{{ asset('img/ac2-80.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="hatch" >#}
+                            {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="action_text_blk" >#}
+                            {#<div class="action_content" >#}
+                                {#<div class="type_action" >#}
+                                    {#Новости#}
+                                {#</div >#}
+                                {#<h4 >#}
+                                    {#Как одеваться весной#}
+                                {#</h4 >#}
+                                {#<div class="index_action_descriptin" >#}
+                                    {#Для тех кто не хочет выглядеть как радуга#}
+                                {#</div >#}
+                            {#</div >#}
+                            {#<div class="action_date" >#}
+                                {#14 апреля 2019#}
+                            {#</div >#}
+                        {#</div >#}
+                    {#</div >#}
+                    {#<div class="next_action_slider" ></div >#}
                 </div >
-                <div class="black_white_button center" >
+                <div class="black_white_button center" id='showmore1' onclick="show_more(1,1)" >
                     ЕЩЁ
                 </div >
                 <div class="help" ></div >
@@ -134,114 +179,159 @@
     <div class="row white_bm white_c" >
         <div class="wa" >
             <div class="actions_index" >
-                <h1 class=' red_c' >
+                <h1 class='zag_news red_c' >
                     АКЦИИ
                 </h1 >
                 <div class="index_actions_slider" >
                     <div class="next_action_slider" ></div >
+                    {% for action in actions %}
+                        {% if loop.index0 == 0 %}
+                            <div class="view_row">
+                        {% endif %}
+                            {% if loop.index0 >3 and loop.index0%4 ==0 %}
+                            <div class="hide_row" id="hide_{{ loop.index0//4 }}_2">
+                            {% endif %}
                     <div class="index_actions_item fl" >
                         <div class="action_img" >
-                            <img src="{{ asset('img/act1-80.jpg') }}" alt="" class="action_item" >
+                            <a href="{{ path('action_item',{'id':action.id }) }}"><img src="/uploads/file/{{ action.photoSmall }}" alt="" class="action_item" ></a>
                         </div >
                         <div class="hatch" >
-                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
+                            <a href="{{ path('action_item',{'id':action.id }) }}"><img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" ></a>
                         </div >
                         <div class="action_text_blk" >
                             <div class="action_content" >
                                 <div class="type_action" >
-                                    Новости
+                                    Акции
                                 </div >
                                 <h4 >
-                                    Как одеваться весной
+                                    <a href="{{ path('action_item',{'id':action.id }) }}">{{ action.name }}</a>
                                 </h4 >
                                 <div class="index_action_descriptin" >
-                                    Для тех кто не хочет выглядеть как радуга
+                                    <a href="{{ path('action_item',{'id':action.id }) }}">
+                                    {{ action.description|striptags }}
+                                    </a>
                                 </div >
                             </div >
                             <div class="action_date" >
-                                14 апреля 2019
+                                <a href="{{ path('action_item',{'id':action.id }) }}">
+                                {{ action.dateStart|date('d.m.Y') }}
+                                </a>
                             </div >
                         </div >
                     </div >
-                    <div class="index_actions_item fl" >
-                        <div class="action_img" >
-                            <img src="{{ asset('img/ac4-80.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="hatch" >
-                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="action_text_blk" >
-                            <div class="action_content" >
-                                <div class="type_action" >
-                                    Новости
-                                </div >
-                                <h4 >
-                                    Как одеваться весной
-                                </h4 >
-                                <div class="index_action_descriptin" >
-                                    Для тех кто не хочет выглядеть как радуга
-                                </div >
-                            </div >
-                            <div class="action_date" >
-                                14 апреля 2019
-                            </div >
-                        </div >
-                    </div >
-                    <div class="index_actions_item fl" >
-                        <div class="action_img" >
-                            <img src="{{ asset('img/ac3-80.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="hatch" >
-                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="action_text_blk" >
-                            <div class="action_content" >
-                                <div class="type_action" >
-                                    Новости
-                                </div >
-                                <h4 >
-                                    Как одеваться весной
-                                </h4 >
-                                <div class="index_action_descriptin" >
-                                    Для тех кто не хочет выглядеть как радуга
-                                </div >
-                            </div >
-                            <div class="action_date" >
-                                14 апреля 2019
-                            </div >
-                        </div >
-                    </div >
-                    <div class="index_actions_item fl" >
-                        <div class="action_img" >
-                            <img src="{{ asset('img/ac2-80.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="hatch" >
-                            <img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >
-                        </div >
-                        <div class="action_text_blk" >
-                            <div class="action_content" >
-                                <div class="type_action" >
-                                    Новости
-                                </div >
-                                <h4 >
-                                    Как одеваться весной
-                                </h4 >
-                                <div class="index_action_descriptin" >
-                                    Для тех кто не хочет выглядеть как радуга
-                                </div >
-                            </div >
-                            <div class="action_date" >
-                                14 апреля 2019
-                            </div >
-                        </div >
-                    </div >
+                                {% if loop.index0 == 3 %}
+                            </div>
+                                {% elseif loop.last %}
+
+                            </div>
+                    {% endif %}
+                    {% if loop.index0 >3 and  loop.index0%4 ==3 %}
+                </div>
+                {% elseif loop.last %}
+
+            </div>
+            {% endif %}
+                    {% endfor %}
+                    {#<div class="index_actions_item fl" >#}
+                        {#<div class="action_img" >#}
+                            {#<img src="{{ asset('img/ac4-80.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="hatch" >#}
+                            {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="action_text_blk" >#}
+                            {#<div class="action_content" >#}
+                                {#<div class="type_action" >#}
+                                    {#Новости#}
+                                {#</div >#}
+                                {#<h4 >#}
+                                    {#Как одеваться весной#}
+                                {#</h4 >#}
+                                {#<div class="index_action_descriptin" >#}
+                                    {#Для тех кто не хочет выглядеть как радуга#}
+                                {#</div >#}
+                            {#</div >#}
+                            {#<div class="action_date" >#}
+                                {#14 апреля 2019#}
+                            {#</div >#}
+                        {#</div >#}
+                    {#</div >#}
+                    {#<div class="index_actions_item fl" >#}
+                        {#<div class="action_img" >#}
+                            {#<img src="{{ asset('img/ac3-80.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="hatch" >#}
+                            {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="action_text_blk" >#}
+                            {#<div class="action_content" >#}
+                                {#<div class="type_action" >#}
+                                    {#Новости#}
+                                {#</div >#}
+                                {#<h4 >#}
+                                    {#Как одеваться весной#}
+                                {#</h4 >#}
+                                {#<div class="index_action_descriptin" >#}
+                                    {#Для тех кто не хочет выглядеть как радуга#}
+                                {#</div >#}
+                            {#</div >#}
+                            {#<div class="action_date" >#}
+                                {#14 апреля 2019#}
+                            {#</div >#}
+                        {#</div >#}
+                    {#</div >#}
+                    {#<div class="index_actions_item fl" >#}
+                        {#<div class="action_img" >#}
+                            {#<img src="{{ asset('img/ac2-80.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="hatch" >#}
+                            {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
+                        {#</div >#}
+                        {#<div class="action_text_blk" >#}
+                            {#<div class="action_content" >#}
+                                {#<div class="type_action" >#}
+                                    {#Новости#}
+                                {#</div >#}
+                                {#<h4 >#}
+                                    {#Как одеваться весной#}
+                                {#</h4 >#}
+                                {#<div class="index_action_descriptin" >#}
+                                    {#Для тех кто не хочет выглядеть как радуга#}
+                                {#</div >#}
+                            {#</div >#}
+                            {#<div class="action_date" >#}
+                                {#14 апреля 2019#}
+                            {#</div >#}
+                        {#</div >#}
+                    {#</div >#}
                     <div class="next_action_slider" ></div >
                 </div >
-                <div class="black_white_button center" >
+                <div class="black_white_button center" id='showmore2' onclick="show_more(2,1)">
                     ЕЩЁ
                 </div >
                 <div class="help" ></div >
             </div >
         </div >
     </div >
+{% endblock %}
+{% block javascripts %}
+<script type="application/javascript">
+
+
+    function show_more(type,row) {
+        jQuery.fn.exists = function(){return this.length>0;}
+
+        $('#hide_'+row+'_'+type).removeClass('hide_row');
+        $('#hide_'+row+'_'+type).addClass('view_row');
+        $('#showmore'+type).attr('onclick','show_more('+type+','+ row+1 +')');
+        if($('#hide_'+ row+1 +'_'+type).exists()){
+
+        } else {
+            $('#showmore'+type).hide();
+
+        }
+
+    };
+
+</script>
 {% endblock %}

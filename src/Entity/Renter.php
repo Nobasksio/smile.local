@@ -33,20 +33,27 @@ class Renter
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $logo_big;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $logo_small;
+    private $logo;
+
+    private $logo_upload;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $logo_grey;
+
+    private $logo_grey_upload;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    private $image_upload;
 
     /**
      * @ORM\Column(type="integer")
@@ -64,15 +71,47 @@ class Renter
     private $actions;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SocialMedia", mappedBy="renter")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $socialMedia;
+    private $instagram;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $vk;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $facebook;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\MapPlace", mappedBy="renter", cascade={"persist", "remove"})
+     */
+    private $mapPlace;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $link;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="renters")
+     */
+    private $categories;
+
+
 
     public function __construct()
     {
         $this->news = new ArrayCollection();
         $this->actions = new ArrayCollection();
-        $this->socialMedia = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -116,26 +155,26 @@ class Renter
         return $this;
     }
 
-    public function getLogoBig(): ?string
+    public function getLogo(): ?string
     {
-        return $this->logo_big;
+        return $this->logo;
     }
 
-    public function setLogoBig(?string $logo_big): self
+    public function setLogo(?string $logo): self
     {
-        $this->logo_big = $logo_big;
+        $this->logo = $logo;
 
         return $this;
     }
 
-    public function getLogoSmall(): ?string
+    public function getLogoGrey(): ?string
     {
-        return $this->logo_small;
+        return $this->logo_grey;
     }
 
-    public function setLogoSmall(string $logo_small): self
+    public function setLogoGrey(string $logo_grey): self
     {
-        $this->logo_small = $logo_small;
+        $this->logo_grey = $logo_grey;
 
         return $this;
     }
@@ -221,33 +260,219 @@ class Renter
     }
 
     /**
-     * @return Collection|SocialMedia[]
+     * @return mixed
      */
-    public function getSocialMedia(): Collection
+    public function getInstagram()
     {
-        return $this->socialMedia;
+        return $this->instagram;
     }
 
-    public function addSocialMedium(SocialMedia $socialMedium): self
+    /**
+     * @param mixed $instagram
+     */
+    public function setInstagram($instagram): void
     {
-        if (!$this->socialMedia->contains($socialMedium)) {
-            $this->socialMedia[] = $socialMedium;
-            $socialMedium->setRenter($this);
+        $this->instagram = $instagram;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVk()
+    {
+        return $this->vk;
+    }
+
+    /**
+     * @param mixed $vk
+     */
+    public function setVk($vk): void
+    {
+        $this->vk = $vk;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @param mixed $facebook
+     */
+    public function setFacebook($facebook): void
+    {
+        $this->facebook = $facebook;
+    }
+
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+        return $this;
+    }
+
+    public function getMapPlace(): ?MapPlace
+    {
+        return $this->mapPlace;
+    }
+
+    public function setMapPlace(?MapPlace $mapPlace): self
+    {
+        $this->mapPlace = $mapPlace;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newRenter = $mapPlace === null ? null : $this;
+        if ($newRenter !== $mapPlace->getRenter()) {
+            $mapPlace->setRenter($newRenter);
         }
 
         return $this;
     }
 
-    public function removeSocialMedium(SocialMedia $socialMedium): self
+
+
+    public function getLink(): ?string
     {
-        if ($this->socialMedia->contains($socialMedium)) {
-            $this->socialMedia->removeElement($socialMedium);
-            // set the owning side to null (unless already changed)
-            if ($socialMedium->getRenter() === $this) {
-                $socialMedium->setRenter(null);
-            }
+        return $this->link;
+    }
+
+    public function setLink(?string $link): self
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
         }
 
         return $this;
     }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getLogoStr()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @param mixed $logo_str
+     */
+    public function setLogoStr($logo_str): void
+    {
+        $this->logo_str = $logo_str;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLogoGreyStr()
+    {
+        return $this->logo_grey;
+    }
+
+    /**
+     * @param mixed $logo_grey_str
+     */
+    public function setLogoGreyStr($logo_grey_str): void
+    {
+        $this->logo_grey_str = $logo_grey_str;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageStr()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image_str
+     */
+    public function setImageStr($image_str): void
+    {
+        $this->image_str = $image_str;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLogoUpload()
+    {
+        return $this->logo_upload;
+    }
+
+    /**
+     * @param mixed $logo_upload
+     */
+    public function setLogoUpload($logo_upload): void
+    {
+        $this->logo_upload = $logo_upload;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLogoGreyUpload()
+    {
+        return $this->logo_grey_upload;
+    }
+
+    /**
+     * @param mixed $logo_grey_upload
+     */
+    public function setLogoGreyUpload($logo_grey_upload): void
+    {
+        $this->logo_grey_upload = $logo_grey_upload;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageUpload()
+    {
+        return $this->image_upload;
+    }
+
+    /**
+     * @param mixed $image_upload
+     */
+    public function setImageUpload($image_upload): void
+    {
+        $this->image_upload = $image_upload;
+    }
+
 }

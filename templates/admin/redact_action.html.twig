@@ -1,0 +1,165 @@
+{% extends 'admin/index.html.twig' %}
+  {% block content %}
+
+      <div class="content-wrapper" >
+          <!-- Content Header (Page header) -->
+          <section class="content-header" >
+              <h1 >
+                  Создать новую акцию
+
+              </h1 >
+              <ol class="breadcrumb" >
+                  <li ><a href="#" ><i class="fa fa-dashboard" ></i > Home</a ></li >
+                  <li class="active" >Новая акция</li >
+              </ol >
+          </section >
+
+          <!-- Main content -->
+          <section class="content" >
+              <!-- /.row -->
+              <!-- Main row -->
+
+              <div class="row" >
+                  <div class="col-md-6" >
+                      <div class="box box-warning" >
+
+                          <div class="box-body" >
+                              {{ form_start(form) }}
+                                  <!-- text input -->
+
+                                  <div class="form-group">
+                                      <label>Начало:</label>
+
+                                      <div class="input-group date">
+                                          <div class="input-group-addon">
+                                              <i class="fa fa-calendar"></i>
+                                          </div>
+                                           {{ form_widget(form.date_start, {'attr': {'class': 'form-control pull-right'}, 'id':'datepicker'}) }}
+
+                                      </div>
+                                      <!-- /.input group -->
+                                  </div>
+                                  <div class="form-group">
+                                      <label>Конец:</label>
+
+                                      <div class="input-group date">
+                                          <div class="input-group-addon">
+                                              <i class="fa fa-calendar"></i>
+                                          </div>
+                                           {{ form_widget(form.date_finish, {'attr': {'class': 'form-control pull-right'}, 'id':'datepicker2'}) }}
+
+                                      </div>
+                                      <!-- /.input group -->
+                                  </div>
+
+
+                                  <div class="form-group" >
+                                      <label >Название Акции</label >
+                                      {{ form_widget(form.name, {'attr': {'class': 'form-control pull-right', 'placeholder':'Заголовок'}}) }}
+                                  </div >
+                                  <div class="form-group">
+                                      <label>Описание</label>
+                                      {{ form_widget(form.description, {'attr': {'rows': '10','cols':'80'},'id':'editor1' }) }}
+
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Выбрать Арендатора</label>
+                                    {{ form_widget(form.renter_id) }}
+
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputFile">Превью</label>
+                                      {{ form_widget(form.photo_small_upload, {'attr': {'id':'photo_small','class':'hide'}}) }}
+                                        {% if action is defined %}
+                                        <div id="photo_small_upload">
+                                            <img src="/uploads/file/{{ action.photoSmall }}" class="preview_upload">
+                                        </div>
+                                        <div type="submit" class="btn btn-info " onclick="update('photo_small')">Заменить</div >
+                                        {% endif %}
+                                      <p class="help-block">Минимум 260х260 px. Должна быть квадратной. иначе будет ужасно смотреться</p>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputFile">Картинка на деталью страницу</label>
+                                      {{ form_widget(form.photo_big_upload, {'attr': {'id':'photo_big','class':'hide'}}) }}
+                                        {% if action is defined %}
+                                        <div id="photo_big_upload">
+                                            <img src="/uploads/file/{{ action.photoBig }}" class="preview_upload">
+
+                                        </div>
+                                        <div type="submit" class="btn btn-info " onclick="update('photo_big')">Заменить</div >
+                                        {% endif %}
+                                      <p class="help-block">Минимум 600х600 px.</p>
+                                  </div>
+
+                                  <div class="form-group" >
+                                      <label >Ссылка instagram</label >
+                                      {{ form_widget(form.instagram, {'attr': {'class': 'form-control'}}) }}
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Ссылка vk</label >
+                                      {{ form_widget(form.vk, {'attr': {'class': 'form-control'}}) }}
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Ссылка facebook</label >
+                                      {{ form_widget(form.facebook, {'attr': {'class': 'form-control'}}) }}
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >ССылка подробнее</label >
+                                      {{ form_widget(form.link, {'attr': {'class': 'form-control'}}) }}
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Сортировка</label >
+                                      {{ form_widget(form.sort, {'attr': {'class': 'form-control',
+                                      'value':'500',
+                                      'placeholder':'введите число. чем меньше тем ближе к началу' }}) }}
+
+                                  </div >
+                                  <div class="form-group" >
+
+                                      <div class="checkbox" >
+                                          <label >
+                                              {{ form_widget(form.active) }} Активность
+                                          </label >
+                                      </div >
+
+                                  </div >
+                                  <div class="box-footer" >
+
+                                      <button type="submit" class="btn btn-info " >Создать</button >
+                                  {% if action is defined %}
+                                          <a href="{{ path('action_delete',{'id':action.id}) }}"><span type="submit" class="btn btn-danger pull-right " >Удалить</span ></a>
+                                      {% endif %}
+                                  </div >
+                              {{ form_end(form) }}
+                          </div >
+                      </div >
+                  </div >
+              </div >
+
+
+          </section >
+
+          <!-- /.content -->
+  {% endblock %}
+
+          {% block jsinline %}
+          <script>
+              $(function () {
+                  //Date picker
+                  CKEDITOR.replace('editor1')
+                  $('#datepicker').datepicker({
+                      autoclose: true
+                  })
+                  $('#datepicker2').datepicker({
+                      autoclose: true
+                  });
+                  $('.select2').select2()
+              })
+              function update(type) {
+                $('#'+type+'_upload').html('');
+                $('#action_redact_'+type+'_upload').removeClass('hide');
+                $('#action_redact_'+type+'_upload').click();
+            }
+
+          </script>
+          {% endblock %}

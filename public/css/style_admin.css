@@ -1,0 +1,16 @@
+@font-face{
+    font-family:arsenalB;
+    src: url(../fonts/Arsenal-Bold.ttf);
+}
+@font-face{
+    font-family:arsenalR;
+    src: url(../fonts/Arsenal-Regular.ttf);
+}
+
+
+.preview_upload{
+    max-width: 250px;
+}
+.hide{
+    display: none;
+}

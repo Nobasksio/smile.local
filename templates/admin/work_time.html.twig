@@ -1,0 +1,159 @@
+{% extends 'admin/index.html.twig' %}
+  {% block content %}
+
+      <div class="content-wrapper" >
+          <!-- Content Header (Page header) -->
+          <section class="content-header" >
+              <h1 >
+                  Режим работы ТЦ
+
+              </h1 >
+              <ol class="breadcrumb" >
+                  <li ><a href="#" ><i class="fa fa-dashboard" ></i > Home</a ></li >
+                  <li class="active" >Режим работы</li >
+              </ol >
+          </section >
+
+          <!-- Main content -->
+          <section class="content" >
+              <!-- /.row -->
+              <!-- Main row -->
+
+              <div class="row" >
+                  <div class="col-md-6" >
+                      <div class="box box-warning" >
+
+                          <div class="box-body" >
+                              <form role="form" >
+                                <div class="form-group" >
+                                      <label >Понедельник</label >
+
+                                      <div class="row">
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="начало">
+                                      </div>
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="конец">
+                                      </div>
+
+
+                                       </div>
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Вторник</label >
+
+                                      <div class="row">
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="начало">
+                                      </div>
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="конец">
+                                      </div>
+
+
+                                       </div>
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Среда</label >
+
+                                      <div class="row">
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="начало">
+                                      </div>
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="конец">
+                                      </div>
+
+
+                                       </div>
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Четверг</label >
+
+                                      <div class="row">
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="начало">
+                                      </div>
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="конец">
+                                      </div>
+
+
+                                       </div>
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Пятница</label >
+
+                                      <div class="row">
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="начало">
+                                      </div>
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="конец">
+                                      </div>
+
+
+                                       </div>
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Суббота</label >
+
+                                      <div class="row">
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="начало">
+                                      </div>
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="конец">
+                                      </div>
+
+
+                                       </div>
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Воскресенье</label >
+
+                                      <div class="row">
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="начало">
+                                      </div>
+                                      <div class="col-xs-3">
+                                          <input type="text" class="form-control" placeholder="конец">
+                                      </div>
+
+
+                                       </div>
+                                  </div >
+
+
+                                  <div class="box-footer" >
+
+                                      <button type="submit" class="btn btn-info " >Сохранить</button >
+                                  </div >
+                              </form >
+                          </div >
+                      </div >
+                  </div >
+              </div >
+
+
+          </section >
+
+          <!-- /.content -->
+  {% endblock %}
+
+          {% block jsinline %}
+          <script>
+              $(function () {
+                  CKEDITOR.replace('editor1')
+                  //Date picker
+                  $('#datepicker').datepicker({
+                      autoclose: true
+                  })
+                  $('#datepicker2').datepicker({
+                      autoclose: true
+                  });
+                  $('.select2').select2()
+              })
+
+          </script>
+          {% endblock %}

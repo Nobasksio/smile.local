@@ -1,0 +1,66 @@
+{% extends 'admin/index.html.twig' %}
+  {% block content %}
+      <div class="content-wrapper" >
+          <!-- Content Header (Page header) -->
+          <section class="content-header" >
+              <h1 >
+                  Пользователи
+
+              </h1 >
+              <ol class="breadcrumb" >
+                  <li ><a href="#" ><i class="fa fa-dashboard" ></i > Home</a ></li >
+                  <li class="active" >Пользователи</li >
+              </ol >
+          </section >
+
+          <!-- Main content -->
+          <section class="content" >
+              <!-- /.row -->
+              <!-- Main row -->
+
+              <div class="row" >
+                  <div class="col-md-12" >
+                      <div class="box box-warning" >
+
+                          <div class="box-body">
+                              <table id="example2" class="table table-bordered table-hover">
+                                  <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Имя</th>
+                                      <th>Почта</th>
+                                      <th>Активность</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  {% for user in users %}
+                                  <tr onclick="window.location.href='{{ path('user_redact',{'id':user.id}) }}'; return false">
+                                      <td>{{ loop.index }}</td>
+                                      <td>{{ user.name }}
+                                      </td>
+
+                                      <td>{{ user.email }}</td>
+                                      <td>{{ user.active ? 'Да' : 'Нет' }}</td>
+                                  </tr>
+                                  {% endfor %}
+
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div >
+                  </div >
+              </div >
+              <div class="row">
+                  <div class="col-md-2" >
+                  <a href="{{ path('new_user') }}">
+                      <span class="btn btn-block btn-primary">Добавить нового</span>
+                  </a>
+                  </div>
+              </div>
+
+
+
+          </section >
+
+          <!-- /.content -->
+  {% endblock %}

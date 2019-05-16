@@ -19,7 +19,7 @@ class Subscriber
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $тфname;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -41,19 +41,25 @@ class Subscriber
      */
     private $date_activate;
 
+    public function __construct() {
+        $this->setDateSubscribe(new \DateTime('now'));
+        $this->setDateActivate(new \DateTime('now'));
+        $this->setActivate(true);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getтфname(): ?string
+    public function getname(): ?string
     {
-        return $this->тфname;
+        return $this->name;
     }
 
-    public function setтфname(?string $тфname): self
+    public function setname(?string $name): self
     {
-        $this->тфname = $тфname;
+        $this->тфname = $name;
 
         return $this;
     }

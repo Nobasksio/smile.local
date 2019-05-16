@@ -1,0 +1,161 @@
+{% extends 'admin/index.html.twig' %}
+  {% block content %}
+
+      <div class="content-wrapper" >
+          <!-- Content Header (Page header) -->
+          <section class="content-header" >
+              <h1 >
+                  Создать Арендатора
+
+              </h1 >
+              <ol class="breadcrumb" >
+                  <li ><a href="#" ><i class="fa fa-dashboard" ></i > Home</a ></li >
+                  <li class="active" >Новый арендатор</li >
+              </ol >
+          </section >
+
+          <!-- Main content -->
+          <section class="content" >
+              <!-- /.row -->
+              <!-- Main row -->
+
+              <div class="row" >
+                  <div class="col-md-6" >
+                      <div class="box box-warning" >
+
+                          <div class="box-body" >
+                              {{ form_start(form) }}
+
+                                  <div class="form-group" >
+                                      <label >Название</label >
+                                      {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Название'}}) }}
+                                  </div >
+
+                                  <div class="form-group">
+                                      <label>Описание</label>
+
+                                       {{ form_widget(form.description, {'attr': {'rows': '10','cols':'80'},'id':'editor1' }) }}
+
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Категория</label>
+                                    {{ form_widget(form.categories) }}
+
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputFile">Серое превью логотипа для главной</label>
+                                      {{ form_widget(form.logo_grey_upload, {'attr': {'id':'logo_grey','class':'hide'}}) }}
+                                      {% if renter is defined %}
+                                      <div id="logo_grey_upload">
+                                        <img src="/uploads/file/{{ renter.logogrey }}">
+
+                                       </div>
+                                       <div type="submit" class="btn btn-info " onclick="update('logo_grey')">Заменить</div >
+                                        {% endif %}
+                                      <p class="help-block">Ширина минимум 150px. Лого должно быть однотонным. цвет #D9D9D9</p>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputFile">Цветное превью логотипа для главной</label>
+                                      {{ form_widget(form.logo_upload, {'attr': {'id':'logo','class':'hide'}}) }}
+                                      {% if renter is defined%}
+                                      <div id="logo_upload">
+                                        <img src="/uploads/file/{{ renter.logo }}">
+
+                                       </div>
+                                       <div type="submit" class="btn btn-info " onclick="update('logo')">Заменить</div >
+                                        {% endif %}
+                                      <p class="help-block">Ширина минимум 150px. Тоже самое что предыдущее, но в цвете</p>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="exampleInputFile">Картинка на деталью страницу арендатора</label>
+                                       {{ form_widget(form.image_upload, {'attr': {'id':'image','class':'hide'}}) }}
+                                       {% if renter is defined %}
+                                       <div id="image_upload">
+                                        <img src="/uploads/file/{{ renter.image }}">
+
+                                        </div>
+                                        <div type="submit" class="btn btn-info " onclick="update('image')">Заменить</div >
+                                         {% endif %}
+                                      <p class="help-block">Минимум 600х600 px.</p>
+                                  </div>
+                                  <div class="form-group" >
+                                      <label >Этаж</label >
+
+
+                                            {{ form_widget(form.floor, {'attr': {'class': 'form-control', 'placeholder':'этаж'}}) }}
+
+                                  </div >
+                                  <div class="form-group">
+                                    <label>Отдел на карте</label>
+                                    {{ form_widget(form.mapPlace) }}
+                                  </div>
+                                  <div class="form-group" >
+                                      <label >Ссылка на сайт</label >
+                                      {{ form_widget(form.link, {'attr': {'class': 'form-control'}}) }}
+                                  </div >
+                                  <div class="form-group" >
+
+                                      <label >Ссылка instagram</label >
+                                      {{ form_widget(form.instagram, {'attr': {'class': 'form-control'}}) }}
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Ссылка vk</label >
+                                      {{ form_widget(form.vk, {'attr': {'class': 'form-control'}}) }}
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Ссылка facebook</label >
+                                       {{ form_widget(form.facebook, {'attr': {'class': 'form-control'}}) }}
+                                  </div >
+                                  <div class="form-group" >
+                                      <label >Сортировка</label >
+
+                                      {{ form_widget(form.sort, {'attr': {'class': 'form-control','placeholder':'введите число. чем меньше тем ближе к началу' }}) }}
+                                  </div >
+                                  <div class="form-group" >
+
+                                      <div class="checkbox" >
+                                          <label >
+                                              {{ form_widget(form.active) }} Активность
+                                          </label >
+                                      </div >
+
+                                  </div >
+                                  <div class="box-footer" >
+
+                                      <button type="submit" class="btn btn-info " >Сохранить</button >
+                                      {% if renter is defined %}
+                                      <a href="{{ path('renter_delete',{'id':renter.id}) }}"></a><span type="submit" class="btn btn-danger pull-right " >Удалить</span >
+                                        {% endif %}
+                                  </div >
+                             {{ form_end(form) }}
+                          </div >
+                      </div >
+                  </div >
+              </div >
+
+
+          </section >
+
+          <!-- /.content -->
+  {% endblock %}
+
+          {% block jsinline %}
+          <script>
+              $(function () {
+                  CKEDITOR.replace('editor1')
+                  //Date picker
+                  $('#datepicker').datepicker({
+                      autoclose: true
+                  })
+                  $('#datepicker2').datepicker({
+                      autoclose: true
+                  });
+                  $('.select2').select2()
+              });
+              function update(type) {
+                $('#'+type+'_upload').html('');
+                $('#renter_redact_'+type+'_upload').removeClass('hide');
+                $('#renter_redact_'+type+'_upload').click();
+                }
+          </script>
+          {% endblock %}

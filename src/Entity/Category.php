@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,17 @@ class Category
      * @ORM\Column(type="integer")
      */
     private $sort;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Renter", mappedBy="categories")
+     */
+    private $renters;
+
+
+    public function __construct()
+    {
+        $this->renters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -54,4 +67,35 @@ class Category
 
         return $this;
     }
+
+    /**
+     * @return Collection|Renter[]
+     */
+    public function getRenters(): Collection
+    {
+        return $this->renters;
+    }
+
+    public function addRenter(Renter $renter): self
+    {
+        if (!$this->renters->contains($renter)) {
+            $this->renters[] = $renter;
+            $renter->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRenter(Renter $renter): self
+    {
+        if ($this->renters->contains($renter)) {
+            $this->renters->removeElement($renter);
+            $renter->removeCategory($this);
+        }
+
+        return $this;
+    }
+
+
+
 }

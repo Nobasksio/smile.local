@@ -1,0 +1,62 @@
+{% extends 'admin/index.html.twig' %}
+  {% block content %}
+      <div class="content-wrapper" >
+          <!-- Content Header (Page header) -->
+          <section class="content-header" >
+              <h1 >
+                  Отделы
+
+              </h1 >
+              <ol class="breadcrumb" >
+                  <li ><a href="#" ><i class="fa fa-dashboard" ></i > Home</a ></li >
+                  <li class="active" >Отделы</li >
+              </ol >
+          </section >
+
+          <!-- Main content -->
+          <section class="content" >
+              <!-- /.row -->
+              <!-- Main row -->
+
+              <div class="row" >
+                  <div class="col-md-12" >
+                      <div class="box box-warning" >
+
+                          <div class="box-body">
+                              <table id="example2" class="table table-bordered table-hover">
+                                  <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Отдел</th>
+                                      <th>Сортировка</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  {% for category in categories %}
+                                  <tr onclick="window.location.href='{{ path('department_redact',{'id':category.id}) }}'; return false">
+                                      <td>{{ loop.index }}</td>
+                                      <td>{{ category.name }}
+                                      </td>
+                                      <td>{{ category.sort }}</td>
+                                  </tr>
+                                  {% endfor %}
+
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div >
+                  </div >
+              </div >
+              <div class="row">
+                  <div class="col-md-2" >
+                      <a href="{{ path('department_admin_create') }}">
+                          <span class="btn btn-block btn-primary">Добавить новую</span>
+                      </a>
+                  </div>
+              </div>
+
+
+          </section >
+
+          <!-- /.content -->
+  {% endblock %}
