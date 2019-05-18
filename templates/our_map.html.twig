@@ -54,7 +54,7 @@
                                              ПОДРОБНЕЕ</a>
                 </div >
             </div >
-            <div style="" {% if renter is defined and floor==2 %}class="hide"{% endif %} id="transform-wrapper1" >
+            <div style="" {% if renter is defined and floor==2 %}class="hide"{% endif %} class="hide" id="transform-wrapper1" >
                 <svg version="1.1" id="Слой_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      viewBox="200 200 1720 1916.2"
@@ -846,7 +846,7 @@
 </svg >
 
             </div >
-            <div {% if renter is defined and floor==1 %} class="hide" {% endif %}{% if renter is not defined %} class="hide" {% endif %} id="transform-wrapper2" >
+            <div {% if renter is defined and floor==1 %} class="hide" {% endif %}{% if renter is not defined %}  {% endif %} id="transform-wrapper2" >
 
                 <svg version="1.1" id="Слой_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -912,204 +912,156 @@
 
 
                     <g id="кабинеты" >
-                        <rect x="534.1" y="357.6" class="st2" width="205.6" height="206.5" />
-                        <rect x="1040.5" y="895.9" class="st2" width="348.5" height="313.5" />
-                        <rect x="534.1" y="1433.8" class="st2" width="94" height="28.2" />
-                        <polygon class="st2"
-                                 points="563.5,1473.1 534.1,1473.1 534.1,1527.7 600.4,1527.7 600.4,1509.4 563.5,1509.4 	" />
-                        <polygon class="st2"
-                                 points="832.6,1390.8 880,1390.8 880,1266.4 747.8,1266.4 747.8,1293.2 832.6,1293.2 	" />
-                        <polygon class="st2"
-                                 points="1034.8,1433.8 747.8,1433.8 747.8,1639.5 1284.3,1639.5 1284.3,1266.4 1034.8,1266.4 	" />
-                        <rect x="891" y="939.6" class="st2" width="101.8" height="269.8" />
-                        <rect x="534.1" y="1104" class="st2" width="345.8" height="105.3" />
-                        <rect x="1343.1" y="745.9" class="st2" width="49.2" height="39.1" />
-                        <polygon class="st2" points="1385.4,387.8 1355.9,358.2 1343.5,370.4 1373,400.1 	" />
-                        <rect x="531.3" y="606.4" class="st2" width="34.6" height="177.3" />
-                        <rect x="531.3" y="892.9" class="st2" width="211.4" height="39.7" />
+                        <rect id="place125"  x="534.1" y="357.6" class="st22" width="205.6" height="206.5" />
+                        <polygon id="place128" class="st22" points="1385.4,387.8 1355.9,358.2 1343.5,370.4 1373,400.1 	" />
+                        <rect id="place129" x="531.3" y="606.4" class="st22" width="34.6" height="177.3" />
+                        <rect id="place130" x="1343.1" y="745.9" class="st22" width="49.2" height="39.1" />
+                        <rect id="place131" x="531.3" y="892.9" class="st22" width="211.4" height="39.7" />
+                        <rect id="place132" x="1040.5" y="895.9" class="st22" width="348.5" height="313.5" />
+                        <rect id="place133" x="891" y="939.6" class="st22" width="101.8" height="269.8" />
+                        <rect id="place134" x="534.1" y="1104" class="st22" width="345.8" height="105.3" />
+                        <polygon id="place142" class="st22" points="1034.8,1433.8 747.8,1433.8 747.8,1639.5 1284.3,1639.5 1284.3,1266.4 1034.8,1266.4 	" />
+                        <polygon id="place145" class="st22" points="832.6,1390.8 880,1390.8 880,1266.4 747.8,1266.4 747.8,1293.2 832.6,1293.2 	" />
+                        <rect id="place157" x="534.1" y="1433.8" class="st22" width="94" height="28.2" />
+                        <polygon id="place158" class="st22" points="563.5,1473.1 534.1,1473.1 534.1,1527.7 600.4,1527.7 600.4,1509.4 563.5,1509.4 	" />
                     </g >
 
-                    <g id="Разноторг" >
+                    <g id="place126" >
                         <rect x="750.8" y="357.6" class="st1" width="206.3" height="206.5" />
 
                         <text transform="matrix(1 0 0 1 790.2119 469.1481)" class="st3 st4 st6_2" >Разноторг</text >
                     </g >
-                    <g id="метео_с" >
+                    <g id="place127" >
                         <rect x="968.2" y="357.6" class="st1" width="203.8" height="206.5" />
 
                         <text transform="matrix(1 0 0 1 1021.5431 469.1481)" class="st3 st4 st6_2" >метео с</text >
                     </g >
-                    <g id="ZOLLA" >
+                    <g id="place135" >
                         <rect id="ZOLLA" x="534.1" y="1220.4" class="st1" width="181" height="96.2" />
                         <text transform="matrix(1 0 0 1 589.9257 1277.5653)" class="st3 st4 st6_2" >ZOLLA</text >
                     </g >
-                    <g id="Стильпарк" >
-
-                        <g >
+                    <g id="place136" >
+                        <rect x="726.2" y="1220.4" class="st1" width="34.7" height="18.8" />
+                        <text transform="matrix(1 0 0 1 731.5233 1228.9564)" >
+                            <tspan x="0" y="0" class="st3 st4 st8_2" >горячие</tspan >
+                            <tspan x="4.6" y="6" class="st3 st4 st8" >туры</tspan >
+                        </text >
+                    </g >
+                    <g id="place137" >
                             <rect x="772" y="1220.4" class="st1" width="45" height="18.8" />
                             <text transform="matrix(1 0 0 1 775.7275 1232.395)" class="st3 st4 st7_2" >Стильпарк</text >
-                        </g >
                     </g >
-                    <g id="горячие_туры" >
-                        <rect x="726.2" y="1220.4" class="st1" width="34.7" height="18.8" />
-                        <g >
 
-                            <text transform="matrix(1 0 0 1 731.5233 1228.9564)" >
-                                <tspan x="0" y="0" class="st3 st4 st8_2" >горячие</tspan >
-                                <tspan x="4.6" y="6" class="st3 st4 st8" >туры</tspan >
-                            </text >
-                        </g >
-                    </g >
-                    <g id="Capello" >
+                    <g id="place139" >
                         <rect x="939.5" y="1220.4" class="st1" width="53.4" height="18.8" />
-                        <g >
 
-                            <text transform="matrix(1 0 0 1 950.7188 1232.5342)" class="st3 st4 st9_2" >Capello</text >
-                        </g >
+                        <text transform="matrix(1 0 0 1 950.7188 1232.5342)" class="st3 st4 st9_2" >Capello</text >
                     </g >
-                    <g id="fort" >
+                    <g id="place138" >
                         <rect x="828" y="1220.4" class="st1" width="100.5" height="18.8" />
-                        <g >
 
-                            <text transform="matrix(1 0 0 1 865.5811 1233.781)" class="st3 st4 st10_2" >fort</text >
-                        </g >
+                        <text transform="matrix(1 0 0 1 865.5811 1233.781)" class="st3 st4 st10_2" >fort</text >
                     </g >
-                    <g id="Сибирский_цирюльник" >
+                    <g id="place140" >
+                        <rect x="1040.5" y="1220.4" class="st1" width="64.3" height="35" />
+                        <text transform="matrix(1 0 0 1 1055.0095 1236.3674)" >
+                            <tspan x="0" y="0" class="st3 st4 st11_2" >мелочи</tspan >
+                            <tspan x="6.5" y="9" class="st3 st4 st11_2" >быта</tspan >
+                        </text >
+                    </g >
+                    <g id="place141" >
+                        <polygon class="st1" points="1389,1639.5 1389,1556.7 1389,1556.7 1389,1256.9 1389,1253.9 1389,1220.4 1115.9,1220.4 1115.9,1255.4 1295.4,1255.4 1295.4,1639.5 	" />
+                        <text transform="matrix(1 0 0 1 1314.5657 1437.0465)" class="st3 st4 st6_2" >spar</text >
+                    </g >
+                    <g id="place143" >
+                        <rect x="915.6" y="1266.4" class="st1" width="108.1" height="50.2" />
+                        <text transform="matrix(1 0 0 1 936.0135 1299.9543)" class="st3 st4 st14_2" >монро</text >
+                    </g >
+                    <g id="place144" >
+                        <rect x="915.6" y="1327.5" class="st1" width="108.1" height="95.3" />
+                        <text transform="matrix(1 0 0 1 929.2372 1375.5438)" class="st3 st4 st14_2" >МАЛИНА</text >
+                    </g >
+                    <g id="place146" >
                         <rect x="747.8" y="1304.2" class="st1" width="73.7" height="31.5" />
-                        <g >
 
                             <text transform="matrix(1 0 0 1 765.1057 1317.7799)" >
                                 <tspan x="0" y="0" class="st3 st4 st7_2" >Сибирский</tspan >
                                 <tspan x="-1.3" y="8" class="st3 st4 st7_2" >цирюльник</tspan >
                             </text >
-                        </g >
                     </g >
-                    <g id="мелочи_быта" >
-                        <rect x="1040.5" y="1220.4" class="st1" width="64.3" height="35" />
-                        <g >
-
-                            <text transform="matrix(1 0 0 1 1055.0095 1236.3674)" >
-                                <tspan x="0" y="0" class="st3 st4 st11_2" >мелочи</tspan >
-                                <tspan x="6.5" y="9" class="st3 st4 st11_2" >быта</tspan >
-                            </text >
-                        </g >
-                    </g >
-                    <g id="женский__сезон" >
-                        <rect x="534.1" y="1327.5" class="st1" width="63.6" height="42.3" />
-                        <g >
-
-                            <text transform="matrix(1 0 0 1 540.7607 1348.4266)" >
-                                <tspan x="0" y="0" class="st3 st4 st10_2" >женский</tspan >
-                                <tspan x="9.3" y="11" class="st3 st4 st10_2" >сезон</tspan >
-                            </text >
-                        </g >
-                    </g >
-                    <g id="Сибирские_блины" >
-                        <rect x="534.1" y="1392.7" class="st1" width="63.6" height="30.1" />
-                        <g >
-
-                            <text transform="matrix(1 0 0 1 544.1198 1406.7026)" >
-                                <tspan x="0" y="0" class="st3 st4 st9_2" >Сибирские</tspan >
-                                <tspan x="8.4" y="8" class="st3 st4 st9_2" >блины</tspan >
-                            </text >
-                        </g >
-                    </g >
-                    <g id="скорпион" >
-                        <rect x="608.8" y="1392.7" class="st1" width="57.4" height="30.1" />
-                        <g >
-
-                            <text transform="matrix(1 0 0 1 616.9555 1410.7317)" class="st3 st4 st9_2" >скорпион</text >
-                        </g >
-                    </g >
-                    <g >
-                        <rect id="монгольская_шерсть" x="639.3" y="1433.8" class="st1" width="75.8" height="28.2" />
-                        <text transform="matrix(1 0 0 1 649.7937 1446.759)" >
-                            <tspan x="0" y="0" class="st3 st4 st9_2" >монгольская</tspan >
-                            <tspan x="13.1" y="8" class="st3 st4 st9_2" >шерсть</tspan >
+                    <g id="place147" >
+                        <rect x="747.8" y="1347.4" class="st1" width="73.7" height="32.5" />
+                        <text transform="matrix(1 0 0 1 753.2449 1367.3502)" class="st3 st4 st13_2" >Баба Рома
                         </text >
                     </g >
-                    <g id="ГОЛДы" >
-                        <rect x="574.6" y="1473.1" class="st1" width="25.8" height="25.4" />
-                        <g >
-
-                            <text transform="matrix(1 0 0 1 576.2452 1488.028)" class="st3 st4 st7_2" >ГОЛДы</text >
-                        </g >
-                    </g >
-                    <g id="Постелька" >
-                        <rect x="611.5" y="1473.1" class="st1" width="103.6" height="54.6" />
-                        <g >
-
-                            <text transform="matrix(1 0 0 1 625.9145 1503.6921)" class="st3 st4 st12_2" >Постелька
-                            </text >
-                        </g >
-                    </g >
-                    <g id="Читай-город" >
-                        <rect x="534.1" y="1553.8" class="st1" width="202.6" height="85.7" />
-                        <g >
-
-                            <text transform="matrix(1 0 0 1 556.2299 1604.0786)" class="st3 st4 st6" >Читай-город
-                            </text >
-                        </g >
-                    </g >
-                    <g id="spar" >
-                        <polygon class="st1" points="1389,1639.5 1389,1556.7 1389,1556.7 1389,1256.9 1389,1253.9 1389,1220.4 1115.9,1220.4
-		1115.9,1255.4 1295.4,1255.4 1295.4,1639.5 	" />
-                        <g >
-
-                            <text transform="matrix(1 0 0 1 1314.5657 1437.0465)" class="st3 st4 st6_2" >spar</text >
-                        </g >
-                    </g >
-                    <g id="TomShoos" >
-                        <rect x="677.3" y="1392.7" class="st1" width="37.8" height="30.1" />
-                        <g >
-
-                            <text transform="matrix(1 0 0 1 681.2504 1409.1818)" class="st3 st4 st8_2" >TomShoos</text >
-                        </g >
-                    </g >
-                    <g id="blackstar" >
-                        <rect x="641.5" y="1327.4" class="st1" width="41.4" height="42.4" />
-                        <g >
-                            <text transform="matrix(1 0 0 1 644.4965 1350.8589)" class="st3 st4 st7_2" >blackstar
-                            </text >
-                        </g >
-                    </g >
-                    <g id="Баба_Рома" >
-                        <rect x="747.8" y="1347.4" class="st1" width="73.7" height="32.5" />
-                        <g >
-                            <text transform="matrix(1 0 0 1 753.2449 1367.3502)" class="st3 st4 st13_2" >Баба Рома
-                            </text >
-                        </g >
-                    </g >
-                    <g id="монро" >
-                        <rect x="915.6" y="1266.4" class="st1" width="108.1" height="50.2" />
-                        <g >
-                            <text transform="matrix(1 0 0 1 936.0135 1299.9543)" class="st3 st4 st14_2" >монро</text >
-                        </g >
-                    </g >
-                    <g id="МАЛИНА" >
-                        <rect x="915.6" y="1327.5" class="st1" width="108.1" height="95.3" />
-                        <g >
-
-                            <text transform="matrix(1 0 0 1 929.2372 1375.5438)" class="st3 st4 st14_2" >МАЛИНА</text >
-                        </g >
-                    </g >
-                    <g id="ШАПО" >
+                    <g id="place148" >
                         <rect x="747.8" y="1391.2" class="st1" width="73.7" height="31.6" />
                         <g >
 
                             <text transform="matrix(1 0 0 1 767.9802 1411.881)" class="st3 st4 st13_2" >ШАПО</text >
                         </g >
                     </g >
-                    <g id="Maxfild" >
+                    <g id="place149" >
+                        <rect x="693.9" y="1327.4" class="st1" width="21.2" height="42.4" />
+                        <text transform="matrix(0 -1 1 0 707.438 1363.3291)" class="st3 st4 st9_2" >SUBWAY</text >
+                    </g >
+                    <g id="place150" >
+                        <rect x="641.5" y="1327.4" class="st1" width="41.4" height="42.4" />
+                        <text transform="matrix(1 0 0 1 644.4965 1350.8589)" class="st3 st4 st7_2" >blackstar
+                        </text >
+                    </g >
+                    <g id="place151" >
                         <rect x="608.8" y="1327.4" class="st1" width="21.6" height="42.4" />
 
                         <text transform="matrix(0 -1 1 0 622.2196 1362.0298)" class="st3 st4 st7_2" >Maxfild</text >
                     </g >
-                    <g id="SUBWAY" >
-                        <rect x="693.9" y="1327.4" class="st1" width="21.2" height="42.4" />
+                    <g id="place152" >
+                        <rect x="534.1" y="1327.5" class="st1" width="63.6" height="42.3" />
 
-                        <text transform="matrix(0 -1 1 0 707.438 1363.3291)" class="st3 st4 st9_2" >SUBWAY</text >
+                            <text transform="matrix(1 0 0 1 540.7607 1348.4266)" >
+                                <tspan x="0" y="0" class="st3 st4 st10_2" >женский</tspan >
+                                <tspan x="9.3" y="11" class="st3 st4 st10_2" >сезон</tspan >
+                            </text >
                     </g >
+                    <g id="place153" >
+                        <rect x="534.1" y="1392.7" class="st1" width="63.6" height="30.1" />
+
+                            <text transform="matrix(1 0 0 1 544.1198 1406.7026)" >
+                                <tspan x="0" y="0" class="st3 st4 st9_2" >Сибирские</tspan >
+                                <tspan x="8.4" y="8" class="st3 st4 st9_2" >блины</tspan >
+                            </text >
+                    </g >
+                    <g id="place154" >
+                        <rect x="608.8" y="1392.7" class="st1" width="57.4" height="30.1" />
+                        <text transform="matrix(1 0 0 1 616.9555 1410.7317)" class="st3 st4 st9_2" >скорпион</text >
+                    </g >
+                    <g id="place155" >
+                        <rect x="677.3" y="1392.7" class="st1" width="37.8" height="30.1" />
+                        <text transform="matrix(1 0 0 1 681.2504 1409.1818)" class="st3 st4 st8_2" >TomShoos</text >
+                    </g >
+
+                    <g id="place156">
+                        <rect id="монгольская_шерсть" x="639.3" y="1433.8" class="st1" width="75.8" height="28.2" />
+                        <text transform="matrix(1 0 0 1 649.7937 1446.759)" >
+                            <tspan x="0" y="0" class="st3 st4 st9_2" >монгольская</tspan >
+                            <tspan x="13.1" y="8" class="st3 st4 st9_2" >шерсть</tspan >
+                        </text >
+                    </g >
+                    <g id="place159" >
+                        <rect x="574.6" y="1473.1" class="st1" width="25.8" height="25.4" />
+                            <text transform="matrix(1 0 0 1 576.2452 1488.028)" class="st3 st4 st7_2" >ГОЛДы</text >
+                    </g >
+                    <g id="place160" >
+                        <rect x="611.5" y="1473.1" class="st1" width="103.6" height="54.6" />
+                            <text transform="matrix(1 0 0 1 625.9145 1503.6921)" class="st3 st4 st12_2" >Постелька
+                            </text >
+                    </g >
+                    <g id="place161" >
+                        <rect x="534.1" y="1553.8" class="st1" width="202.6" height="85.7" />
+                        <text transform="matrix(1 0 0 1 556.2299 1604.0786)" class="st3 st4 st6" >Читай-город
+                        </text >
+                    </g >
+
 </svg >
 
 
@@ -1157,8 +1109,6 @@
                 var this_id;
 
                 this_id = $(this).attr('id');
-
-
 
                 if (this_id !== 'undefined') {
                     this_id = this_id.substr(5,3);

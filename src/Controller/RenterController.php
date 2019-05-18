@@ -9,12 +9,10 @@ use App\Repository\MapPlaceRepository;
 use App\Repository\RenterRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -29,7 +27,7 @@ class RenterController extends AbstractController
     public function list(RenterRepository $renterRepository)
     {
         $rennters = $renterRepository->findBy([],['sort'=> 'ASC']);
-        return $this->render('admin/renter_list.html.twig',[
+        return $this->render('admin/renters/renter_list.html.twig',[
             'renters' =>$rennters
         ]);
     }
@@ -99,7 +97,7 @@ class RenterController extends AbstractController
             return $this->redirect('/admin/renter/list');
         }
 
-        return $this->render('admin/new_renter.html.twig',[
+        return $this->render('admin/renters/new_renter.html.twig',[
             'form' => $form->createView(),
 
         ]);
@@ -167,7 +165,7 @@ class RenterController extends AbstractController
             return $this->redirect('/admin/renter/list');
         }
 
-        return $this->render('admin/redact_renter.html.twig',[
+        return $this->render('admin/renters/redact_renter.html.twig',[
             'form' => $form->createView(),
             'renter' => $renter
         ]);

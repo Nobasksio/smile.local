@@ -13,9 +13,6 @@ use App\Repository\ActionRepository;
 use App\Repository\NewsRepository;
 use App\Repository\RenterRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -68,7 +65,7 @@ class NewsController extends MainController
     public function adminActionList(ActionRepository $actionRepository)
     {
         $actions = $actionRepository->findby([],['sort'=> 'ASC']);
-        return $this->render('admin/actions_list.html.twig',
+        return $this->render('admin/actions/actions_list.html.twig',
             [
                 'actions'=>$actions
             ]);
@@ -79,7 +76,7 @@ class NewsController extends MainController
     public function adminNewsList(NewsRepository $newsRepository)
     {
         $news = $newsRepository->findby([],['date'=> 'Desc']);;
-        return $this->render('admin/news_list.html.twig',
+        return $this->render('admin/news/news_list.html.twig',
             [
                 'news'=>$news
             ]);
@@ -122,7 +119,7 @@ class NewsController extends MainController
             return $this->redirect('/admin/news_list');
         }
 
-        return $this->render('admin/new_news.html.twig',[
+        return $this->render('admin/news/new_news.html.twig',[
             'form' => $form->createView()
         ]);
 
@@ -172,7 +169,7 @@ class NewsController extends MainController
             return $this->redirect('/admin/news_list');
         }
 
-        return $this->render('admin/redact_news.html.twig',[
+        return $this->render('admin/news/redact_news.html.twig',[
             'form' => $form->createView(),
             'news' => $news
         ]);
@@ -223,7 +220,7 @@ class NewsController extends MainController
             return $this->redirect('/admin/action_list');
         }
         $renters = $renterRepository->findAll();
-        return $this->render('admin/new_action.html.twig',[
+        return $this->render('admin/actions/new_action.html.twig',[
             'form' => $form->createView(),
 
         ]);
@@ -279,7 +276,7 @@ class NewsController extends MainController
             return $this->redirect('/admin/action_list');
         }
         $renters = $renterRepository->findAll();
-        return $this->render('admin/redact_action.html.twig',[
+        return $this->render('admin/actions/redact_action.html.twig',[
             'form' => $form->createView(),
             'action' => $action
         ]);

@@ -11,7 +11,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserRedactType;
-use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,12 +34,10 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/path/redact", name="path_redact")
      */
-    public function path(Request $request){
+    public function path(){
 
         $place = $this->getParameter('myseting_place');
-
         $file_content = file_get_contents($place.'/seting.txt');
-
         $arr_str = explode("\n", $file_content);
 
         $transport = [];
@@ -54,7 +51,7 @@ class AdminController extends AbstractController
 
         $parking = file_get_contents($place.'/parking.txt');
 
-        return $this->render('admin/redact_transport.html.twig',
+        return $this->render('admin/common/redact_transport.html.twig',
             ['buses'=>$transport['bus'],
                 'tramvais'=>$transport['tramvai'],
                 'troleibuses'=>$transport['troleibus'],
@@ -68,7 +65,6 @@ class AdminController extends AbstractController
 
         $place = $this->getParameter('myseting_place');
 
-        $str_transport = '';
         $buses = $request->request->get('buses');
         $tramvais = $request->request->get('tramvais');
         $troleibuses = $request->request->get('troleibuses');
@@ -87,7 +83,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/common/redact", name="common_redact")
      */
-    public function common(Request $request){
+    public function common(){
 
         $place = $this->getParameter('myseting_place');
 
@@ -112,7 +108,7 @@ class AdminController extends AbstractController
             }
         }
 
-        return $this->render('admin/redact_common.html.twig',
+        return $this->render('admin/common/redact_common.html.twig',
             ['phone'=>$contact['phone'],
                 'name_press'=>$contact['name'],
                 'mail_press'=>$contact['mail'],
@@ -136,7 +132,7 @@ class AdminController extends AbstractController
             6=>'Суббота',
             7=>'Воскресенье',
         );
-        $str_transport = '';
+
         $about = $request->query->get('about');
         $phone = $request->query->get('phone');
         $name_press = $request->query->get('name_press');
@@ -170,7 +166,7 @@ class AdminController extends AbstractController
      * @Route("/logout", name="security_logout")
      */
     public function logout(){
-        return $this->render('auth/index.html.twig');
+        return $this->render('index.html.twig');
     }
 
     /**
@@ -178,7 +174,7 @@ class AdminController extends AbstractController
      */
     public function user_list(UserRepository $ur){
         $users = $ur->findBy([],['id'=> 'ASC']);
-        return $this->render('admin/user_list.html.twig',[
+        return $this->render('admin/users/user_list.html.twig',[
             'users'=>$users
         ]);
     }
@@ -207,7 +203,7 @@ class AdminController extends AbstractController
 
             return $this->redirect('/admin');
         }
-        return $this->render('admin/redact_user.html.twig',[
+        return $this->render('admin/users/redact_user.html.twig',[
             'user'=>$user,
             'form' => $form->createView()
         ]);

@@ -47,21 +47,6 @@ class indexController extends MainController
             'sliders'=>$sliders]);
     }
 
-    /**
-     * @Route("/for_renter", name="for_renter")
-     */
-    public function forRenter()
-    {
-        $work_time = $this->getWorktime();
-        return $this->render('plain_page.html.twig',['work_time'=>$work_time]);
-    }
-    /**
-     * @Route("/ad", name="ad")
-     */
-    public function ad()
-    {   $work_time = $this->getWorktime();
-        return $this->render('plain_page.html.twig',['work_time'=>$work_time]);
-    }
 
     /**
      * @Route("/our_map", name="our_map")
@@ -70,6 +55,7 @@ class indexController extends MainController
     {   $work_time = $this->getWorktime();
         return $this->render('our_map.html.twig',['work_time'=>$work_time]);
     }
+
     /**
      * @Route("/our_map/{floor}/{renter_id}", name="show_on_map")
      */

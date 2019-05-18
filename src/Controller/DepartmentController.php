@@ -8,7 +8,6 @@ use App\Form\SubscriberType;
 use App\Repository\CategoryRepository;
 use App\Repository\RenterRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -38,7 +37,7 @@ class DepartmentController extends MainController
     public function adminList(CategoryRepository $categoryRepository)
     {
         $categories = $categoryRepository->findBy([],['sort'=> 'ASC']);
-        return $this->render('admin/department_list.html.twig',
+        return $this->render('admin/departments/department_list.html.twig',
             [
                 'categories'=>$categories
             ]);
@@ -46,7 +45,7 @@ class DepartmentController extends MainController
     /**
      * @Route("/department/{id}", name="one_department")
      */
-    public function department(Category $category, CategoryRepository $categoryRepository, RenterRepository $renterRepository)
+    public function department(Category $category, CategoryRepository $categoryRepository)
     {
         $categories = $categoryRepository->findBy([],['sort'=> 'ASC']);
         $renters = $category->getRenters();
@@ -73,7 +72,7 @@ class DepartmentController extends MainController
     /**
      * @Route("admin/department/new", name="department_admin_create")
      */
-    public function create(CategoryRepository $categoryRepository, Request $request,ObjectManager $manager)
+    public function create( Request $request,ObjectManager $manager)
     {
         $Category = new Category();
         $form = $this->createForm(
@@ -89,7 +88,7 @@ class DepartmentController extends MainController
             return $this->redirect('/admin/department');
         }
 
-        return $this->render('admin/new_department.html.twig',[
+        return $this->render('admin/departments/new_department.html.twig',[
             'form' => $form->createView()
         ]);
     }
@@ -112,7 +111,7 @@ class DepartmentController extends MainController
             return $this->redirect('/admin/department');
         }
 
-        return $this->render('admin/new_department.html.twig',[
+        return $this->render('admin/departments/new_department.html.twig',[
             'form' => $form->createView(),
             'category' => $category
         ]);
