@@ -35,12 +35,13 @@ class indexController extends MainController
         $sliders = $sliderRepository->findby(['active'=>true],['sort'=> 'ASC']);
         $form = $this->createForm(SubscriberType::class);
 
-
+        $place = $this->getParameter('myseting_place');
         $work_time = $this->getWorktime();
-
+        $about = file_get_contents($place.'/about.txt');
         return $this->render('index.html.twig',['news'=>$news,
             'actions'=>$actions,
             'renters' => $renters,
+            'about' => $about,
             'form' => $form->createView(),
             'pluses' => $plusRepository->findby(['active'=>true],['sort'=> 'ASC']),
             'work_time'=>$work_time,
