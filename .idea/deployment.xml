@@ -5,7 +5,7 @@
       <paths name="host">
         <serverdata>
           <mappings>
-            <mapping deploy="/www/smile.elchenkov.ru" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/www/smilecity.tomsk.ru" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
