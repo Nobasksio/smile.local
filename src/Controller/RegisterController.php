@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class RegisterController extends AbstractController
 {
     /**
-     * @Route("/new_user", name="new_user")
+     * @Route("/admin/new_user", name="new_user")
      */
     public function register(UserPasswordEncoderInterface $passwordEncoder, Request $request,ObjectManager $manager){
 
@@ -43,7 +43,7 @@ class RegisterController extends AbstractController
             return $this->redirect('/admin');
         }
 
-        return $this->render('admin/new_user.html.twig',[
+        return $this->render('admin/users/new_user.html.twig',[
             'form' => $form->createView()
         ]);
 

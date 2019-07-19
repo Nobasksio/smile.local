@@ -3,8 +3,8 @@
 {% block title %}Акция{% endblock %}
 
 {% block bread_crumbs %}
-    <div class="row border_grey_b" >
-        <div class="wa" >
+    <div class="container-fluid border_grey_b" >
+        <div class="wa px-md-0 px-3" >
             <div class="bread_crumbs_row" >
                 <a href="{{ path('index') }}" ><span >Главная</span ></a >
                 <span class="rp20" >></span >
@@ -16,11 +16,12 @@
     </div >
 {% endblock %}
 {% block content %}
-    <div class="row red_b" >
+    <div class="container-fluid red_b" >
+
         <div class="wa" >
             <div class="slider_actions" >
                 {#<div class="turn_slider_blk fl " >#}
-                    {#<img src="{{ asset('img/left.svg') }}" class="brand_slider_next" >#}
+                {#<img src="{{ asset('img/left.svg') }}" class="brand_slider_next" >#}
                 {#</div >#}
                 <div class="action_name" >
                     <h1 class="white_c center cm35" >
@@ -28,56 +29,76 @@
                     </h1 >
                 </div >
                 {#<div class="turn_slider_blk fr f_gorizontal" >#}
-                    {#<svg class="brand_slider_next" id='test' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.47 24.96"><defs><style>.cls-1{fill:none;stroke-miterlimit:10;stroke-width:1.5px;}</style></defs><title>Ресурс 6</title><g id="Слой_2" data-name="Слой 2"><g id="Слой_1-2" data-name="Слой 1"><polyline class="cls-1" points="0.53 0.53 12.42 12.58 0.53 24.43"/></g></g></svg>#}
+                {#<svg class="brand_slider_next" id='test' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.47 24.96"><defs><style>.cls-1{fill:none;stroke-miterlimit:10;stroke-width:1.5px;}</style></defs><title>Ресурс 6</title><g id="Слой_2" data-name="Слой 2"><g id="Слой_1-2" data-name="Слой 1"><polyline class="cls-1" points="0.53 0.53 12.42 12.58 0.53 24.43"/></g></g></svg>#}
                 {#</div >#}
             </div >
         </div >
     </div >
-    <div class="row white_bm" >
-        <div class="wa" >
-            <div class="action_img_blk fl" >
-                <img src="/uploads/file/{{ action.photoBig }}" class="action_img" >
+    <div class="container-fluid white_bm" >
+        <div class="container" >
+            <div class="row" >
+                <div class="col-md-6 col-12" >
+                    <img src="/uploads/file/{{ action.photoBig }}" class="action_img" >
 
-            </div >
-            <div class="action_descriptin_blk fl" >
-                <div class="action_descriptin_content" >
-                    <div class="action_date_inplace fl black" >
-                        c {{ action.dateStart|date("d.m.Y") }} <br>
-                        по {{ action.dateFinish|date("d.m.Y") }}
-                    </div >
-                    <div class="action_brand_logo fr" >
-                        {% for renter  in action.renters %}
-                        <img src="/uploads/file/{{ renter.logo }}" >
-                        {% endfor %}
-                    </div >
-                    <div class="row cm35 main_vertical_flex" >
-                        <div class="action_description" >
-                            {{ action.description|raw }}
+                </div >
+                <div class="col-md-6 col-12 " >
+                    <div class="action_descriptin_content" >
+                        <div class="container" >
+                            <div class="row" >
+                                <div class="action_date_inplace fl black col-4" >
+                                    c {{ action.dateStart|date("d.m.Y") }} <br >
+                                    по {{ action.dateFinish|date("d.m.Y") }}
+                                </div >
+                                <div class="action_brand_logo fr col-8" >
+                                    {% for renter  in action.renters %}
+                                        {% if loop.index == 1 %}
+                                            <img src="/uploads/file/{{ renter.logo }}" class="img-fluid" >
+                                        {% endif %}
+                                    {% endfor %}
+                                </div >
+                            </div >
                         </div >
-                        <div class="smm_links_blk black cm35" >
-                            <div >ПОДЕЛИТЬСЯ</div >
-                            <div id="smm" class="smm_flex">
-                                {% if action.instagram != '' %}
+                        <div class="row_my cm35 main_vertical_flex" >
+                            <div class="col-12" >
+                                <div class="action_description" >
+                                    {{ action.description|raw }}
+                                </div >
+                                <div class="smm_links_blk black cm35" >
+                                    <div >ПОДЕЛИТЬСЯ</div >
+                                    <div id="smm" class="smm_flex" >
+                                        {% if action.instagram != '' %}
 
-                                    <div class="smm_item" ><div class="smm_in" ><a href="{{ action.instagram }}" class="block"></a></div ></div >
+                                            <div class="smm_item" >
+                                                <div class="smm_in" ><a href="{{ action.instagram }}"
+                                                                        class="block" ></a >
+                                                </div >
+                                            </div >
 
-                                {% endif %}
-                                {% if action.vk != '' %}
+                                        {% endif %}
+                                        {% if action.vk != '' %}
 
-                                    <div class="smm_item" ><div class="smm_vk" ><a href="{{ action.vk }}" class="block"></a></div ></div >
+                                            <div class="smm_item" >
+                                                <div class="smm_vk" ><a href="{{ action.vk }}" class="block" ></a >
+                                                </div >
+                                            </div >
 
-                                {% endif %}
-                                {% if action.facebook != '' %}
+                                        {% endif %}
+                                        {% if action.facebook != '' %}
 
-                                    <div class="smm_item" ><div class="smm_fb" ><a href="{{ action.facebook }}" class="block"></a></div ></div >
+                                            <div class="smm_item" >
+                                                <div class="smm_fb" ><a href="{{ action.facebook }}"
+                                                                        class="block" ></a >
+                                                </div >
+                                            </div >
 
-                                {% endif %}
-                            </div>
+                                        {% endif %}
+                                    </div >
+                                </div >
+                            </div >
                         </div >
                     </div >
                 </div >
             </div >
-
         </div >
         <div class="help" ></div >
     </div >

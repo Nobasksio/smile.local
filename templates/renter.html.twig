@@ -3,14 +3,14 @@
 {% block title %}Отделы ТЦ{% endblock %}
 
 {% block bread_crumbs %}
-    <div class="row border_grey_b" >
-        <div class="wa" >
+    <div class="container-fluid border_grey_b" >
+        <div class="wa px-md-0 px-3" >
             <div class="bread_crumbs_row" >
                 <a href="{{ path('index') }}" ><span >Главная</span ></a >
 
                 {% if this_category is defined %}
                     <span class="rp20" >></span >
-                    <a href="{{ path('department') }}" ><span class="" >Отделы ТЦ</span ></a>
+                    <a href="{{ path('department') }}" ><span class="" >Отделы ТЦ</span ></a >
                     <span class="rp20" >></span >
                     <span class="active_crumbs" >{{ this_category.name }}</span >
                 {% else %}
@@ -41,80 +41,96 @@
             </div >
         </div >
     </div >
-    <div class="row white_bm" >
-        <div class="wa" >
+    <div class="container-fluid white_bm" >
+        <div class="container" >
+            <div class="row" >
+                <div class="col-md-6 col-12" >
+                    <img src="/uploads/file/{{ renter.image }}" class="action_img" >
+                </div >
+                <div class="brank_descriptin_blk col-md-6 col-12" >
+                    <div class="brand_blk_inline" >
 
-                        <div class="row white_bm white_tm " id="row">
-                            <div class="wa" >
-                                <div class="row_inline_brand" >
-                                    <div class="action_img_blk fl" >
-                                        <img src="uploads/file/{{ renter.image }}" class="action_img">
+
+                        <div class="brand_logo_inline" >
+                            <img src="/uploads/file/{{ renter.logo }}" class='logo_rent' id="logo" >
+                        </div >
+                        <div class="clearfix row_my mt-3" >
+                            {#<div class="row" >#}
+                                {#<div class="col-6" >#}
+                                    {#<div class="button fl" >#}
+                                        {#<a href="/our_map/{{ renter.floor }}/{{ renter.id }}" id="show_map"#}
+                                           {#class="block_href2" >#}
+                                            {#ПОКАЗАТЬ НА КАРТЕ#}
+                                        {#</a >#}
+                                    {#</div >#}
+                                {#</div >#}
+                            {#</div>#}
+                                <div class="row mt-3 container" >
+                                    <div class="floor_brand_inline black fl clear_left" id="floor" >
+                                        {{ renter.floor }} этаж
                                     </div >
-                                    <div class="brank_descriptin_blk fl" >
-                                        <div class="brand_blk_inline" >
+                                    <div class="link_brand_inline fl " id="link" >
+                                        <a href="{{ renter.link }}" >{{ renter.link }}</a >
+                                    </div >
+                                </div >
 
+                                <div class="row_my cm35 main_vertical_flex" >
+                                    <div class="action_description" id="description" >
+                                        {{ renter.description|raw }}
+                                    </div >
+                                    <div class="smm_links_blk black cm35" id="socset" >
+                                        <div >{{ 'Подписывайте в соц сетях'|upper }} </div >
+                                        <div id="smm" class="smm_flex" >
+                                            {% if renter.instagram != '' %}
 
-                                            <div class="brand_logo_inline fl" >
-                                                <img src="uploads/file/{{ renter.logo }}" class='logo_rent' id="logo">
-                                            </div >
-                                            <div class="row cm35" >
-                                                <div class="button fl" >
-                                                    <a href="/our_map/{{ renter.floor }}/{{ renter.id }}" id="show_map" class="block_href2">
-                                                        ПОКАЗАТЬ НА КАРТЕ
-                                                    </a>
+                                                <div class="smm_item" >
+                                                    <div class="smm_in" ><a href="{{ renter.instagram }}"
+                                                                            class="block" ></a ></div >
                                                 </div >
-                                                <div class="floor_brand_inline black fl " id="floor">
-                                                    {{ renter.floor }} этаж
-                                                </div >
-                                                <div class="link_brand_inline fl " id="link">
-                                                    {{ renter.link }}
-                                                </div >
 
-                                                <div class="row cm35 main_vertical_flex" >
-                                                    <div class="action_description" id="description">
-                                                        {{ renter.description|raw }}
-                                                    </div >
-                                                    <div class="smm_links_blk black cm35" id="socset">
-                                                        <div >{{ 'Подписывайте в соц сетях'|upper }} </div >
-                                                        <div id="smm" class="smm_flex">
-                                                        {% if renter.instagram != '' %}
+                                            {% endif %}
+                                            {% if renter.vk != '' %}
 
-                                                            <div class="smm_item" ><div class="smm_in" ><a href="{{ renter.instagram }}" class="block"></a></div ></div >
-
-                                                        {% endif %}
-                                                        {% if renter.vk != '' %}
-
-                                                                <div class="smm_item" ><div class="smm_vk" ><a href="{{ renter.vk }}" class="block"></a></div ></div >
-
-                                                        {% endif %}
-                                                        {% if renter.facebook != '' %}
-
-                                                                <div class="smm_item" ><div class="smm_fb" ><a href="{{ renter.facebook }}" class="block"></a></div ></div >
-
-                                                        {% endif %}
-                                                    </div>
+                                                <div class="smm_item" >
+                                                    <div class="smm_vk" ><a href="{{ renter.vk }}"
+                                                                            class="block" ></a >
                                                     </div >
                                                 </div >
-                                            </div >
+
+                                            {% endif %}
+                                            {% if renter.facebook != '' %}
+
+                                                <div class="smm_item" >
+                                                    <div class="smm_fb" ><a href="{{ renter.facebook }}"
+                                                                            class="block" ></a ></div >
+                                                </div >
+
+                                            {% endif %}
                                         </div >
                                     </div >
                                 </div >
-                            </div >
-                            <div class="help" ></div >
-                        </div >
 
+                            </div >
+                        </div >
+                    </div >
+                </div >
+
+                <div class="help" ></div >
+
+
+            </div >
         </div >
     </div >
 
 {% endblock %}
 
-{% block javascripts %}
+    {% block javascripts %}
 
 
 
-{% endblock %}
-{% block subscribe %}
+    {% endblock %}
+    {% block subscribe %}
 
 
 
-{% endblock %}
+    {% endblock %}

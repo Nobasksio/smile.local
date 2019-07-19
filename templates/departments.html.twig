@@ -3,14 +3,14 @@
 {% block title %}Отделы ТЦ{% endblock %}
 
 {% block bread_crumbs %}
-    <div class="row border_grey_b" >
-        <div class="wa" >
+    <div class="container-fluid border_grey_b" >
+        <div class="wa px-md-0 px-3" >
             <div class="bread_crumbs_row" >
                 <a href="{{ path('index') }}" ><span >Главная</span ></a >
 
                 {% if this_category is defined %}
                     <span class="rp20" >></span >
-                    <a href="{{ path('department') }}" ><span class="" >Отделы ТЦ</span ></a>
+                    <a href="{{ path('department') }}" ><span class="" >Отделы ТЦ</span ></a >
                     <span class="rp20" >></span >
                     <span class="active_crumbs" >{{ this_category.name }}</span >
                 {% else %}
@@ -23,158 +23,88 @@
     </div >
 {% endblock %}
 {% block page_menu %}
-    <div class="row border_grey_b" >
+    <div class="container-fluid border_grey_b" >
         <div class="wa" >
             <div class="page_menu cm20" >
                 {% if this_category is not defined %}
-               <span class="department_item active_page_menu fl" >ВСЕ</span >
+                    <span class="department_item active_page_menu fl" >ВСЕ</span >
                 {% else %}
-                    <a href="/department"> <span class="department_item  fl" >ВСЕ</span ></a>
+                    <a href="/department" > <span class="department_item  fl" >ВСЕ</span ></a >
                 {% endif %}
                 {% for category in categories %}
 
                     {% if this_category is defined and category.id == this_category.id %}
                         <span class="department_item active_page_menu fl" >{{ category.name|upper }}</span >
                     {% else %}
-                         <a href="/department/{{ category.id }}"><span class="department_item fl" >{{ category.name|upper }}</span ></a>
+                        <a href="/department/{{ category.id }}" ><span
+                                    class="department_item fl" >{{ category.name|upper }}</span ></a >
                     {% endif %}
                 {% endfor %}
 
-                <div class="help"></div>
+                <div class="help" ></div >
             </div >
         </div >
     </div >
 {% endblock %}
 {% block content %}
-    <div class="row" >
+    <div class="row_my d-md-flex d-none" >
         <div class="wa" >
             {% for renter in renters %}
-            {% if loop.index0 == 0 %}
-            <div class="row_departments" >
+                {% if loop.index0 == 0 %}
+                    <div class="row_departments" >
                 {% endif %}
+
                 {% if loop.index0 >4 and loop.index0%5 ==0 %}
                 <div class="row_departments white_bm" >
-                    {% endif %}
+                {% endif %}
 
-                <div class="brand_item" onclick="show({{ (loop.index0//5)+1 }},{{ renter.id }})">
+                <div class="col brand_item" onclick="show({{ (loop.index0//5)+1 }},{{ renter.id }})" >
                     <img src="/uploads/file/{{ renter.logo }}" alt="" class="logo" >
                 </div >
 
-                    {% if loop.index0 >3 and loop.index0%5 == 4 %}
-                        </div>
-                        <div class="row white_bm white_tm hide" id="row{{ (loop.index0//5)+1 }}">
-                            <div class="wa" >
-                                <div class="row_inline_brand" >
-                                    <div class="action_img_blk fl" >
-                                        <img src="{{ asset('img/imgact.jpg') }}" class="action_img" id="action_img{{ (loop.index0//5)+1 }}">
-                                    </div >
-                                    <div class="brank_descriptin_blk fl" >
-                                        <div class="brand_blk_inline" >
-                                            <div class="close fr" onclick="hide({{ (loop.index0//5)+1 }},3)">
-                                            </div>
-                                            <div class="brand_logo_inline fl" >
-                                                <img src="{{ asset('img/logoact.png') }}" class='logo_rent' id="logo{{ (loop.index0//5)+1 }}">
-                                            </div >
-                                            <div class="row cm35" >
-                                                <div class="button fl" >
-                                                    <a href="" id="show_map{{ (loop.index0//5)+1 }}" class="block_href2">
-                                                    ПОКАЗАТЬ НА КАРТЕ
-                                                    </a>
-                                                </div >
-                                                <div class="floor_brand_inline black fl " id="floor{{ (loop.index0//5)+1 }}">
+                {% if loop.index0 >3 and loop.index0%5 == 4 %}
+                    </div>
+                    <div class="row white_bm white_tm hide" id="row{{ (loop.index0//5)+1 }}" >
+                        <div class="wa" >
+                            <div class="row" >
+                                <div class="col-md-6" >
+                                    <img src="{{ asset('img/imgact.jpg') }}" class="action_img"
+                                         id="action_img{{ (loop.index0//5)+1 }}" >
+                                </div >
+                                <div class="col-md-6" >
+                                    <div class="brand_blk_inline" >
+                                        <div class="close fr" onclick="hide({{ (loop.index0//5)+1 }},3)" >
+                                        </div >
+                                        <div class="brand_logo_inline" >
+                                            <img src="{{ asset('img/logoact.png') }}" class='logo_rent'
+                                                 id="logo{{ (loop.index0//5)+1 }}" >
+                                        </div >
+                                        <div class="clearfix row_my mt-3" >
+                                            {#<div class="row" >#}
+                                                {#<div class="col-6" >#}
+                                                    {#<div class="button fl" >#}
+                                                        {#<a href="" id="show_map{{ (loop.index0//5)+1 }}"#}
+                                                           {#class="block_href2" >#}
+                                                            {#ПОКАЗАТЬ НА КАРТЕ#}
+                                                        {#</a >#}
+                                                    {#</div >#}
+                                                {#</div >#}
+                                            {#</div >#}
+                                            <div class="row mt-3 container" >
+
+                                                <div class="floor_brand_inline black fl clear_left"
+                                                     id="floor{{ (loop.index0//5)+1 }}" >
                                                     2 этаж
                                                 </div >
-                                                <div class="link_brand_inline fl " id="link{{ (loop.index0//5)+1 }}">
+                                                <div class="link_brand_inline fl " id="link{{ (loop.index0//5)+1 }}" >
                                                     http://bershka-super-puper.com
                                                 </div >
-
-                                                <div class="row cm35 main_vertical_flex" >
-                                                    <div class="action_description" id="description{{ (loop.index0//5)+1 }}">
-                                                        Как часто мы приходим навестить родителей и слышим критику?
-                                                        Особенно в адрес того, как мы одеты. Особенно от мамы, которая
-                                                        (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
-                                                        то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
-                                                        Как часто мы приходим навестить родителей и слышим критику?
-                                                        Особенно в адрес того, как мы одеты. Особенно от мамы, которая
-                                                        (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
-                                                        то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
-                                                        Как часто мы приходим навестить родителей и слышим критику?
-                                                        Особенно в адрес того, как мы одеты. Особенно от мамы, которая
-                                                        (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
-                                                        то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
-                                                        Как часто мы приходим навестить родителей и слышим критику?
-                                                        Особенно в адрес того, как мы одеты. Особенно от мамы, которая
-                                                        (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
-                                                        то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
-                                                        Как часто мы приходим навестить родителей и слышим критику?
-                                                        Особенно в адрес того, как мы одеты. Особенно от мамы, которая
-                                                        (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
-                                                        то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
-                                                        Как часто мы приходим навестить родителей и слышим критику?
-                                                        Особенно в адрес того, как мы одеты. Особенно от мамы, которая
-                                                        (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
-                                                        то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
-                                                        Как часто мы приходим навестить родителей и слышим критику?
-                                                        Особенно в адрес того, как мы одеты. Особенно от мамы, которая
-                                                        (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
-                                                        то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
-                                                        Как часто мы приходим навестить родителей и слышим критику?
-                                                        Особенно в адрес того, как мы одеты. Особенно от мамы, которая
-                                                        (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
-                                                        то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
-                                                        Как часто мы приходим навестить родителей и слышим критику?
-                                                        Особенно в адрес того, как мы одеты. Особенно от мамы, которая
-                                                        (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
-                                                        то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
-                                                        Как часто мы приходим навестить родителей и слышим критику?
-                                                        Особенно в адрес того, как мы одеты. Особенно от мамы, которая
-                                                        (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
-                                                        то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
-                                                    </div >
-                                                    <div class="smm_links_blk black cm35" id="socset{{ (loop.index0//5)+1 }}">
-                                                        <div >{{ 'Подписывайте в соц сетях'|upper }} </div >
-                                                        <div id="smm{{ (loop.index0//5)+1 }}" class="smm_flex">
-                                                            <div class="smm_link_item" ></div >
-                                                        </div>
-                                                    </div >
-                                                </div >
-                                            </div >
-                                        </div >
-                                    </div >
-                                </div >
-                            </div >
-                            <div class="help" ></div >
-                        </div >
-
-
-                {% elseif loop.last %}
-                    </div>
-                    <div class="row white_bm white_tm hide" id="row{{ (loop.index0//5)+1 }}">
-                        <div class="wa" >
-                            <div class="row_inline_brand" >
-                                <div class="action_img_blk fl" >
-                                    <img src="{{ asset('img/imgact.jpg') }}" class="action_img" id="action_img{{ (loop.index0//5)+1 }}">
-                                </div >
-                                <div class="brank_descriptin_blk fl" >
-                                    <div class="brand_blk_inline" >
-                                        <div class="close fr" onclick="hide({{ (loop.index0//5)+1 }},3)">
-                                        </div>
-                                        <div class="brand_logo_inline fl" >
-                                            <img src="{{ asset('img/logoact.png') }}" class='logo_rent' id="logo{{ (loop.index0//5)+1 }}">
-                                        </div >
-                                        <div class="row cm35" >
-                                            <a href="" id="show_map{{ (loop.index0//5)+1 }}" class="block_href2">
-                                                ПОКАЗАТЬ НА КАРТЕ
-                                            </a>
-                                            <div class="floor_brand_inline black fl " id="floor{{ (loop.index0//5)+1 }}">
-                                                2 этаж
-                                            </div >
-                                            <div class="link_brand_inline fl " id="link{{ (loop.index0//5)+1 }}">
-                                                http://bershka-super-puper.com
+                                                <div class="help" ></div >
                                             </div >
 
-                                            <div class="row cm35 main_vertical_flex" >
-                                                <div class="action_description" id="description{{ (loop.index0//5)+1 }}">
+                                            <div class="row_my cm35 main_vertical_flex" >
+                                                <div class="action_description"
+                                                     id="description{{ (loop.index0//5)+1 }}" >
                                                     Как часто мы приходим навестить родителей и слышим критику?
                                                     Особенно в адрес того, как мы одеты. Особенно от мамы, которая
                                                     (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
@@ -216,11 +146,12 @@
                                                     (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
                                                     то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
                                                 </div >
-                                                <div class="smm_links_blk black cm35" id="socset{{ (loop.index0//5)+1 }}">
+                                                <div class="smm_links_blk black cm35"
+                                                     id="socset{{ (loop.index0//5)+1 }}" >
                                                     <div >{{ 'Подписывайте в соц сетях'|upper }} </div >
-                                                    <div id="smm{{ (loop.index0//5)+1 }}" class="smm_flex">
+                                                    <div id="smm{{ (loop.index0//5)+1 }}" class="smm_flex" >
                                                         <div class="smm_link_item" ></div >
-                                                    </div>
+                                                    </div >
                                                 </div >
                                             </div >
                                         </div >
@@ -230,59 +161,285 @@
                         </div >
                         <div class="help" ></div >
                     </div >
-                    <div class="help white_bm"></div>
-            {% endif %}
+
+
+                {% elseif loop.last %}
+                    </div>
+                    <div class="row white_bm white_tm hide" id="row{{ (loop.index0//5)+1 }}" >
+                        <div class="wa" >
+                            <div class="row" >
+                                <div class="col-md-6" >
+                                    <img src="{{ asset('img/imgact.jpg') }}" class="action_img"
+                                         id="action_img{{ (loop.index0//5)+1 }}" >
+                                </div >
+                                <div class="col-md-6" >
+                                    <div class="brand_blk_inline" >
+                                        <div class="close fr" onclick="hide({{ (loop.index0//5)+1 }},3)" >
+                                        </div >
+                                        <div class="brand_logo_inline" >
+                                            <img src="{{ asset('img/logoact.png') }}" class='logo_rent'
+                                                 id="logo{{ (loop.index0//5)+1 }}" >
+                                        </div >
+                                        <div class="clearfix row_my mt-3" >
+                                            {#<div class="row" >#}
+                                                {#<div class="col-6" >#}
+                                                    {#<div class="button fl" >#}
+                                                        {#<a href="" id="show_map{{ (loop.index0//5)+1 }}"#}
+                                                           {#class="block_href2" >#}
+                                                            {#ПОКАЗАТЬ НА КАРТЕ#}
+                                                        {#</a >#}
+                                                    {#</div >#}
+                                                {#</div >#}
+                                            {#</div >#}
+                                            <div class="row mt-3 container" >
+
+                                                <div class="floor_brand_inline black fl clear_left"
+                                                     id="floor{{ (loop.index0//5)+1 }}" >
+                                                    2 этаж
+                                                </div >
+                                                <div class="link_brand_inline fl " id="link{{ (loop.index0//5)+1 }}" >
+                                                    http://bershka-super-puper.com
+                                                </div >
+                                                <div class="help" ></div >
+                                            </div >
+
+
+                                            <div class="row_my cm35 main_vertical_flex" >
+                                                <div class="action_description"
+                                                     id="description{{ (loop.index0//5)+1 }}" >
+                                                    Как часто мы приходим навестить родителей и слышим критику?
+                                                    Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                    (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                    то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                    Как часто мы приходим навестить родителей и слышим критику?
+                                                    Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                    (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                    то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                    Как часто мы приходим навестить родителей и слышим критику?
+                                                    Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                    (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                    то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                    Как часто мы приходим навестить родителей и слышим критику?
+                                                    Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                    (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                    то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                    Как часто мы приходим навестить родителей и слышим критику?
+                                                    Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                    (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                    то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                    Как часто мы приходим навестить родителей и слышим критику?
+                                                    Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                    (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                    то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                    Как часто мы приходим навестить родителей и слышим критику?
+                                                    Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                    (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                    то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                    Как часто мы приходим навестить родителей и слышим критику?
+                                                    Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                    (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                    то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                    Как часто мы приходим навестить родителей и слышим критику?
+                                                    Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                    (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                    то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                    Как часто мы приходим навестить родителей и слышим критику?
+                                                    Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                    (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                    то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                </div >
+                                                <div class="smm_links_blk black cm35"
+                                                     id="socset{{ (loop.index0//5)+1 }}" >
+                                                    <div >{{ 'Подписывайте в соц сетях'|upper }} </div >
+                                                    <div id="smm{{ (loop.index0//5)+1 }}" class="smm_flex" >
+                                                        <div class="smm_link_item" ></div >
+                                                    </div >
+                                                </div >
+                                            </div >
+                                        </div >
+                                    </div >
+                                </div >
+                            </div >
+                        </div >
+                        <div class="help" ></div >
+                    </div >
+                    <div class="help white_bm" ></div >
+                {% endif %}
             {% endfor %}
 
 
 
             {#<div class="flex f_gorizontal cm35">#}
-                {#<div class="button" >Показать ещё</div >#}
+            {#<div class="button" >Показать ещё</div >#}
             {#</div >#}
+        </div >
+    </div >
+    <div class="container-fluid d-lg-none" >
+        <div class="row no-gutters py-2" >
+            {% for renter in renters %}
+                <div class="col-6 p-2" >
+                    <div class="col brand_item_sm" onclick="showM({{ (loop.index0//2)+1 }},{{ renter.id }})" >
+                        <img src="/uploads/file/{{ renter.logo }}" alt="" class="logo" >
+                    </div >
+                </div >
+                {% if loop.index0 >0 and loop.index0%2 == 1 %}
+                    <div class="container-fluid" >
+                        <div class="row white_bm hide" id="row_sm{{ (loop.index0//2)+1 }}" >
+
+                            <div class="row" >
+                                {#<div class="col-12" >#}
+                                {#<img src="{{ asset('img/imgact.jpg') }}" class="action_img" id="action_img_sm{{ (loop.index0//2)+1 }}">#}
+                                {#</div >#}
+                                <div class="col-12" >
+
+                                    <div class="close fr my-2" onclick="hideM({{ (loop.index0//2)+1 }},3)" >
+                                    </div >
+                                    <div class="container-fluid clearfix mx-auto text-center" >
+                                        <img src="{{ asset('img/logoact.png') }}" class='img-fluid mx-auto'
+                                             id="logo_sm{{ (loop.index0//2)+1 }}" >
+                                    </div >
+                                    <div class="container-fluid" >
+                                        {#<div class="button mx-auto my-2" >#}
+                                            {#<a href="" id="show_map_sm{{ (loop.index0//2)+1 }}"#}
+                                               {#class="block_href2 text-center" >#}
+                                                {#ПОКАЗАТЬ НА КАРТЕ#}
+                                            {#</a >#}
+                                        {#</div >#}
+                                        <div >
+                                            <div class="floor_brand_inline_sm black text-center"
+                                                 id="floor_sm{{ (loop.index0//2)+1 }}" >
+                                                2 этаж
+                                            </div >
+                                            <div class="text-center" id="link_sm{{ (loop.index0//2)+1 }}" >
+                                                http://bershka-super-puper.com
+                                            </div >
+                                        </div >
+
+                                        <div class="row main_vertical_flex" >
+                                            <div class="col-12"
+                                                 id="description_sm{{ (loop.index0//2)+1 }}" >
+                                                Как часто мы приходим навестить родителей и слышим критику?
+                                                Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                Как часто мы приходим навестить родителей и слышим критику?
+                                                Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                                Как часто мы приходим навестить родителей и слышим критику?
+                                                Особенно в адрес того, как мы одеты. Особенно от мамы, которая
+                                                (и так и должно быть) знает лучше. Если тебе знакома такая ситуация,
+                                                то порадуй ее. И себя. Обнови гардероб и взгляни на себя по-новому.
+                                            </div >
+                                            <div class="row black" id="socset_sm{{ (loop.index0//2)+1 }}" >
+                                                <div class="container-fluid" >
+                                                    <div class="mx-auto text-center" >{{ 'Подписывайте в соц сетях'|upper }} </div >
+                                                </div >
+                                                <div class="container-fluid" >
+
+                                                    <div id="smm_sm{{ (loop.index0//2)+1 }}" class="row" >
+                                                        <div class="smm_link_item" ></div >
+                                                    </div >
+                                                </div >
+                                            </div >
+                                        </div >
+                                    </div >
+                                </div >
+                            </div >
+                        </div >
+                        <div class="help" ></div >
+                    </div >
+                {% endif %}
+            {% endfor %}
         </div >
     </div >
 
 {% endblock %}
 
 {% block javascripts %}
-    <script type="application/javascript">
+    <script type="application/javascript" >
 
-        function show(num_row,id_rent) {
+        function show(num_row, id_rent) {
             hide(num_row);
             $.ajax({
                 type: "GET",
-                url: '/ajax/renter/'+id_rent,
+                url: '/ajax/renter/' + id_rent,
                 dataType: "json",
                 success: function (data) {
 
                     var data_obj = JSON.parse(data);
-                    $('#smm'+num_row).html('');
-                    $('#action_img'+num_row).attr('src','/uploads/file/'+data_obj.image);
-                    $('#logo'+num_row).attr('src','/uploads/file/'+data_obj.logo);
-                    $('#floor'+num_row).text(data_obj.floor+' этаж');
-                    $('#show_map'+num_row).attr('href','/our_map/'+data_obj.floor+'/'+data_obj.id+'');
-                    $('#link'+num_row).html("<a href='"+data_obj.link+"'>"+data_obj.link+"</a>");
-                    $('#description'+num_row).html(data_obj.description);
-                    $('#row'+num_row).show('blind');
-                    if (data_obj.instagram != ''){
-                        $('#smm'+num_row).append('<div class="smm_item" ><div class="smm_in" ><a href="'+data_obj.instagram+'" class="block"></a></div ></div >')
+                    $('#smm' + num_row).html('');
+                    $('#action_img' + num_row).attr('src', '/uploads/file/' + data_obj.image);
+                    $('#logo' + num_row).attr('src', '/uploads/file/' + data_obj.logo);
+                    $('#floor' + num_row).text(data_obj.floor + ' этаж');
+                    //$('#show_map' + num_row).attr('href', '/our_map/' + data_obj.floor + '/' + data_obj.id + '');
+
+                    if (data_obj.link != null) {
+                        $('#link' + num_row).html("<a href='" + data_obj.link + "'>" + data_obj.link + "</a>");
+                    } else {
+                        $('#link' + num_row).html("");
                     }
-                    if (data_obj.vk != ''){
-                        $('#smm'+num_row).append('<div class="smm_item" ><div class="smm_vk" ><a href="'+data_obj.vk+'" class="block"></a></div ></div >');
+                    $('#description' + num_row).html(data_obj.description);
+                    $('#row' + num_row).show('blind');
+                    if (data_obj.instagram != '') {
+                        $('#smm' + num_row).append('<div class="smm_item" ><div class="smm_in" ><a href="' + data_obj.instagram + '" class="block"></a></div ></div >')
                     }
-                    if (data_obj.facebook != ''){
-                        $('#smm'+num_row).append('<div class="smm_item" ><div class="smm_fb" ><a href="'+data_obj.facebook+'" class="block"></a></div ></div >');
+                    if (data_obj.vk != '') {
+                        $('#smm' + num_row).append('<div class="smm_item" ><div class="smm_vk" ><a href="' + data_obj.vk + '" class="block"></a></div ></div >');
+                    }
+                    if (data_obj.facebook != '') {
+                        $('#smm' + num_row).append('<div class="smm_item" ><div class="smm_fb" ><a href="' + data_obj.facebook + '" class="block"></a></div ></div >');
                     }
                 }
             });
 
 
         }
-        function hide(num_row,id_rent) {
+
+        function hide(num_row, id_rent) {
             $('.hide').hide();
-            $('.hide').attr('style','');
+            $('.hide').attr('style', '');
         }
 
-    </script>
+        function showM(num_row, id_rent) {
+            hideM(num_row);
+            console.log(num_row)
+            console.log(id_rent)
+            $.ajax({
+                type: "GET",
+                url: '/ajax/renter/' + id_rent,
+                dataType: "json",
+                success: function (data) {
+
+                    var data_obj = JSON.parse(data);
+                    $('#smm_sm' + num_row).html('');
+                    $('#action_img_sm' + num_row).attr('src', '/uploads/file/' + data_obj.image);
+                    $('#logo_sm' + num_row).attr('src', '/uploads/file/' + data_obj.logo);
+                    $('#floor_sm' + num_row).text(data_obj.floor + ' этаж');
+                    $('#show_map_sm' + num_row).attr('href', '/our_map/' + data_obj.floor + '/' + data_obj.id + '');
+                    $('#link_sm' + num_row).html("<a href='" + data_obj.link + "'>" + data_obj.link + "</a>");
+                    $('#description_sm' + num_row).html(data_obj.description);
+                    $('#row_sm' + num_row).show('blind');
+                    if (data_obj.instagram != '') {
+                        $('#smm_sm' + num_row).append('<div class="mt-3 col text-center"><div class="smm_item_sm mx-auto" ><div class="smm_in" ><a href="' + data_obj.instagram + '" class="block"></a></div ></div ></div >')
+                    }
+                    if (data_obj.vk != '') {
+                        $('#smm_s,' + num_row).append('<div class="mt-3 col text-center"><div class="smm_item_sm mx-auto" ><div class="smm_vk" ><a href="' + data_obj.vk + '" class="block"></a></div ></div ></div >');
+                    }
+                    if (data_obj.facebook != '') {
+                        $('#smm_sm' + num_row).append('<div class="mt-3 col text-center"><div class="smm_item_sm mx-auto" ><div class="smm_fb" ><a href="' + data_obj.facebook + '" class="block"></a></div ></div ></div >');
+                    }
+                }
+            });
+
+
+        }
+
+        function hideM(num_row, id_rent) {
+            $('.hide').hide();
+            $('.hide').attr('style', '');
+        }
+
+    </script >
 {% endblock %}
 

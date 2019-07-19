@@ -41,7 +41,7 @@ class RenterRedactType extends AbstractType
             ->add('image_upload',FileType::class, ['data_class' => null,'required' => false])
             ->add('link')
             ->add('sort')
-            ->add('active', CheckboxType::class,['empty_data'=>false,'required' => false])
+            ->add('active', CheckboxType::class,['required' => false])
             ->add('instagram')
             ->add('vk')
             ->add('facebook')

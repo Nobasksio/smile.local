@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-class RenterController extends AbstractController
+class RenterController extends MainController
 {
 
     /**
@@ -150,14 +150,16 @@ class RenterController extends AbstractController
                 $renter->setImage($image_name);
             }
 
+
             $categories = $form->get('categories')->getData();
 
 
             $map_place = $mpr->findOneBy(['renter'=>$renter]);
 
-            $map_place->setRenter(null);
-            $manager->persist($map_place);
-            $manager->flush();
+            if ($map_place) {
+                $map_place->setRenter(null);
+                $manager->persist($map_place);
+            }
 
             $manager->persist($renter);
             $manager->flush();

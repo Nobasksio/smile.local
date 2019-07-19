@@ -255,7 +255,7 @@ class NewsController extends MainController
 
             $image = $form->get('photo_big_upload')->getData();
 
-            if (isset($preview) and $preview!=null){
+            if (isset($image) and $image!=null){
 
                 $previewName = $this->generateUniqueFileName() . '.' . $image->guessExtension();
                 $image->move(

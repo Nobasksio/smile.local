@@ -3,8 +3,8 @@
 {% block title %}Отделы ТЦ{% endblock %}
 
 {% block bread_crumbs %}
-    <div class="row border_grey_b" >
-        <div class="wa" >
+    <div class="container-fluid border_grey_b" >
+        <div class="wa px-md-0 px-3" >
             <div class="bread_crumbs_row" >
                 <a href="{{ path('index') }}" ><span >Главная</span ></a >
                 <span class="rp20" >></span >
@@ -20,13 +20,13 @@
 
 {% block content %}
 
-    <div class="row map" >
+    <div class="row_my map" >
 
         <div class="wa map" >
 
             <div class="row_manage" >
 
-                <div class="{% if renter is defined and floor==1 %}button_white_manege_active{% endif %} button_white_manege" onclick="show(1,2)" id="but_1" >1 этаж</div >
+                <div class="{% if renter is defined and floor==1 %}button_white_manege_active {% elseif floor is defined %} {% else %} button_white_manege_active{% endif %} button_white_manege" onclick="show(1,2)" id="but_1" >1 этаж</div >
                 <div class="{% if renter is defined and floor==2 %}button_white_manege_active{% endif %} button_white_manege" onclick="show(2,1)" id="but_2" >2 этаж</div >
 
                 <div class="zoom" onclick="zoom(1)">+</div >
@@ -46,7 +46,7 @@
                     <div class="text14_site center" id="site">
                         www.html.ru
                     </div >
-                    <div class="discription_on_map" id="description">
+                    <div class="discription_on_map pb-3" id="description">
                         Много мать его текста
                     </div >
                 </div >
@@ -54,7 +54,7 @@
                                              ПОДРОБНЕЕ</a>
                 </div >
             </div >
-            <div style="" {% if renter is defined and floor==2 %}class="hide"{% endif %} class="hide" id="transform-wrapper1" >
+            <div style="" {% if renter is defined and floor==2 %}class="hide"{% endif %}{% if renter is not defined %}  {% endif %} id="transform-wrapper1" >
                 <svg version="1.1" id="Слой_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      viewBox="200 200 1720 1916.2"
@@ -846,7 +846,7 @@
 </svg >
 
             </div >
-            <div {% if renter is defined and floor==1 %} class="hide" {% endif %}{% if renter is not defined %}  {% endif %} id="transform-wrapper2" >
+            <div {% if renter is defined and floor==1 %} class="hide" {% endif %} class="hide" id="transform-wrapper2" >
 
                 <svg version="1.1" id="Слой_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -1105,7 +1105,7 @@
         }
 
         $(function () {
-            $("g").hover(function (event, data) {
+            $("g").click(function (event, data) {
                 var this_id;
 
                 this_id = $(this).attr('id');
@@ -1113,7 +1113,12 @@
                 if (this_id !== 'undefined') {
                     this_id = this_id.substr(5,3);
                     if (this_id !== 'undefined') {
-                        $(".close2").click();
+                        //$(".close2").click();
+                        $("g").find('tspan').removeClass('st3_active');
+                        $("g").find('text').removeClass('st3_active');
+                        $("g").removeClass('g_active');
+                        $("#card_brend").addClass('prozr');
+
                         $("#place"+this_id).addClass('g_active');
                         $("#place"+this_id).find('tspan').addClass('st3_active');
                         $("#place"+this_id).find('text').addClass('st3_active');
@@ -1127,7 +1132,13 @@
                             if (data_obj.id !=0) {
                                 $('#site').html("<a href='/renter/'" + data_obj.id + ">" + data_obj.link + "</a>");
                                 $('#name').text('' + data_obj.name + '');
-                                $('#description').html("" + data_obj.description + "");
+
+                                let description = document.write(data_obj.description.substr(0, 90));
+
+                                if (data_obj.description.length > 90){
+                                    description = description + "...";
+                                }
+                                $('#description').html("" + description + "");
                                 $('#link').attr('href', '/renter/' + data_obj.id + '');
                             } else {
                                 $('#site').html('');
@@ -1136,6 +1147,7 @@
                                 $('#link').attr('href', '/contacts');
                             }
                             $('#card_brend').removeClass('hide');
+                            $("#card_brend").removeClass('prozr');
                         }
 
 
@@ -1151,6 +1163,11 @@
                 $("#place{{renter.mapplace.id }}").click();
                 {% endif %}
             });
+            function reset(){
+                $("g").find('tspan').removeClass('st3_active');
+                $("g").find('text').removeClass('st3_active');
+                $("g").removeClass('g_active');
+            };
             $(".close2").click(function (event, data) {
 
                 $('#card_brend').addClass('hide');

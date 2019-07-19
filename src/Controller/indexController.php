@@ -47,6 +47,33 @@ class indexController extends MainController
             'work_time'=>$work_time,
             'sliders'=>$sliders]);
     }
+    /**
+     * @Route("/test", name="index_test")
+     */
+    public function index_test(NewsRepository $newsRepository,
+                          ActionRepository $actionRepository,
+                          RenterRepository $renterRepository,
+                          PlusRepository $plusRepository,
+                          SliderRepository $sliderRepository)
+    {
+        $news = $newsRepository->findAll(['active'=>true],['date'=> 'Desc']);
+        $actions = $actionRepository->findby(['active'=>true],['sort'=> 'ASC']);
+        $renters = $renterRepository->findby(['active'=>true],['sort'=> 'ASC']);
+        $sliders = $sliderRepository->findby(['active'=>true],['sort'=> 'ASC']);
+        $form = $this->createForm(SubscriberType::class);
+
+        $place = $this->getParameter('myseting_place');
+        $work_time = $this->getWorktime();
+        $about = file_get_contents($place.'/about.txt');
+        return $this->render('index.html.twig',['news'=>$news,
+            'actions'=>$actions,
+            'renters' => $renters,
+            'about' => $about,
+            'form' => $form->createView(),
+            'pluses' => $plusRepository->findby(['active'=>true],['sort'=> 'ASC']),
+            'work_time'=>$work_time,
+            'sliders'=>$sliders]);
+    }
 
 
     /**

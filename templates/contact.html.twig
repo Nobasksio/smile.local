@@ -3,8 +3,8 @@
 {% block title %}Контакты{% endblock %}
 
 {% block bread_crumbs %}
-    <div class="row border_grey_b" >
-        <div class="wa" >
+    <div class="container-fluid border_grey_b" >
+        <div class="wa px-md-0 px-3" >
             <div class="bread_crumbs_row" >
                 <a href="{{ path('index') }}" ><span >Главная</span ></a >
                 <span class="rp20" >></span >
@@ -61,15 +61,15 @@
             //myMap.geoObjects.add(multiRoute);
         });
     </script >
-    <div class="row map white_bm" id="map" >
+    <div class="row_my map white_bm d-none d-md-block" id="map" >
         <div class="wa" >
 
         </div >
     </div >
-    <div class="row " >
+    <div class="row_my" >
         <div class="wa" >
             <div class="contacts_blk" >
-                <div class="header_contact_left fl" >
+                <div class="container-fluid pt-2 fl d-block d-md-none" >
                     <div class="center font20 black" >Контакты</div >
                     <div class="phone red_c" >{{ press_phone }}</div >
                     <div class="plain_text black center" >Правила пребывания в ТЦ СМАЙЛ city</div >
@@ -78,14 +78,23 @@
                     <div class="text12 center" >{{ press_name }}</div >
                     <div class="text12 center" >{{ press_mail }}</div >
                 </div >
-                <div class="header_contact_right fl" >
-                    <div class="work_time_contact_area red_b" >
+                <div class="header_contact_left fl d-none d-md-block" >
+                    <div class="center font20 black" >Контакты</div >
+                    <div class="phone red_c" >{{ press_phone }}</div >
+                    <div class="plain_text black center" >Правила пребывания в ТЦ СМАЙЛ city</div >
+                    <div class="separator" ></div >
+                    <div class="center font20 black" >ПРЕСС-СЛУЖБА</div >
+                    <div class="text12 center" >{{ press_name }}</div >
+                    <div class="text12 center" >{{ press_mail }}</div >
+                </div >
+                <div class="header_contact_right fl d-none d-md-block" >
+                    <div class="work_time_contact_area red_b d-none d-md-block" >
                         <div class="work_time_ikon center" >
                             <img src="{{ asset('img/clock.svg') }}" class="clock_ikon" >
                         </div >
                         <div class="name_contact_filds center white_c" >РЕЖИМ РАБОТЫ</div >
                     </div >
-                    <div class="work_days_area " >
+                    <div class="work_days_area d-none d-md-block" >
                         <div class="work_time_block flex f_gorizontal" >
                             {% for index,day in work_time %}
                             <div class="work_time_item" >

@@ -3,8 +3,8 @@
 {% block title %}Отделы ТЦ{% endblock %}
 
 {% block bread_crumbs %}
-    <div class="row border_grey_b" >
-        <div class="wa" >
+    <div class="container-fluid border_grey_b" >
+        <div class="wa px-md-0 px-3" >
             <div class="bread_crumbs_row" >
                 <a href="{{ path('index') }}" ><span >Главная</span ></a >
                 <span class="rp20" >></span >
@@ -31,108 +31,209 @@
 
 
     </script >
-    <div class="row map" id="map2" >
-        <div class="wa" >
-        </div >
-    </div >
-    <div class="row" >
-        <div class="wa" >
-            <div class="path_blk" >
-                <div class="border_grey_b">
-                    <div class="make_path_active center fl category_path1" onclick="active(1)">
+    <div class="container-fluid d-md-none" >
+        <div class="row" >
+            <div class="col-12" >
+                <div class="border_grey_b" >
+                    <div class="make_path_active center fl category_path1" onclick="active(1)" >
                         <div class="icon_path center" >
                             <img src="{{ asset('img/path.png') }}" >
                         </div >
                         <div class="path_name" >проложить<br > маршрут</div >
                     </div >
-                    <div class="city_transport center fl category_path2" onclick="active(2)">
+                    <div class="city_transport center fl category_path2" onclick="active(2)" >
                         <div class="icon_trans center" >
                             <img src="{{ asset('img/trans.png') }}" >
                         </div >
                         <div class="path_name" >городской<br > транспорт</div >
                     </div >
-                    <div class="parking_info center fl category_path3" onclick="active(3)">
+                    <div class="parking_info center fl category_path3" onclick="active(3)" >
                         <div class="icon_park center" >
                             <img src="{{ asset('img/park.png') }}" >
                         </div >
                         <div class="path_name" >информация<br > о парковке</div >
                     </div >
                 </div >
-                <div class="help border_grey_t"></div>
-                    <div class="path" >
-                        <div class="row_path" >
-                            <input type="text" class="input_path1" id='from' placeholder="Откуда" >
-                        </div >
-                        <div class="row_path" >
-                            <input type="text" class="input_path"
-                                   placeholder="ТЦ Смайл city, г. Томск, ул, Учебная, 48д"
-                                   value="ТЦ Смайл city, г. Томск, ул, Учебная, 48д"
-                            >
-                        </div >
-                        <div class="button_path center" onclick="make_path()">
-                            ПОКАЗАТЬ
-                        </div >
+                <div class="help border_grey_t" ></div >
+                <div class="path" >
+                    <div class="row_path" >
+                        <input type="text" class="input_path1" id='from' placeholder="Откуда" >
                     </div >
-                    <div class="city_transport_blk " >
-                        <div class="transport_type bus center" >
-                            Автобус №
-                            <span >
+                    <div class="row_path" >
+                        <input type="text" class="input_path"
+                               placeholder="ТЦ Смайл city, г. Томск, ул, Учебная, 48д"
+                               value="ТЦ Смайл city, г. Томск, ул, Учебная, 48д"
+                        >
+                    </div >
+                    <div class="button_path center" onclick="make_path()" >
+                        ПОКАЗАТЬ
+                    </div >
+                </div >
+                <div class="city_transport_blk " >
+                    <div class="transport_type bus center" >
+                        Автобус №
+                        <span >
                                 {% for bus in buses %}
                                     {% if loop.last %}
                                         <span class="transport_number_item" >
                                              {{ bus }}
                                          </span >
-                                    {% else  %}
+                                    {% else %}
                                         <span class="transport_number_item" >
                                              {{ bus }} |
                                          </span >
                                     {% endif %}
 
-                                {%  endfor %}
+                                {% endfor %}
 
                             </span >
-                        </div >
-                        <div class="transport_type electrobus center" >
-                            Тролейбусы №
-                            <span >
+                    </div >
+                    <div class="transport_type electrobus center" >
+                        Тролейбусы №
+                        <span >
                             {% for bus in troleibuses %}
                                 {% if loop.last %}
                                     <span class="transport_number_item" >
                                              {{ bus }}
                                          </span >
-                                    {% else  %}
+                                    {% else %}
                                     <span class="transport_number_item" >
                                              {{ bus }} |
                                          </span >
                                 {% endif %}
 
-                            {%  endfor %}
+                            {% endfor %}
                         </span >
-                        </div >
-                        <div class="transport_type tramvai center" >
-                            Трамваи №
-                            <span >
+                    </div >
+                    <div class="transport_type tramvai center" >
+                        Трамваи №
+                        <span >
                             {% for bus in tramvais %}
                                 {% if loop.last %}
                                     <span class="transport_number_item" >
                                              {{ bus }}
                                          </span >
-                                    {% else  %}
+                                    {% else %}
                                     <span class="transport_number_item" >
                                              {{ bus }} |
                                          </span >
                                 {% endif %}
 
-                            {%  endfor %}
+                            {% endfor %}
                         </span >
-                        </div >
                     </div >
-                    <div class="parking_info_blk center" >
-                        <div class="center">
-                           {{ parking|raw }}
-                        </div>
+                </div >
+                <div class="parking_info_blk center mt-3" >
+                    <div class="center" >
+                        {{ parking|raw }}
+                    </div >
 
+                </div >
+            </div >
+        </div >
+    </div >
+    <div class="row_my map pb-5" id="map2" >
+        <div class="wa" >
+        </div >
+    </div >
+    <div class="row_my d-none d-md-block" >
+        <div class="wa" >
+            <div class="path_blk" >
+                <div class="border_grey_b" >
+                    <div class="make_path_active center fl category_path1" onclick="active(1)" >
+                        <div class="icon_path center" >
+                            <img src="{{ asset('img/path.png') }}" >
+                        </div >
+                        <div class="path_name" >проложить<br > маршрут</div >
                     </div >
+                    <div class="city_transport center fl category_path2" onclick="active(2)" >
+                        <div class="icon_trans center" >
+                            <img src="{{ asset('img/trans.png') }}" >
+                        </div >
+                        <div class="path_name" >городской<br > транспорт</div >
+                    </div >
+                    <div class="parking_info center fl category_path3" onclick="active(3)" >
+                        <div class="icon_park center" >
+                            <img src="{{ asset('img/park.png') }}" >
+                        </div >
+                        <div class="path_name" >информация<br > о парковке</div >
+                    </div >
+                </div >
+                <div class="help border_grey_t" ></div >
+                <div class="path" >
+                    <div class="row_path" >
+                        <input type="text" class="input_path1" id='from' placeholder="Откуда" >
+                    </div >
+                    <div class="row_path" >
+                        <input type="text" class="input_path"
+                               placeholder="ТЦ Смайл city, г. Томск, ул, Учебная, 48д"
+                               value="ТЦ Смайл city, г. Томск, ул, Учебная, 48д"
+                        >
+                    </div >
+                    <div class="button_path center" onclick="make_path()" >
+                        ПОКАЗАТЬ
+                    </div >
+                </div >
+                <div class="city_transport_blk " >
+                    <div class="transport_type bus center" >
+                        Автобус №
+                        <span >
+                                {% for bus in buses %}
+                                    {% if loop.last %}
+                                        <span class="transport_number_item" >
+                                             {{ bus }}
+                                         </span >
+                                    {% else %}
+                                        <span class="transport_number_item" >
+                                             {{ bus }} |
+                                         </span >
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </span >
+                    </div >
+                    <div class="transport_type electrobus center" >
+                        Тролейбусы №
+                        <span >
+                            {% for bus in troleibuses %}
+                                {% if loop.last %}
+                                    <span class="transport_number_item" >
+                                             {{ bus }}
+                                         </span >
+                                    {% else %}
+                                    <span class="transport_number_item" >
+                                             {{ bus }} |
+                                         </span >
+                                {% endif %}
+
+                            {% endfor %}
+                        </span >
+                    </div >
+                    <div class="transport_type tramvai center" >
+                        Трамваи №
+                        <span >
+                            {% for bus in tramvais %}
+                                {% if loop.last %}
+                                    <span class="transport_number_item" >
+                                             {{ bus }}
+                                         </span >
+                                    {% else %}
+                                    <span class="transport_number_item" >
+                                             {{ bus }} |
+                                         </span >
+                                {% endif %}
+
+                            {% endfor %}
+                        </span >
+                    </div >
+                </div >
+                <div class="parking_info_blk center" >
+                    <div class="center" >
+                        {{ parking|raw }}
+                    </div >
+
+                </div >
 
             </div >
         </div >
@@ -142,89 +243,91 @@
 {% block subscribe %}
 {% endblock %}
 {% block javascripts %}
-<script type="application/javascript">
+    <script type="application/javascript" >
 
-    ymaps.ready(function () {
-        // Создание карты.
-        var myMap = new ymaps.Map("map2", {
-            center: [56.4599199162167, 84.96455076370239],
-            zoom: 17
-        });
-        var suggestView = new ymaps.SuggestView(
-            'from', // ID input'а
-            {
-                offset: [-2, 3], // Отступы панели подсказок от её положения по умолчанию. Задаётся в виде смещений по горизонтали и вертикали относительно левого нижнего угла элемента input.
-                width: 300, // Ширина панели подсказок
-                results: 6, // Максимальное количество показываемых подсказок.
-                boundedBy: [[55,81],[58,87]]
+        ymaps.ready(function () {
+            // Создание карты.
+            var myMap = new ymaps.Map("map2", {
+                center: [56.4599199162167, 84.96455076370239],
+                zoom: 17
+            });
+            var suggestView = new ymaps.SuggestView(
+                'from', // ID input'а
+                {
+                    offset: [-2, 3], // Отступы панели подсказок от её положения по умолчанию. Задаётся в виде смещений по горизонтали и вертикали относительно левого нижнего угла элемента input.
+                    width: 300, // Ширина панели подсказок
+                    results: 6, // Максимальное количество показываемых подсказок.
+                    boundedBy: [[55, 81], [58, 87]]
+                });
+
+            var myPlacemark = new ymaps.Placemark([56.459503, 84.965536], {
+
+                // Хинт показывается при наведении мышкой на иконку метки.
+                hintContent: 'ТЦ СмайлCity',
+                // Балун откроется при клике по метке.
+                balloonContent: 'ТЦ СмайлСity, г. Томск, ул, Учебная, 48д'
+            }, {
+                iconColor: '#B52F18',
             });
 
-        var myPlacemark = new ymaps.Placemark([56.459503, 84.965536], {
+            // После того как метка была создана, добавляем её на карту.
+            myMap.geoObjects.add(myPlacemark);
 
-            // Хинт показывается при наведении мышкой на иконку метки.
-            hintContent: 'ТЦ СмайлCity',
-            // Балун откроется при клике по метке.
-            balloonContent: 'ТЦ СмайлСity, г. Томск, ул, Учебная, 48д'
-        },{
-            iconColor:'#B52F18',
         });
 
-        // После того как метка была создана, добавляем её на карту.
-        myMap.geoObjects.add(myPlacemark);
+        function active(type) {
+            $('.category_path1').removeClass("make_path_active");
+            $('.category_path2').removeClass("city_transport_active");
+            $('.category_path3').removeClass("parking_info_active");
+            $('.category_path1').addClass("make_path");
+            $('.category_path2').addClass("make_path");
+            $('.category_path3').addClass("make_path");
 
-    });
-    function active(type) {
-        $('.category_path1').removeClass("make_path_active");
-        $('.category_path2').removeClass("city_transport_active");
-        $('.category_path3').removeClass("parking_info_active");
-        $('.category_path1').addClass("make_path");
-        $('.category_path2').addClass("make_path");
-        $('.category_path3').addClass("make_path");
-
-        if (type == 1) {
-            $('.category_path1').removeClass("make_path");
-            $('.category_path1').addClass("make_path_active");
-            $('.path').show();
-            $('.city_transport_blk').hide();
-            $('.parking_info_blk').hide();
+            if (type == 1) {
+                $('.category_path1').removeClass("make_path");
+                $('.category_path1').addClass("make_path_active");
+                $('.path').show();
+                $('.city_transport_blk').hide();
+                $('.parking_info_blk').hide();
 
 
-        } else if (type == 2){
-            $('.category_path2').removeClass("city_transport");
-            $('.category_path2').addClass("city_transport_active");
-            $('.path').hide();
-            $('.city_transport_blk').show();
-            $('.parking_info_blk').hide();
-        } else {
-            $('.category_path3').removeClass("parking_info");
-            $('.category_path3').addClass("parking_info_active");
-            $('.path').hide();
-            $('.city_transport_blk').hide();
-            $('.parking_info_blk').show();
+            } else if (type == 2) {
+                $('.category_path2').removeClass("city_transport");
+                $('.category_path2').addClass("city_transport_active");
+                $('.path').hide();
+                $('.city_transport_blk').show();
+                $('.parking_info_blk').hide();
+            } else {
+                $('.category_path3').removeClass("parking_info");
+                $('.category_path3').addClass("parking_info_active");
+                $('.path').hide();
+                $('.city_transport_blk').hide();
+                $('.parking_info_blk').show();
+            }
         }
-    }
-    function make_path(){
-        var from = $('#from').val();
 
-        $('#map2').html('');
-        var myMap = new ymaps.Map("map2", {
-            center: [56.4599199162167, 84.96455076370239],
-            zoom: 16
-        });
+        function make_path() {
+            var from = $('#from').val();
 
-        var multiRoute = new ymaps.multiRouter.MultiRoute({
-            referencePoints: [
-                from,
-                'ТЦ Смайл city, г. Томск, ул, Учебная, 48д'
-            ],
+            $('#map2').html('');
+            var myMap = new ymaps.Map("map2", {
+                center: [56.4599199162167, 84.96455076370239],
+                zoom: 16
+            });
 
-        }, );
+            var multiRoute = new ymaps.multiRouter.MultiRoute({
+                referencePoints: [
+                    from,
+                    'ТЦ Смайл city, г. Томск, ул, Учебная, 48д'
+                ],
 
-        // Добавление маршрута на карту.
-        myMap.geoObjects.add(multiRoute);
+            },);
 
-    }
+            // Добавление маршрута на карту.
+            myMap.geoObjects.add(multiRoute);
 
-</script>
+        }
+
+    </script >
 {% endblock %}
 

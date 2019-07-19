@@ -47,7 +47,7 @@
                                       {{ form_widget(form.logo_grey_upload, {'attr': {'id':'logo_grey','class':'hide'}}) }}
                                       {% if renter is defined %}
                                       <div id="logo_grey_upload">
-                                        <img src="/uploads/file/{{ renter.logogrey }}">
+                                        <img src="/uploads/file/{{ renter.logogrey }}" class="preview_upload">
 
                                        </div>
                                        <div type="submit" class="btn btn-info " onclick="update('logo_grey')">Заменить</div >
@@ -59,7 +59,7 @@
                                       {{ form_widget(form.logo_upload, {'attr': {'id':'logo','class':'hide'}}) }}
                                       {% if renter is defined%}
                                       <div id="logo_upload">
-                                        <img src="/uploads/file/{{ renter.logo }}">
+                                        <img src="/uploads/file/{{ renter.logo }}" class="preview_upload">
 
                                        </div>
                                        <div type="submit" class="btn btn-info " onclick="update('logo')">Заменить</div >
@@ -71,7 +71,7 @@
                                        {{ form_widget(form.image_upload, {'attr': {'id':'image','class':'hide'}}) }}
                                        {% if renter is defined %}
                                        <div id="image_upload">
-                                        <img src="/uploads/file/{{ renter.image }}">
+                                        <img src="/uploads/file/{{ renter.image }}" class="preview_upload">
 
                                         </div>
                                         <div type="submit" class="btn btn-info " onclick="update('image')">Заменить</div >
