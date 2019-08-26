@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "onurb/excel-bundle": "^1.0",
+        "php-curl-class/php-curl-class": "^8.6",
         "sensio/framework-extra-bundle": "^5.3",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "4.2.*",

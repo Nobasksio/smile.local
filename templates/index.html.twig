@@ -719,7 +719,9 @@
 
     <script type="text/javascript" >
         $(document).ready(function () {
-            $('.slider').bxSlider({}
+            $('.slider').bxSlider({
+                auto:true
+                }
             );
             $('a[href^="#"], *[data-href^="#"]').on('click', function (e) {
                 e.preventDefault();

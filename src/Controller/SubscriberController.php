@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Subscriber;
 use App\Form\SubscriberType;
 use App\Repository\SubscriberRepository;
+use \Curl\Curl;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +22,7 @@ class SubscriberController extends AbstractController
     public function index(SubscriberRepository $subscriberRepository): Response
     {
         return $this->render('subscriber/index.html.twig', [
-            'subscribers' => $subscriberRepository->findby([],['date_subscribe'=> 'Desc']),
+            'subscribers' => $subscriberRepository->findby([], ['date_subscribe' => 'Desc']),
         ]);
     }
 
@@ -40,8 +41,27 @@ class SubscriberController extends AbstractController
             $entityManager->persist($subscriber);
             $entityManager->flush();
 
+            $curl = new Curl();
+
+            $curl->setHeader('X-Auth-Token', 'api-key px2osamtse54k5s1i6ik7g5kowpeho74');
+            $curl->setHeader('Content-Type', 'application/json');
+            $data = [
+                "campaign" => [
+                    "campaignId" => "Tp0iU"
+                ],
+                "email" => $email,
+                "customFieldValues" => [[
+                    "customFieldId" => "fV7Xt",
+                    "value" => ['site']
+                ]]
+            ];
+            $curl->post('https://api.getresponse.com/v3/contacts',$data);
+
+
+                $result = $curl->response->json;
+
             return new Response(1);
-        } catch (\mysqli_sql_exception $exception){
+        } catch (\mysqli_sql_exception $exception) {
             return new Response(0);
         }
 
@@ -85,9 +105,9 @@ class SubscriberController extends AbstractController
     public function delete(Request $request, Subscriber $subscriber): Response
     {
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($subscriber);
-            $entityManager->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($subscriber);
+        $entityManager->flush();
 
 
         return $this->redirectToRoute('subscriber_index');
@@ -96,40 +116,41 @@ class SubscriberController extends AbstractController
     /**
      * @Route("/admin/subscriber_download", name="subscriber_download", methods={"GET"})
      */
-    public function download_subscribe(SubscriberRepository $sr){
+    public function download_subscribe(SubscriberRepository $sr)
+    {
         $subscribers = $sr->findAll();
 
         $name_file = new \DateTime('now');
         $name_file_text = $name_file->format('d.m.Y H.i.s');
-        $name_file = $this->getParameter('myseting_place').'/'.$name_file_text.'.csv';
+        $name_file = $this->getParameter('myseting_place') . '/' . $name_file_text . '.csv';
 
-        $str_content = iconv("utf-8", "cp1251",'email;дата;активность');
+        $str_content = iconv("utf-8", "cp1251", 'email;дата;активность');
 
-        foreach ($subscribers as $subscriber){
+        foreach ($subscribers as $subscriber) {
 
-            $email = iconv("utf-8", "cp1251",$subscriber->getEmail());
-            $date = iconv("utf-8", "cp1251",$subscriber->getDateActivate()->format('d.m.Y H.i.s'));
+            $email = iconv("utf-8", "cp1251", $subscriber->getEmail());
+            $date = iconv("utf-8", "cp1251", $subscriber->getDateActivate()->format('d.m.Y H.i.s'));
             $active = $subscriber->getActivate();
-            if ($active){
-                $active = iconv("utf-8", "cp1251",'активен');
+            if ($active) {
+                $active = iconv("utf-8", "cp1251", 'активен');
             } else {
-                $active = iconv("utf-8", "cp1251",'не активен');
+                $active = iconv("utf-8", "cp1251", 'не активен');
             }
-            $str_content .= "\n".$email.";".$date.";"."$active";
+            $str_content .= "\n" . $email . ";" . $date . ";" . "$active";
         }
 
-        $file_content = file_put_contents($name_file,$str_content);
+        $file_content = file_put_contents($name_file, $str_content);
         $file = $name_file;
         $response = new BinaryFileResponse($file);
 
         $response->headers->set('Content-Type', 'application/CSV');
         $response->setContentDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            $name_file_text.'.csv'
+            $name_file_text . '.csv'
         );
 
         return $response;
- 
+
 
     }
 }

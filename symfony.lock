@@ -129,6 +129,9 @@
     "onurb/excel-bundle": {
         "version": "1.0.0"
     },
+    "php-curl-class/php-curl-class": {
+        "version": "8.6.0"
+    },
     "phpoffice/phpspreadsheet": {
         "version": "1.6.0"
     },
@@ -186,9 +189,6 @@
             "bin/console",
             "config/bootstrap.php"
         ]
-    },
-    "symfony/contracts": {
-        "version": "v1.0.2"
     },
     "symfony/debug": {
         "version": "v4.2.7"
