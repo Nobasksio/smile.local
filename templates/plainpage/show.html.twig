@@ -1,0 +1,38 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Отделы ТЦ{% endblock %}
+
+{% block bread_crumbs %}
+    <div class="container-fluid border_grey_b" >
+        <div class="wa px-md-0 px-3" >
+            <div class="bread_crumbs_row">
+                <a href="{{ path('index') }}"><span >Главная</span></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_menu %}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" >
+
+                <div class="center" >
+                    <div class="plain_zag black">
+                        {{ plainpage.name }}
+                    </div>
+                </div >
+                <div class="separator"></div>
+                <div class="plain_text_blk px-2">
+                    {{ plainpage.text|raw }}
+                </div>
+    </div >
+
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+
+
+

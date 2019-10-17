@@ -1,0 +1,137 @@
+{% extends 'admin/index.html.twig' %}
+  {% block content %}
+
+      <div class="content-wrapper" >
+          <!-- Content Header (Page header) -->
+          <section class="content-header" >
+              <h1 >
+                  Создать новую страницу
+
+              </h1 >
+              <ol class="breadcrumb" >
+                  <li ><a href="#" ><i class="fa fa-dashboard" ></i > Home</a ></li >
+                  <li class="active" >Новая страница</li >
+              </ol >
+          </section >
+
+          <!-- Main content -->
+          <section class="content" >
+              <!-- /.row -->
+              <!-- Main row -->
+
+              <div class="row" >
+                  <div class="col-md-6" >
+                      <div class="box box-warning" >
+
+                          <div class="box-body" >
+                              {{ form_start(form) }}
+
+
+                              <div class="form-group" >
+                                  <label >Название страницы</label >
+                                  {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Заголовок'}}) }}
+                              </div >
+                              <div class="form-group" >
+                                  <label >Ссылка</label >
+
+                                  <div class="input-group" >
+                                      <span class="input-group-addon" >{{ url('index') }}plainpage/</span >
+                                      {{ form_widget(form.linkName, {'attr': {'class': 'form-control', 'placeholder':'link'}}) }}
+                                  </div >
+
+                              </div >
+
+
+                              <div class="form-group" >
+                                  <label >Текст</label >
+                                  {{ form_widget(form.text, {'attr': {'rows': '10','cols':'80'},'id':'editor1' }) }}
+
+                              </div >
+
+                              <div class="form-group" >
+
+                                  <div class="checkbox" >
+                                      <label >
+                                          {{ form_widget(form.active) }} Активность
+                                      </label >
+                                  </div >
+
+                              </div >
+                              <div class="box-footer" >
+
+                                  {% if plainpage.id == '' %}
+
+                                  <button type="submit" class="btn btn-info " >Создать</button >
+                              </div >
+                              {{ form_end(form) }}
+
+                              {% else %}
+                              <div class="form-group" >
+                                  <label >Текущая ссылка</label >
+                                  {{ url('index') }}plainpage/<span id="link2" >{{ plainpage.linkName }}</span >
+                              </div >
+                              <button type="submit" class="btn btn-info " >Сохранить</button >
+                          </div >
+                          {{ form_end(form) }}
+
+                          <form method="post" action="{{ path('plainpage_delete', {'id': plainpage.id}) }}"
+                                onsubmit="return confirm('Вы уверены что хотите удалить?');" >
+                              <input type="hidden" name="_method" value="DELETE" >
+                              <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ plainpage.id) }}" >
+                              <button class="btn btn-danger pull-right" >Удалить</button >
+                          </form >
+                          {% endif %}
+
+                      </div >
+                  </div >
+              </div >
+      </div >
+      </div >
+
+
+      </section >
+
+      <!-- /.content -->
+  {% endblock %}
+
+          {% block jsinline %}
+              <script >
+                  $(function () {
+                      //Date picker
+                      CKEDITOR.replace('editor1')
+                      $('#datepicker').datepicker({
+                          autoclose: true
+                      })
+                      $('#datepicker2').datepicker({
+                          autoclose: true
+                      });
+                      $('.select2').select2()
+                  })
+
+                  function update(type) {
+                      $('#' + type + '_upload').html('');
+                      $('#action_redact_' + type + '_upload').removeClass('hide');
+                      $('#action_redact_' + type + '_upload').click();
+                  }
+
+                  function urlLit(w, v) {
+                      var tr = 'a b v g d e ["zh","j"] z i y k l m n o p r s t u f h c ch sh ["shh","shch"] ~ y ~ e yu ya ~ ["jo","e"]'.split(' ');
+                      var ww = '';
+                      w = w.toLowerCase();
+                      for (i = 0; i < w.length; ++i) {
+                          cc = w.charCodeAt(i);
+                          ch = (cc >= 1072 ? tr[cc - 1072] : w[i]);
+                          if (ch.length < 3) ww += ch; else ww += eval(ch)[v];
+                      }
+                      return (ww.replace(/[^a-zA-Z0-9\-]/g, '-').replace(/[-]{2,}/gim, '-').replace(/^\-+/g, '').replace(/\-+$/g, ''));
+                  }
+
+                  $(document).ready(function () {
+                      $('#plainpage_name').bind('change keyup input click', function () {
+                          $('#plainpage_linkName').val(urlLit($('#plainpage_name').val(), 0));
+
+                      });
+                  });
+
+              </script >
+          {% endblock %}

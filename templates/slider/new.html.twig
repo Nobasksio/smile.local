@@ -1,0 +1,112 @@
+{% extends 'admin/index.html.twig' %}
+  {% block content %}
+
+<div class="content-wrapper" >
+    <!-- Content Header (Page header) -->
+    <section class="content-header" >
+        <h1 >
+            Создать новую акцию
+
+        </h1 >
+        <ol class="breadcrumb" >
+            <li ><a href="#" ><i class="fa fa-dashboard" ></i > Home</a ></li >
+            <li class="active" >Новая акция</li >
+        </ol >
+    </section >
+
+    <!-- Main content -->
+    <section class="content" >
+        <!-- /.row -->
+        <!-- Main row -->
+
+        <div class="row" >
+            <div class="col-md-6" >
+                <div class="box box-warning" >
+
+                    <div class="box-body" >
+                        {{ form_start(form) }}
+                        <!-- text input -->
+
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">Превью</label>
+                            {{ form_widget(form.image, {'attr': {'id':'image'}}) }}
+                            {% if action is defined %}
+                                <div id="photo_small_upload">
+                                    <img src="/uploads/file/{{ action.photoSmall }}" class="preview_upload">
+                                </div>
+                                <div type="submit" class="btn btn-info " onclick="update('photo_small')">Заменить</div >
+                            {% endif %}
+                            <p class="help-block">Ширина 1200px высота 500px</p>
+                        </div>
+
+                        <div class="form-group" >
+                            <label >Ссылка</label >
+                            {{ form_widget(form.link, {'attr': {'class': 'form-control'}}) }}
+                        </div >
+                        <div class="form-group" >
+                            <label >Сортировка</label >
+                            {{ form_widget(form.sort, {'attr': {'class': 'form-control',
+                                'value':'500',
+                                'placeholder':'введите число. чем меньше тем ближе к началу' }}) }}
+
+                        </div >
+                        <div class="form-group" >
+
+                            <div class="checkbox" >
+                                <label >
+                                    {{ form_widget(form.active) }} Активность
+                                </label >
+                            </div >
+
+                        </div >
+                        <div class="box-footer" >
+
+                            <button type="submit" class="btn btn-info " >Создать</button >
+                            {% if action is defined %}
+                                <a href="{{ path('action_delete',{'id':action.id}) }}"><span type="submit" class="btn btn-danger pull-right " >Удалить</span ></a>
+                            {% endif %}
+                        </div >
+                        {{ form_end(form) }}
+                    </div >
+                </div >
+            </div >
+        </div >
+
+
+    </section >
+
+    <!-- /.content -->
+    {% endblock %}
+
+    {% block jsinline %}
+        <script>
+            $(function () {
+                //Date picker
+                CKEDITOR.replace('editor1')
+                $('#datepicker').datepicker({
+                    autoclose: true
+                })
+                $('#datepicker2').datepicker({
+                    autoclose: true
+                });
+                $('.select2').select2()
+            })
+            function update(type) {
+                $('#'+type+'_upload').html('');
+                $('#action_redact_'+type+'_upload').removeClass('hide');
+                $('#action_redact_'+type+'_upload').click();
+            }
+
+        </script>
+    {% endblock %}
+
+{% block title %}New Slider{% endblock %}
+
+{% block body %}
+    <h1>Create new Slider</h1>
+
+    {{ include('slider/_form.html.twig') }}
+
+    <a href="{{ path('slider_index') }}">back to list</a>
+{% endblock %}
