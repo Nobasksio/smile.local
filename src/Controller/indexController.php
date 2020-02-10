@@ -29,7 +29,7 @@ class indexController extends MainController
                           PlusRepository $plusRepository,
                           SliderRepository $sliderRepository)
     {
-        $news = $newsRepository->findAll(['active'=>true]);
+        $news = $newsRepository->findby(['active'=>true],['date'=> 'Desc']);
         $actions = $actionRepository->findby(['active'=>true],['sort'=> 'ASC']);
         $renters = $renterRepository->findby(['active'=>true],['sort'=> 'ASC']);
         $sliders = $sliderRepository->findby(['active'=>true],['sort'=> 'ASC']);

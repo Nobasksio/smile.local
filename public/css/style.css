@@ -40,6 +40,7 @@ h3{
     margin: 20px 0 0;
 }
 h4{
+    font-size: 18px;
     padding: 0 0;
     margin: 8px 0 5px;
     color: #000;
@@ -1441,4 +1442,10 @@ g:hover .st3{
 }
 .clear_left{
     clear: left;
+}
+.arr_wrapper{
+    padding: 15px;
+    padding-bottom: 10px;
+    background: #737373;
+    border-radius: 35px;
 }

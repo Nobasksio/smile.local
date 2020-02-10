@@ -24,7 +24,7 @@ class NewsController extends MainController
     public function index(NewsRepository $newsRepository,ActionRepository $actionRepository)
     {
         $work_time = $this->getWorktime();
-        $news = $newsRepository->findAll(['active'=>true],['date'=> 'Desc']);
+        $news = $newsRepository->findby(['active'=>true],['date'=> 'Desc']);
         $actions = $actionRepository->findby(['active'=>true],['sort'=> 'ASC']);
         $form = $this->createForm(SubscriberType::class);
         return $this->render('news.html.twig', ['news'=>$news,

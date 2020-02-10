@@ -39,13 +39,14 @@
                             <p class="help-block">1200х500px </p>
                         </div>
                         <div class="form-group" >
-
-                            <label >Ссылка instagram</label >
+                            <label >Ссылка</label >
                             {{ form_widget(form.link, {'attr': {'class': 'form-control'}}) }}
                         </div >
                         <div class="form-group" >
-                            <label >Ссылка vk</label >
-                            {{ form_widget(form.sort, {'attr': {'class': 'form-control'}}) }}
+                            <label >Сортировка</label >
+                            {{ form_widget(form.sort, {'attr': {'class': 'form-control',
+                                'value':'500',
+                                'placeholder':'введите число. чем меньше тем ближе к началу' }}) }}
                         </div >
                         <div class="form-group" >
 

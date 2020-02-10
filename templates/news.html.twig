@@ -47,9 +47,9 @@
                                             <div class="type_action" >
                                                 Новости
                                             </div >
-                                            <h4 >
+                                            <h5 >
                                                 <a href="{{ path('news_item',{'id':new.id}) }}" >{{ new.name }}</a >
-                                            </h4 >
+                                            </h5 >
                                             <div class="index_action_descriptin" >
                                                 <a href="{{ path('news_item',{'id':new.id}) }}" >
                                                     {{ new.description|striptags[:50] }}...
@@ -57,7 +57,7 @@
                                             </div >
                                         </div >
                                         <div class="action_date" >
-                                            14 апреля 2019
+                                            {{ new.date|date('d.m.Y') }}
                                         </div >
                                     </div >
                                 </div >
@@ -211,9 +211,9 @@
                                             <div class="type_action" >
                                                 Акции
                                             </div >
-                                            <h4 >
-                                                <a href="{{ path('action_item',{'id':action.id }) }}" >{{ action.name }}</a >
-                                            </h4 >
+                                            <h5 >
+                                                <a href="{{ path('action_item',{'id':action.id }) }}" >{{ action.name|striptags[:35] }}</a >
+                                            </h5 >
                                             <div class="index_action_descriptin" >
                                                 <a href="{{ path('action_item',{'id':action.id }) }}" >
                                                     {{ action.description|striptags[:50] }}...
@@ -241,78 +241,7 @@
             </div >
             {% endif %}
             {% endfor %}
-            {#<div class="index_actions_item fl" >#}
-            {#<div class="action_img" >#}
-            {#<img src="{{ asset('img/ac4-80.png') }}" alt="" class="action_item" >#}
-            {#</div >#}
-            {#<div class="hatch" >#}
-            {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
-            {#</div >#}
-            {#<div class="action_text_blk" >#}
-            {#<div class="action_content" >#}
-            {#<div class="type_action" >#}
-            {#Новости#}
-            {#</div >#}
-            {#<h4 >#}
-            {#Как одеваться весной#}
-            {#</h4 >#}
-            {#<div class="index_action_descriptin" >#}
-            {#Для тех кто не хочет выглядеть как радуга#}
-            {#</div >#}
-            {#</div >#}
-            {#<div class="action_date" >#}
-            {#14 апреля 2019#}
-            {#</div >#}
-            {#</div >#}
-            {#</div >#}
-            {#<div class="index_actions_item fl" >#}
-            {#<div class="action_img" >#}
-            {#<img src="{{ asset('img/ac3-80.png') }}" alt="" class="action_item" >#}
-            {#</div >#}
-            {#<div class="hatch" >#}
-            {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
-            {#</div >#}
-            {#<div class="action_text_blk" >#}
-            {#<div class="action_content" >#}
-            {#<div class="type_action" >#}
-            {#Новости#}
-            {#</div >#}
-            {#<h4 >#}
-            {#Как одеваться весной#}
-            {#</h4 >#}
-            {#<div class="index_action_descriptin" >#}
-            {#Для тех кто не хочет выглядеть как радуга#}
-            {#</div >#}
-            {#</div >#}
-            {#<div class="action_date" >#}
-            {#14 апреля 2019#}
-            {#</div >#}
-            {#</div >#}
-            {#</div >#}
-            {#<div class="index_actions_item fl" >#}
-            {#<div class="action_img" >#}
-            {#<img src="{{ asset('img/ac2-80.png') }}" alt="" class="action_item" >#}
-            {#</div >#}
-            {#<div class="hatch" >#}
-            {#<img src="{{ asset('img/hatch.png') }}" alt="" class="action_item" >#}
-            {#</div >#}
-            {#<div class="action_text_blk" >#}
-            {#<div class="action_content" >#}
-            {#<div class="type_action" >#}
-            {#Новости#}
-            {#</div >#}
-            {#<h4 >#}
-            {#Как одеваться весной#}
-            {#</h4 >#}
-            {#<div class="index_action_descriptin" >#}
-            {#Для тех кто не хочет выглядеть как радуга#}
-            {#</div >#}
-            {#</div >#}
-            {#<div class="action_date" >#}
-            {#14 апреля 2019#}
-            {#</div >#}
-            {#</div >#}
-            {#</div >#}
+
             <div class="next_action_slider" ></div >
         </div >
         <div class="black_white_button center" id='showmore2' onclick="show_more(2,1)" >
