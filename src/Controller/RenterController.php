@@ -157,8 +157,11 @@ class RenterController extends MainController
             $map_place = $mpr->findOneBy(['renter'=>$renter]);
 
             if ($map_place) {
-                $map_place->setRenter(null);
-                $manager->persist($map_place);
+
+                if ($renter->getMapPlace()->getId() != $map_place->getId()) {
+                    $map_place->setRenter(null);
+                    $manager->persist($map_place);
+                }
             }
 
             $manager->persist($renter);
