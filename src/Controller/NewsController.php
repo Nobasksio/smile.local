@@ -265,9 +265,9 @@ class NewsController extends MainController
                 $action->setPhotoBig($previewName);
             }
 
-            $renters = $form->get('renter_id')->getData();
-
-            $action->addRenter($renters);
+//            $renters = $form->get('renters')->getData();
+//
+//            $action->addRenter($renters);
 
 
             $manager->persist($action);

@@ -31,9 +31,10 @@ class ActionType extends AbstractType
             ->add('photo_small',FileType::class)
             ->add('instagram')
             ->add('vk')
-            ->add('renter_id',EntityType::class,[
+            ->add('renters',EntityType::class,[
                 'class' => Renter::class,
                 'choice_label' => 'name',
+                'multiple'=>true,
                 'attr' => ['class' => 'form-control select2']
             ])
             ->add('facebook')
